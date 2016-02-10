@@ -1,0 +1,352 @@
+body  {
+  font-family: 'Varela Round', sans-serif;
+  line-height: 1.7;
+  display: inline;
+  margin: 0px;
+}
+
+/* 
+----------------------
+HEADER NAV
+---------------------- 
+*/
+
+header {
+  /* background: url("../images/hero_background.jpg"); */
+  /* background-size: cover; */
+  font-size: 1em;
+  height: 7em;
+}
+
+header img {
+  width: 5em;
+  padding-left: 2.8em;
+}
+
+.logo {
+  float: left;
+  position: relative;
+  padding: 1.5em;
+  margin: 0 auto; 
+  display: inline-block;
+}
+
+header nav {
+  background-image: url(images/DJP_logo.png);
+  text-align: right;
+  margin: 0 auto;
+  padding: 0px;
+  background: rgba(255,255,255,1);
+  height: 7em;
+}
+
+header ul   {
+  display: inline-block;
+  padding: 2.8em;
+  margin: 0 auto;
+  height: 1.4em;
+  text-align: center;
+  color: #323232;
+  text-decoration: none;
+}
+
+
+header a {
+  color: #323232;
+  text-decoration: none;
+}
+
+header li.non-active-link  {
+  color: #C2C2C2;
+}
+
+nav a:hover {
+text-decoration: underline;
+}
+
+nav a:active {
+color: #767676;
+}
+
+/* 
+----------------------
+HERO BACKGROUND IMAGE
+---------------------- 
+*/
+
+img.hero{
+  margin: 0 0 20px 0;
+}
+
+.hero-div {
+  background-size: cover;
+  background: url("../images/hero_background.png");
+  height: 18em;
+  margin-bottom: 5em;
+}
+
+.hero-div h1 {
+  font-size: 30px;
+  text-align: center;
+  color: #323232;
+  margin: 0 auto;
+  position: absolute;
+  top: 7em;
+  text-align: center;
+  left: 2.8em;
+  background: white;
+  padding: 20px 20px 20px 20px;
+}
+
+/* 
+----------------------
+PORTFOLIO
+---------------------- 
+*/
+
+.small  {
+  font-size: 14px;
+  color: #DDDFE0;
+  font-weight: normal;
+}
+
+div.job {
+  /* padding: 0 30px 0 30px; */
+  float: right;
+  width: 45%;
+  margin: 0 auto;
+}
+
+img.portfolio-ss {
+  display: inline;
+  width: 50%;
+/*  padding-left: 20px; */
+}
+
+li {
+  display: inline;
+  padding: 0px 10px 0px 10px;
+}
+ul li {
+  max-width: 500px;
+  padding: 20px;
+  margin: 0 auto;
+  vertical-align: center;
+}
+
+hr {
+  border-color: #DBE3E8;
+  border-style: solid;
+  margin: 50px 0 50px 0;
+  display: block;
+}
+
+/* 
+----------------------
+FOR SMALLER SCEENS
+---------------------- 
+*/
+
+@media (max-width: 960px) {
+div.job {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  float: none;
+}
+
+h1  {
+  font-size: 22px;
+}
+
+img.portfolio-ss {
+display: block;
+width: 100%;
+/*  padding-left: 20px; */
+}
+
+li.portfolio-item  {
+  display: block;
+}
+
+ul li {
+  max-width: 80%;
+}
+
+img.profile-picture {
+  display: block;
+  width: 50%;
+  vertical-align: center;
+  margin: 0 auto;
+}
+
+div.aboutme {
+  float: none;
+  margin-bottom: 30px;
+  width: 100%;
+  padding: 0px;
+  display: inline-block;
+  text-align: center;
+}
+
+footer ul li {
+  padding: 5px;
+}
+
+}
+
+/* -------- */
+/* ABOUT ME */
+/* -------- */
+
+.profile-picture  {
+  width: 30%;
+  display: inline;
+}
+
+.aboutme {
+  padding: 0 30px 30px 30px ;
+  float: right;
+  width: 55%;
+  margin: 0 auto;
+  margin-bottom: 60px;
+}
+
+ul.about {
+padding-bottom: 1em;
+margin: 0 auto;
+}
+
+
+/* 
+  .footer-copyright
+{
+  text-align: left;
+  float: left;
+  color: #737373;
+  margin: -10px;
+  padding: -10px;
+}
+*/
+
+/* ---------- */
+/* CONTACT ME */
+/* ---------- */
+
+.emailme  {
+  width: 600px;
+  margin: 0 auto;
+  display: block;
+  padding: 40px;
+  float: center;
+  text-align: center;
+  border: 1px solid #C2C2C2;
+  z-index: 1;
+}
+
+.emailme h2 {
+  padding-bottom: 20px;
+  margin-top: -10px;
+  text-align: center;
+}
+
+input {
+  width: 400px;
+  height: 30px;
+  margin: 0 auto;
+  float: center;
+  display: block;
+  text-align: center;
+  font-size: 16px;
+
+}
+
+.message[placeholder] {
+  font-color: red;
+  text-align: top;
+  padding: 10px;
+  width: 380px;
+  height: 100px;
+  border: 1px solid #d9d9d9;
+  font-size: 16px;
+  text-align: center;
+  resize: none;
+  margin-bottom: 20px;
+}
+
+input.submit  {
+  vertical-align: center;
+  margin-left: 10px;
+  width: 410px;
+}
+
+button  {
+  width: 400px;
+  height: 40px;
+  margin: 0 auto;
+  margin: 10px 10px 10px 20px;
+  background-color: #449BF7;
+  margin: 0 auto;
+  vertical-align: center;
+  border: none;
+}
+
+input.send {
+  width: 400px;
+  height: 40px;
+  margin: 0 auto;
+  margin: 10px 10px 10px 20px;
+  background-color: #449BF7;
+  margin: 0 auto;
+  vertical-align: center;
+  border: none;
+}
+
+input[type=submit]  {
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+button span {
+  color: white;
+  font-size: 16px;
+}
+
+svg.airplane  {
+  padding: 40px 40px 0 40px;
+}
+
+/* 
+-------------- 
+    FOOTER 
+-------------- 
+*/
+
+footer  {
+  background-color: #323232;
+  padding: 80px 50px 80px 50px;
+  margin-top: 50px;
+}
+
+.footer-icons path {
+  width: 32px;
+  fill: #737373;
+}
+
+.soc {
+  display: block;
+  text-align: center;
+}
+
+footer svg {
+  display: inline;
+  text-align: center;
+  margin-bottom: -40px;
+  padding: 20px 20px 50px 20px;
+}
+
+footer ul {
+  -webkit-padding-start: 0px;
+}
+
