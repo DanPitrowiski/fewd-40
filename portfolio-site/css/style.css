@@ -92,6 +92,10 @@ header ul   {
   text-decoration: none;
 }
 
+h2 {
+  margin-top: 0;
+}
+
 
 header a {
   color: #323232;
@@ -174,12 +178,12 @@ div.job {
   display: block;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 10px 30px 10px 30px;
 }
 
 li {
   display: inline;
-  padding: 0px 10px 0px 10px;
+  padding: 0px 20px 0px 0px;
 }
 
 
@@ -327,7 +331,7 @@ svg.airplane  {
 footer  {
   background-color: #323232;
   padding: 80px 50px 80px 50px;
-  margin-top: 50px;
+  margin-top: 5em;
 }
 
 .footer-icons path {
@@ -358,9 +362,12 @@ FOR SMALLER SCEENS
 
 @media (max-width: 960px) {
 
+    .logo {
+      padding: 5px;
+    }
 
-    header ul li {
-      padding: 20px 5px 5px 20px;
+    header ul {
+      padding: 2em 1em 0em 0em;
     }
 
     div.job {
@@ -415,6 +422,8 @@ FOR SMALLER SCEENS
     footer ul li {
       padding: 5px;
     }
+
+
 
 }
 
