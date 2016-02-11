@@ -261,7 +261,7 @@ footer p {
 /*  height: 100px;*/
   background-color: #033048;
   display: block;
-  padding: 20px 50px 20px 50px;
+  padding: 20px 40px 20px 40px;
 /*  overflow: auto;*/
 }
 
@@ -401,3 +401,32 @@ PSEUDO EFFECTS
 a:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 960px) {
+
+    .nav {
+    text-align: center;
+    float: none;
+    display: block;
+    margin: 0 auto;
+    clear: both;
+    padding: 20px 0 0 0;
+    }
+
+    .navlinks {
+      padding: 0px 20px 0 20px;
+    }
+
+    .navlinks p {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .navlogo {
+    float: none;
+    font-size: 48px;
+    margin: 0 auto;
+    text-align: center;
+    }
+
+  }
