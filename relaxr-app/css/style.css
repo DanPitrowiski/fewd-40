@@ -435,3 +435,23 @@ a:hover {
     }
 
   }
+
+  @media all and (max-width: 599px) {
+    
+    .mainbody {
+      width: 100%;
+    }
+
+    .blogaside {
+    display: none;
+    }
+
+    .blogheader {
+      padding: 10px;
+    }
+
+    .navlinks {
+      padding: 0px 10px 0 10px;
+    }
+
+  }
