@@ -402,6 +402,10 @@ a:hover {
     text-decoration: underline;
 }
 
+a:visited {
+    color: white ;
+}
+
 @media (max-width: 960px) {
 
     .nav {
@@ -429,4 +433,36 @@ a:hover {
     text-align: center;
     }
 
+
+    .blogaside {
+    padding: 40px 20px 40px 20px;
+    }
+
+  }
+
+  @media all and (max-width: 599px) {
+    
+    .mainbody {
+      width: 100%;
+    }
+
+    .blogaside {
+    display: none;
+    }
+
+    .blogheader {
+      padding: 10px;
+    }
+
+    .navlinks {
+      padding: 0px 10px 0 10px;
+    }
+
+    .navlinks p {
+      font-size: 16px;
+    }
+
+    .blogheadline {
+      font-size: 28px;
+    }
   }
