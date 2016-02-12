@@ -454,4 +454,11 @@ a:hover {
       padding: 0px 10px 0 10px;
     }
 
+    .navlinks p {
+      font-size: 16px;
+    }
+
+    .blogheadline {
+      font-size: 28px;
+    }
   }
