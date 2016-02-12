@@ -237,7 +237,8 @@ max-width: 1200px;
 /* ---------- */
 
 .emailme  {
-  width: 600px;
+  max-width: 600px;
+  width: 90%;
   margin: 0 auto;
   display: block;
   padding: 40px;
@@ -367,6 +368,14 @@ FOR SMALLER SCEENS
       margin-bottom: -5px;
     }
 
+    .hero-div h1 {
+    top: auto;
+    left: auto;
+    padding: 0 0 10px 0;
+    text-align: center;
+    position: static;
+    }
+
     header ul {
       padding: 2em 1em 0em 0em;
     }
@@ -380,6 +389,7 @@ FOR SMALLER SCEENS
 
     h1  {
       font-size: 22px;
+      text-align: center;
     }
 
     .portfolio-ss {
