@@ -60,9 +60,11 @@ body {
 #container {
   margin: 0 auto;
   background-size: cover;
-  position: relative;
-  height: 700px;
   width: 100%;
+  position: relative;
+  display: inline-block;
+  margin-top: 14%;
+
 /*  background-image: url("../images/portfolio.png");*/
 }
 
@@ -74,11 +76,12 @@ body {
 }
 
 .homework-list {
-  position: absolute;
   width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  left: 0%;
 }
 
 a:link, a:visited   {
@@ -95,7 +98,9 @@ a:hover {
   margin: 0 auto;
   height: 100px;
   z-index: 1;
-  margin-top: -40px;
+  margin-top: -50px;
+  border: 3px solid white;
+  padding: 0;
 
 }
 
@@ -109,5 +114,15 @@ footer {
   margin: 0 auto;
   display: block;
   text-align: center;
+}
+
+.blue-hat {
+  background-color: #4196C3;
+  position: absolute;
+  top: 0%;
+  height: 2%;
+  width: 100%;
+  z-index: 100;
+  margin: 0 auto;
 }
 
