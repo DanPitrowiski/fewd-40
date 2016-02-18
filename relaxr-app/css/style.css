@@ -33,7 +33,7 @@ Developer @GA in SF
 
 .alignright {
   float: right;
-  padding: 0 0 10px 10px; /* note the padding around a right floated image */
+  padding: 0 0 20px 10px; /* note the padding around a right floated image */
 }
 
 .alignleft {
@@ -265,9 +265,16 @@ footer p {
 /*  overflow: auto;*/
 }
 
+.show-more, .show-less {
+  color: #428CC7;
+  font-size: 20px;
+}
+
 .blogcontent  {
   line-height: 150%;
   font-size: 20px;
+  padding-top: 20px;
+  margin-bottom: 0;
 }
 
 .mainbody {
@@ -310,25 +317,40 @@ a:link {
   opacity: 50%;
 }
 
-.mainbody p {
-    margin: 40px 0 40px 0;
-}
+/*.mainbody p {
+    margin: 0px 0 20px 0;
+}*/
 
 .mainbody img {
   width: 100%;
 }
 
-.bloglink {
+.full-article-1, .full-article-2, .show-less-1, .show-less-2, .popup, .learn-more-content {
+  display: none;
+}
+
+.show-less-1, .show-less-2, .show-more-1, .show-more-2 {
+  font-size: 20px;
+  color: #2C6796;
+  font-weight: 600;
+}
+
+
+
+.learn-more {
   font-size: 20px;
   clear: both;
   padding: 20px;
+  color: #2C6796;
+  font-weight: 600;
+  margin-top: -30px;
 }
 
 .alignright {
   text-align: -webkit-right;
   text-align: right;
   display: block;
-  padding-bottom: 40px;
+  /*padding-bottom: 40px;*/
 }
 
 .blogaside {
