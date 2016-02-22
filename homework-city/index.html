@@ -9,21 +9,23 @@
 
 
 		<!-- external CSS link -->
+		<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/style.css">
 
-		<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-		<script type="js/javascript.js"></script>
 
 	</head>
 	<body>
 		<header>
 			<div class="title">
 				<h1>CitiPix</h1>
-				<p id="change">Your Cities, Your Pix</p>
+<!-- 				<p>Enter in a city name</p> -->
 			</div>
 		</header>
+			<h2 id="error"></h2>
+
+			<marquee behavior="scroll" direction="left" id="simcity"></marquee>
+
 			<div class="container">
 				<form id="entry">
 					<input type="text" id="city-type" placeholder="Enter a city name...">
@@ -31,6 +33,8 @@
 				</form>
 			</div>
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="js/javascript.js"></script>
 
 	</body>
 </html>
