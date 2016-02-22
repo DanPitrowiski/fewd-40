@@ -73,8 +73,12 @@ $('#entry').on('submit', function(e){
 		removeBackground();
 		$( "body" ).addClass( "rio" );
 	}
+	else if ((city === "BERLIN") || (city === "GERMANY")) {
+	removeBackground();
+	$( "body" ).addClass( "berlin" );
+	}
 	else if (city === "MARQUEE") {
-		$('#simcity').css('display','none');;
+		$('#simcity').css('display','none');
 	}
 
 	else if ((city === "DAN") || (city === "DANTOPIA") || (city === "DJP")) {
@@ -114,5 +118,5 @@ $('#entry').on('submit', function(e){
 
 
 function removeBackground() {
-	$( "body" ).removeClass( "rio nashville boston paris dan nyc sf la austin sydney" );
+	$( "body" ).removeClass( "berlin rio nashville boston paris dan nyc sf la austin sydney" );
 }
