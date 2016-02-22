@@ -20,79 +20,80 @@ window.onload = function(){
   });
 
  var dancount = 0;
+
  dancount = parseFloat(dancount);
 
 
 $('#entry').on('submit', function(e){
-    e.preventDefault();
+	e.preventDefault();
 
-    $('#error').css('display','none');
-    var city = $('#city-type').val();
-    var city = city.trim().toUpperCase();
+	$('#error').css('display','none');
+	var city = $('#city-type').val();
+	var city = city.trim().toUpperCase();
 
-if ((city === "NEW YORK") || (city === "NYC") || (city === "NEW YORK CITY")) {
-	removeBackground();
-	$( "body" ).addClass( "nyc" );
-}
-
-else if ((city === "SAN FRANCISCO") || (city === "SF") || (city === "BAY AREA")) {
-	removeBackground();
-	$( "body" ).addClass( "sf" );
-}
-
-else if ((city === "LOS ANGELES") || (city === "LA") || (city === "LAX")) {
-	removeBackground();
-	$( "body" ).addClass( "la" );
-}
-
-else if ((city === "AUSTIN") || (city === "ATX")) {
-	removeBackground();
-	$( "body" ).addClass( "austin" );
-}
-
-else if ((city === "SYDNEY") || (city === "SYD")) {
-	removeBackground();
-	$( "body" ).addClass( "sydney" );
-}
-
-else if ((city === "PARIS") || (city === "FRANCE")) {
-	removeBackground();
-	$( "body" ).addClass( "paris" );
-}
-
-else if ((city === "BOSTON") || (city === "BEANTOWN")) {
-	removeBackground();
-	$( "body" ).addClass( "boston" );
-}
-
-else if ((city === "DAN") || (city === "DANTOPIA") || (city === "DJP")) {
-	removeBackground();
-	document.getElementById('simcity').innerHTML = "Local Scientists Conclude: Kitties Like Fish, Dogs Less Picky";
-	$('#simcity').css('display','inherit');
-	$( "body" ).addClass( "dan" );
-}
-
-else {
-	$('#error').css('display','inherit');
-	dancount = dancount + 1;
-		if (dancount < 2) {
-		document.getElementById('error').innerHTML = "Try another city name";
-		} 
-		else if (dancount === 2  ) {
-			document.getElementById('error').innerHTML = "Try another city name... like Dantopia maybe";
-			$('#error').css('background-color','#F38323');
-		}
-		else if  (dancount > 2  ){
-			document.getElementById('error').innerHTML = "Headline from Dantopia Tribune \"I Was Framed, Jokes Local Artist\"";
-			$('#error').css('background-color','#F34923');
-		}
-
+	if ((city === "NEW YORK") || (city === "NYC") || (city === "NEW YORK CITY")) {
+		removeBackground();
+		$( "body" ).addClass( "nyc" );
 	}
 
-$('#city-type').val('').blur();
+	else if ((city === "SAN FRANCISCO") || (city === "SF") || (city === "BAY AREA")) {
+		removeBackground();
+		$( "body" ).addClass( "sf" );
+	}
 
-var text_input = document.getElementById ('city-type');
-text_input.focus ();
+	else if ((city === "LOS ANGELES") || (city === "LA") || (city === "LAX")) {
+		removeBackground();
+		$( "body" ).addClass( "la" );
+	}
+
+	else if ((city === "AUSTIN") || (city === "ATX")) {
+		removeBackground();
+		$( "body" ).addClass( "austin" );
+	}
+
+	else if ((city === "SYDNEY") || (city === "SYD")) {
+		removeBackground();
+		$( "body" ).addClass( "sydney" );
+	}
+
+	else if ((city === "PARIS") || (city === "FRANCE")) {
+		removeBackground();
+		$( "body" ).addClass( "paris" );
+	}
+
+	else if ((city === "BOSTON") || (city === "BEANTOWN")) {
+		removeBackground();
+		$( "body" ).addClass( "boston" );
+	}
+
+	else if ((city === "DAN") || (city === "DANTOPIA") || (city === "DJP")) {
+		removeBackground();
+		document.getElementById('simcity').innerHTML = "Local Scientists Conclude: Kitties Like Fish, Dogs Less Picky";
+		$('#simcity').css('display','inherit');
+		$( "body" ).addClass( "dan" );
+	}
+
+	else {
+		$('#error').css('display','inherit');
+		dancount = dancount + 1;
+			if (dancount < 2) {
+			document.getElementById('error').innerHTML = "Try another city name";
+			} 
+			else if (dancount === 2  ) {
+				document.getElementById('error').innerHTML = "Try another city name... like Dantopia perhaps";
+				$('#error').css('background-color','#F38323');
+			}
+			else if  (dancount > 2  ){
+				document.getElementById('error').innerHTML = "Headline from Dantopia Tribune \"I Was Framed, Jokes Local Artist\"";
+				$('#error').css('background-color','#F34923');
+			}
+
+		}
+
+	$('#city-type').val('').blur();
+
+	var text_input = document.getElementById ('city-type');
+	text_input.focus ();
 
 });
 
