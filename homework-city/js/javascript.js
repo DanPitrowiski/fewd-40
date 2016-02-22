@@ -19,9 +19,8 @@ window.onload = function(){
  $( document ).ready(function() {
   });
 
- var dancount = 0;
-
- dancount = parseFloat(dancount);
+ var errorcount = 0;
+ errorcount = parseFloat(errorcount);
 
 
 $('#entry').on('submit', function(e){
@@ -89,15 +88,15 @@ $('#entry').on('submit', function(e){
 
 	else {
 		$('#error').css('display','inherit');
-		dancount = dancount + 1;
-			if (dancount < 2) {
+		errorcount = errorcount + 1;
+			if (errorcount < 2) {
 			document.getElementById('error').innerHTML = "Try another city name";
 			} 
-			else if (dancount === 2  ) {
+			else if (errorcount === 2  ) {
 				document.getElementById('error').innerHTML = "Try another city name... like Dantopia perhaps";
 				$('#error').css('background-color','#F38323');
 			}
-			else if  (dancount > 2  ){
+			else if  (errorcount > 2  ){
 				document.getElementById('error').innerHTML = "Headline from Dantopia Tribune \"I Was Framed, Jokes Local Artist\"";
 				$('#error').css('background-color','#F34923');
 			}

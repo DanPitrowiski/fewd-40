@@ -105,7 +105,7 @@ header {
 #city-type {
   color: rgba(0,0,0,.7);
   font-size: 20px;
-  background: rgba(255,255,255,.9);
+  background: rgba(255,255,255,.85);
   border: none;
   border-radius: 2px;
   padding: 0px 30px;
@@ -118,7 +118,7 @@ header {
 }
 
 #submit-btn {
-  background: #ffe500;
+  background: rgba(255,229,0,.85);
   color: #000;
   font-size: 20px;
   font-weight: bold;
@@ -134,7 +134,7 @@ header {
   cursor: pointer;
 }
 #submit-btn:hover {
-  background: #fff600;
+  background: rgba(255,246,0,.9);
 }
 
 #error {
