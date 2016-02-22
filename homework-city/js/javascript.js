@@ -68,7 +68,7 @@ $('#entry').on('submit', function(e){
 
 	else if ((city === "DAN") || (city === "DANTOPIA") || (city === "DJP")) {
 		removeBackground();
-		document.getElementById('simcity').innerHTML = "Local Scientists Conclude: Kitties Like Fish, Dogs Less Picky";
+		document.getElementById('simcity').innerHTML = "Local Scientists Conclude: Kitties Like Fish, Dogs Less Picky"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"\n\u2022"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"Cats Demand Longer Breaks, Cleaner Litter, Slower Mice"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"\n\u2022"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"Typist Involved In Winter Traffic Accident, White-Out Conditions Blamed";
 		$('#simcity').css('display','inherit');
 		$( "body" ).addClass( "dan" );
 	}
