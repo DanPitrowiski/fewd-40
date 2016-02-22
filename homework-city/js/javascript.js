@@ -70,6 +70,13 @@ $('#entry').on('submit', function(e){
 		removeBackground();
 		$( "body" ).addClass( "nashville" );
 	}
+	else if ((city === "RIO") || (city === "RIO DE JANEIRO")) {
+		removeBackground();
+		$( "body" ).addClass( "rio" );
+	}
+	else if (city === "MARQUEE") {
+		$('#simcity').css('display','none');;
+	}
 
 	else if ((city === "DAN") || (city === "DANTOPIA") || (city === "DJP")) {
 		removeBackground();
@@ -77,6 +84,8 @@ $('#entry').on('submit', function(e){
 		$('#simcity').css('display','inherit');
 		$( "body" ).addClass( "dan" );
 	}
+
+	// ERRORS
 
 	else {
 		$('#error').css('display','inherit');
@@ -95,6 +104,8 @@ $('#entry').on('submit', function(e){
 
 		}
 
+	// ALWAYS DO THESE
+
 	$('#city-type').val('').blur();
 
 	var text_input = document.getElementById ('city-type');
@@ -102,6 +113,7 @@ $('#entry').on('submit', function(e){
 
 });
 
+
 function removeBackground() {
-	$( "body" ).removeClass( "nashville boston paris dan nyc sf la austin sydney" );
+	$( "body" ).removeClass( "rio nashville boston paris dan nyc sf la austin sydney" );
 }

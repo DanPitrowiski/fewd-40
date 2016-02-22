@@ -117,19 +117,6 @@ header {
 /*  box-shadow: #111 0 0 20px;*/
 }
 
-#city-type:-webkit-input-placeholder {
-    color: #fff;
-}
-#city-type:-moz-placeholder {
-    color: #fff;
-}
-#city-type:-moz-placeholder {
-    color: #fff;
-}
-#city-type:-ms-input-placeholder {
-    color: #fff;
-}
-
 #submit-btn {
   background: #ffe500;
   color: #000;
@@ -196,6 +183,9 @@ header {
  }
 .nashville {
   background-image: url(../images/nashville.jpg)
+}
+.rio {
+  background-image: url(../images/rio.jpg)
 }
 .dan {
   background-image: url(../images/dantopia.jpg)
