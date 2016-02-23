@@ -2,14 +2,19 @@
 // input city-name
 // return or hit submit
 // Do preventDefault() to make sure page doesn't reload
+// Remove previous error message
 // turn city-name into variable in javascript
 // standardize city-name to lower-case or uppercase to make consistent
+//
 
-// If city-name === "names"
+// If var city-name === city names from list
 // 	remove current class of city from body
 // 	add body background of new city
+//  Add city name to header
+//  Add Citipix name to subheader
+//  else display error message
+//
 
-// else display error message
 
 window.onload = function(){
   var text_input = document.getElementById ('city-type');
@@ -114,7 +119,7 @@ $('#entry').on('submit', function(e){
 
 	else {
 		$('#error').css('display','inherit');
-		errorcount = errorcount + 1;
+		errorcount++;
 			if (errorcount < 2) {
 			document.getElementById('error').innerHTML = "Try another city name";
 			} 
