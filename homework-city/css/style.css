@@ -198,6 +198,12 @@ header {
 .berlin {
   background-image: url(../images/berlin.jpg)
 }
+.chicago {
+  background-image: url(../images/chicago.jpg)
+}
+.philly {
+  background-image: url(../images/philly.jpg)
+}
 .dan {
   background-image: url(../images/dantopia.jpg)
 }
