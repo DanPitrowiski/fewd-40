@@ -33,49 +33,59 @@ $('#entry').on('submit', function(e){
 	if ((city === "NEW YORK") || (city === "NYC") || (city === "NEW YORK CITY")) {
 		removeBackground();
 		$( "body" ).addClass( "nyc" );
+		document.getElementById('cityname').innerHTML = "New York";
 	}
 
 	else if ((city === "SAN FRANCISCO") || (city === "SF") || (city === "BAY AREA")) {
 		removeBackground();
 		$( "body" ).addClass( "sf" );
+		document.getElementById('cityname').innerHTML = "San Francisco";
 	}
 
 	else if ((city === "LOS ANGELES") || (city === "LA") || (city === "LAX")) {
 		removeBackground();
 		$( "body" ).addClass( "la" );
+		document.getElementById('cityname').innerHTML = "Los Angeles";
 	}
 
 	else if ((city === "AUSTIN") || (city === "ATX")) {
 		removeBackground();
 		$( "body" ).addClass( "austin" );
+		document.getElementById('cityname').innerHTML = "Austin";
 	}
 
 	else if ((city === "SYDNEY") || (city === "SYD")) {
 		removeBackground();
 		$( "body" ).addClass( "sydney" );
+		document.getElementById('cityname').innerHTML = "Sydney";
 	}
 
 	else if ((city === "PARIS") || (city === "FRANCE")) {
 		removeBackground();
 		$( "body" ).addClass( "paris" );
+		document.getElementById('cityname').innerHTML = "Paris";
 	}
 
 	else if ((city === "BOSTON") || (city === "BEANTOWN")) {
 		removeBackground();
 		$( "body" ).addClass( "boston" );
+		document.getElementById('cityname').innerHTML = "Boston";
 	}
 
 	else if ((city === "NASHVILLE") || (city === "MUSIC CITY")) {
 		removeBackground();
 		$( "body" ).addClass( "nashville" );
+		document.getElementById('cityname').innerHTML = "Nashville";
 	}
 	else if ((city === "RIO") || (city === "RIO DE JANEIRO")) {
 		removeBackground();
 		$( "body" ).addClass( "rio" );
+		document.getElementById('cityname').innerHTML = "Rio De Janeiro";
 	}
 	else if ((city === "BERLIN") || (city === "GERMANY")) {
-	removeBackground();
-	$( "body" ).addClass( "berlin" );
+		removeBackground();
+		$( "body" ).addClass( "berlin" );
+		document.getElementById('cityname').innerHTML = "Berlin";
 	}
 	else if (city === "MARQUEE") {
 		$('#simcity').css('display','none');
@@ -83,7 +93,9 @@ $('#entry').on('submit', function(e){
 
 	else if ((city === "DAN") || (city === "DANTOPIA") || (city === "DJP")) {
 		removeBackground();
-		document.getElementById('simcity').innerHTML = "Local Scientists Conclude: Kitties Like Fish, Dogs Less Picky"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"\n\u2022"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"Cats Demand Longer Breaks, Cleaner Litter, Slower Mice"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"\n\u2022"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"Typist Involved In Winter Traffic Accident, White-Out Conditions Blamed";
+		playAudio();
+		document.getElementById('simcity').innerHTML = "Local Scientists Conclude: Kitties Like Fish, Dogs Less Picky"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"\n\u2022"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"Cats Demand Longer Breaks, Cleaner Litter, Slower Mice"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"\n\u2022"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"Typist Involved In Winter Traffic Accident, White-Out Conditions Blamed"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"\n\u2022"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"Broccoli Found To Cause Grumpiness In Children"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"\n\u2022"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"Cat Hijacks Municipal Bus; Riders Applaud Good Timing At Stops And Courteous Meows";
+		document.getElementById('cityname').innerHTML = "Dantopia";
 		$('#simcity').css('display','inherit');
 		$( "body" ).addClass( "dan" );
 	}
@@ -118,5 +130,21 @@ $('#entry').on('submit', function(e){
 
 
 function removeBackground() {
+	$('#simcity').css('display','none');
+	document.getElementById('citipixmade').innerHTML = "CitiPix";
+	pauseAudio();
 	$( "body" ).removeClass( "berlin rio nashville boston paris dan nyc sf la austin sydney" );
 }
+
+ 
+ // AUDIO CONTROLS
+
+ var x = document.getElementById("simcityaudio"); 
+
+ function playAudio() { 
+    x.play(); 
+ } 
+
+ function pauseAudio() { 
+    x.pause(); 
+} 
