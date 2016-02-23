@@ -98,8 +98,15 @@ header {
 }
 
 .title p {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: normal;
+  color: rgba(255,255,255,.9);
+}
+
+#cityname {
+  font-size: 48px;
+  padding: 0px;
+  line-height: 48px;
 }
 
 #city-type {
