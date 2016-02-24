@@ -8,10 +8,12 @@
 //
 
 // If var city-name === city names from list
+//  {
 // 	remove current class of city from body
-// 	add body background of new city
-//  Add city name to header
+// 	add new city class to body
+//  Add City name to header
 //  Add Citipix name to subheader
+//  }
 //  else display error message
 //
 
