@@ -37,6 +37,9 @@ $('#entry').on('submit', function(e){
 	var city = $('#city-type').val();
 	var city = city.trim().toUpperCase();
 
+
+	// FIND CITY MATCHES
+
 	if ((city === "NEW YORK") || (city === "NYC") || (city === "NEW YORK CITY")) {
 		resetPage();
 		$( "body" ).addClass( "nyc" );
@@ -145,6 +148,8 @@ $('#entry').on('submit', function(e){
 
 });
 
+
+	//RESETS PAGE BEFORE ADDING NEW CONTENT
 
 function resetPage() {
 	$('#simcity').css('display','none');
