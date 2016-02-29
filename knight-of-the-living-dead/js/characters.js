@@ -18,7 +18,7 @@ var hero = {
 var zombieBob = {
     name:"Farmer Bob Brains",
     level:8,
-    type:"Zombie",
+    type:"Zombie Botanist",
     accuracy: 6,
     strength: 7,
     toughness: 7,
