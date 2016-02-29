@@ -53,6 +53,7 @@ $('.alert-button').click( function(){
 // ******************************************
 
 function hitting(attacker, defender){
+	
 	var hitChance = Math.floor((Math.random() * (attacker.accuracy+defender.accuracy)) + 1);
 	console.log(hitChance);
 
@@ -82,18 +83,12 @@ function damage(attacker, defender){
 
 	var dmgRandom = Math.floor((Math.random() * (attackerMaxDmg-attackerMinDmg) ) + attackerMinDmg);
 
-	var variables = (attackerMaxDmg-attackerMinDmg)
-	console.log(variables)
 	var dmgReceived = dmgRandom * (attackerStrength/defenderToughness);
 
 	dmgReceived = Math.floor(dmgReceived);
 
-	// $( ".game-alerts" ).show().fadeOut(2000).text( attacker.name + " deals " + dmgReceived + " damage to " + defender.name);
-
 	message = ( attacker.name + " hit " + defender.name +" dealing " + dmgReceived + " damage.");
 	console.log(message);
-	// if (P)
-	// alertButton = (  defender.name + "\'s Turn" );
 
 	alertMessage(message);
 	defender.hitPointsCurrent = defender.hitPointsCurrent -  dmgReceived;
@@ -121,6 +116,9 @@ function alertMessage(message){
 function setFightInfo(){
 	$( "#enemyone-name").text(zombieBob.name);
 
+	$( "#enemyone-level").text(zombieBob.level);
+	$( "#hero-level").text(hero.level);
+
 	if (zombieBob.hitPointsCurrent <= 0 ){
 		zombieBob.hitPointsCurrent = 0; 
 		enemyKilled(zombieBob.name);
@@ -129,9 +127,6 @@ function setFightInfo(){
 		hero.hitPointsCurrent = 0; 
 		death();
 	}
-
-	$( "#enemyone-level").text(zombieBob.level);
-	$( "#hero-level").text(hero.level);
 
 	var enemyhealth = (zombieBob.hitPointsCurrent + "/" + zombieBob.hitPoints);
 	var herohealth = (hero.hitPointsCurrent + "/" + hero.hitPoints);
