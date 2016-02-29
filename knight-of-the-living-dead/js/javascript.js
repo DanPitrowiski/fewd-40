@@ -1,10 +1,12 @@
  var message;
+ var playerTurn;
 
 // ******************************************
 // * START GAME
 // ******************************************
 
  $( document ).ready(function() {
+ 	x.play(); 
  	$( "#popover" ).html("<form id='entry'><img src='images/hero.png'><h2>Choose the name of your hero</h2><input type='text' id='hero-name' placeholder='Choose a hero name...'><input type='submit' value='Update' id='submit-btn'></form>");
  	$( "#popover" ).addClass('popover-bg');
  	var text_input = $('#entry');
@@ -26,14 +28,23 @@
 
 
 // ******************************************
-// * ATTACK BUTTON CLICKED
+// * ATTACK START
 // ******************************************
 
 $('.attack-f').click( function(){
-		hitting(hero, zombieBob);
-		alertMessage("The Enemies Turn");
-		hitting(zombieBob, hero);
+	playerTurn = true;
+	$('.fight-button').addClass('turnoffbuttons');
+	hitting(hero, zombieBob);
 });
+
+$('.alert-button').click( function(){
+	playerTurn = false;
+	console.log(playerTurn);
+	hitting(zombieBob,hero);
+	$('.fight-button').removeClass('turnoffbuttons');
+	$( ".alert-button" ).css('display','none');
+});
+
 
 // ******************************************
 // * HITTING CALCULATION
@@ -80,34 +91,46 @@ function damage(attacker, defender){
 
 	// $( ".game-alerts" ).show().fadeOut(2000).text( attacker.name + " deals " + dmgReceived + " damage to " + defender.name);
 
-	message = ( attacker.name + " hits " + defender.name + ". </br>" + attacker.name + " deals " + dmgReceived + " damage to " + defender.name );
+	message = ( attacker.name + " hit " + defender.name +" dealing " + dmgReceived + " damage.");
 	console.log(message);
+	// if (P)
+	// alertButton = (  defender.name + "\'s Turn" );
+
 	alertMessage(message);
 	defender.hitPointsCurrent = defender.hitPointsCurrent -  dmgReceived;
-	setFightInfo();
+	setFightInfo(attacker, defender);
 
 };
 
 // ******************************************
-// * ALL ALERT NOTIFICATION
+// * ALL ALERT NOTIFICATIONS
 // ******************************************
 
 function alertMessage(message){
-		$( '.game-alerts' ).promise().then(function(){
-			$( ".game-alerts" ).show();
-			$( ".game-alerts" ).fadeOut(4000).html(message);
-	});
+		// $( '.game-alerts' ).promise().then(function(){
+			$( ".game-alerts" ).show().fadeIn(1000).html(message);
+			$( ".game-alerts").css('margin-bottom','40px');
+			if (playerTurn === true){
+				$( ".alert-button" ).css('display','block').fadeIn(1000);
+			}
+	// });
 }
 
 // ******************************************
 // * RESETTING PAGE INFO
 // ******************************************
 
-function setFightInfo(){
+function setFightInfo(attacker, defender){
 	$( "#enemyone-name").text(zombieBob.name);
 
-	if (zombieBob.hitPointsCurrent < 0 ){zombieBob.hitPointsCurrent = 0; }
-	if (hero.hitPointsCurrent < 0 ){hero.hitPointsCurrent = 0; }
+	if (zombieBob.hitPointsCurrent < 0 ){
+		zombieBob.hitPointsCurrent = 0; 
+		enemyKilled(defender.name);
+	}
+	if (hero.hitPointsCurrent < 0 ){
+		hero.hitPointsCurrent = 0; 
+		death();
+	}
 
 	$( "#enemyone-level").text(zombieBob.level);
 	$( "#hero-level").text(hero.level);
@@ -128,16 +151,75 @@ function setFightInfo(){
 $( '#hero-ui' ).hover( 
 	function() {
 		$('.hero-stats').css('display','-webkit-box');
-		var heroStats = ( "<span class='statnum'>" + hero.name + "</span></br>" +
+		var heroStats = ( 
+			"<span class='statnum'>" + hero.name + "</span></br>" +
 			hero.type + "</br></br>" + 
 			"<span class='statnum'>" + hero.accuracy + "</span> ACCURACY </br>" + 
 			"<span class='statnum'>" + hero.strength + "</span> STRENGTH </br>" +
 			"<span class='statnum'>" + hero.toughness + "</span> TOUGHNESS </br>" + 
 			"<span class='statnum'>" + hero.speed + "</span> SPEED </br>" + 
-			"<span class='statnum'>" + hero.luck + "</span> LUCK</br>" );
+			"<span class='statnum'>" + hero.luck + "</span> LUCK</br>" +
+			"<span class='statnum'>" + hero.weapon[0] + "</span> dmg " + hero.weapon[1] + "-" + hero.weapon[2] + "</br>" );
 		$( '.hero-stats').html(heroStats); 
 
 	}, function() {
     	$( '.hero-stats' ).css('display','none');
   }
   );
+
+$( '#enemy-ui-one' ).hover( 
+	function() {
+		$('.enemy-stats').css('display','-webkit-box');
+		var enemyStats = ( 
+			"<span class='statnum'>" + zombieBob.name + "</span></br>" +
+			zombieBob.type + "</br></br>" + 
+			"<span class='statnum'>" + zombieBob.accuracy + "</span> ACCURACY </br>" + 
+			"<span class='statnum'>" + zombieBob.strength + "</span> STRENGTH </br>" +
+			"<span class='statnum'>" + zombieBob.toughness + "</span> TOUGHNESS </br>" + 
+			"<span class='statnum'>" + zombieBob.speed + "</span> SPEED </br>" + 
+			"<span class='statnum'>" + zombieBob.luck + "</span> LUCK</br>" +
+			"<span class='statnum'>" + zombieBob.weapon[0] + "</span> dmg " + zombieBob.weapon[1] + "-" + zombieBob.weapon[2] + "</br>" );
+		$( '.enemy-stats').html(enemyStats); 
+
+	}, function() {
+    	$( '.enemy-stats' ).css('display','none');
+  }
+  );
+
+// ******************************************
+// * DEATH
+// ******************************************
+
+function death(){
+	$( '.game-alerts').css('margin-bottom','0');
+	$( '.game-alerts').css('display','none');
+	$('.reload').fadeIn(2000).css('display','block');
+	$('.popover-bg').fadeIn(2000).show();
+	$( "#death" ).fadeIn(2000).show();
+	}
+
+$('.reload').click(function() {
+    location.reload();
+});
+
+function enemyKilled(defender){
+	$('#enemy-ui-one').fadeOut(3000);
+	$('#enemyone').fadeOut(3000);
+	$('.alert-button').css('display','none');
+	$('#fight-menu').hide();
+	playerTurn = false;
+
+	alertMessage("You've killed " + zombieBob.name);
+}
+
+ // AUDIO CONTROLS
+
+ var x = $('#zombiemusic')[0]; 
+
+ function playAudio() { 
+    x.play(); 
+ } 
+
+ function pauseAudio() { 
+    x.pause(); 
+} 

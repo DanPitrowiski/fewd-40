@@ -28,17 +28,33 @@
 			/*******************************************/  -->
 
 			<div class="game-alerts"></div>
+			<button class="alert-button">Enemy Turn</button>
 
 			<!-- /******************************************
 			/* FULL SCREEN POPOVER
 			/*******************************************/  -->
 
 			<div id="popover"></div>
+			<div id="death">
+				<img class="center" src='images/hero.png'>
+				<h2>You've died!</h2>
+				<button class="reload center">Try again?</button>
+			</div>
 
+
+			<!-- /******************************************
+			/* MUSIC
+			/*******************************************/  -->
+
+
+			<audio loop id="zombiemusic">
+			  <source src="images/KofLDmusic.mp3" type="audio/mpeg">
+			</audio>
 
 			<!-- /******************************************
 			/* HERO UI AND STATS
 			/*******************************************/  -->
+
 
 			<p class="hero-stats"></p>
 			<div id="hero-ui">
@@ -49,6 +65,7 @@
 			/* ENEMY UI
 			/*******************************************/  -->
 
+			<p class="enemy-stats"></p>
 			<div id="enemy-ui-one">
 				<img src="images/zombie-farmer.png">
 			</div>
