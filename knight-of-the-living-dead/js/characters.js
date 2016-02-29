@@ -1,0 +1,33 @@
+var hero = {
+    name:"Farva",
+    level:5,
+    type:"Undead Knight",
+    accuracy: 8,
+    strength: 5,
+    toughness: 6,
+    speed: 7,
+    luck: 10,
+    weapon: ['Slicer Scabre', 4, 9],
+    skillPointsCurrent:20,
+    skillPoints:45,
+    hitPointsCurrent:45,
+    hitPoints:45,
+    skills:['Finish Him','Light on your toes'],
+};
+
+var zombieBob = {
+    name:"Farmer Brains Bob",
+    level:8,
+    type:"Zombie",
+    accuracy: 6,
+    strength: 7,
+    toughness: 7,
+    speed: 3,
+    luck: 1,
+    weapon: ['teeth', 8, 12],
+    skillPointsCurrent:10,
+    skillPoints:10,
+    hitPointsCurrent:40,
+    hitPoints:40,
+    skills:['Bite','Skewer!'],
+};

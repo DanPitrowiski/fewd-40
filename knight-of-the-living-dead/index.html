@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="Knight of the Living Dead">
+		<meta name="keywords" content="Knight, Undead, RPG">
+
+		<title>The Knight of the Undead</title>
+
+
+		<!-- external CSS link -->
+		<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/style.css">
+
+
+	</head>
+	<body>
+		<header>
+		</header>
+
+		<h1 class="game-name">Knight of the Living Dead</h1>
+
+		<div id="game-container">
+
+			<!-- /******************************************
+			/* ALL IN GAME MESSAGING
+			/*******************************************/  -->
+
+			<div class="game-alerts"></div>
+
+			<!-- /******************************************
+			/* FULL SCREEN POPOVER
+			/*******************************************/  -->
+
+			<div id="popover"></div>
+
+
+			<!-- /******************************************
+			/* HERO UI AND STATS
+			/*******************************************/  -->
+
+			<p class="hero-stats"></p>
+			<div id="hero-ui">
+				<img src="images/hero.png">
+			</div>
+
+			<!-- /******************************************
+			/* ENEMY UI
+			/*******************************************/  -->
+
+			<div id="enemy-ui-one">
+				<img src="images/zombie-farmer.png">
+			</div>
+
+			<!-- /******************************************
+			/* BOTTOM GAME MENU AND CHARACTERS
+			/*******************************************/  -->			
+			
+			<div id="hero-stats" class="ground-menu">
+				<p class="ch-name"><span class="bold-stat">Farva</span> - lvl <span id="hero-level">5</span></p>
+				<div class="ch-hitpoints"><span class="bold-stat">HP: </span><span id="hero-health"></span></div>
+				<div class="ch-skillpoints"><span class="bold-stat">SP: </span> 22/24</div>
+			</div>
+
+			<div id="fight-menu" class="ground-menu">
+				<button class="attack-f fight-button">ATTACK</button>
+				<button class="skill-f fight-button">SKILLS</button>
+				<button class="item-f fight-button">ITEMS</button>
+			</div>
+
+			<div id="enemyone" class="ground-menu">
+				<p class="ch-name"><span id="enemyone-name" class="boldstate">Farmer Zombie Bob</span> - lvl <span id="enemyone-level">3</p>
+				<div class="ch-hitpoints"><span class="bold-stat">HP: </span><span id="enemyone-health">12/14</span></div>
+				<div class="ch-skillpoints"></div>
+			</div>
+			<div id="enemytwo" class="ground-menu"></div>
+			<div id="enemythree" class="ground-menu"></div>
+			<div id="enemyfour" class="ground-menu"></div>
+
+			<!-- /******************************************
+			/* BACKGROUND GRAPHICS
+			/*******************************************/  -->
+
+			<img class="mountain-image" src="images/mountains.png">
+			<img class="mountain-image2" src="images/mountains.png">
+			<div class="clouds">
+				<marquee behavior="scroll" direction="left" scrollamount="1" class="cloud-image"><img src="images/cloud.png"></marquee>
+				<marquee behavior="scroll" direction="left" scrollamount="2.2" class="cloud-image2"><img src="images/cloud.png"></marquee>
+			</div>
+		</div>
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="js/characters.js"></script>
+		<script src="js/javascript.js"></script>
+
+	</body>
+</html>
