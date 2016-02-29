@@ -57,9 +57,6 @@ function hitting(attacker, defender){
 	console.log(hitChance);
 
 	if ( hitChance <= attacker.accuracy) {
-		// message = ( attacker.name + " hits " + defender.name );
-		// console.log(message);
-		// alertMessage(message);
 		damage(attacker, defender);
 	}
 	else {
@@ -146,7 +143,7 @@ function setFightInfo(){
 }
 
 // ******************************************
-// * HERO HOVER
+// * STAT HOVER
 // ******************************************
 
 $( '#hero-ui' ).hover( 
@@ -198,6 +195,17 @@ function death(){
 	$( "#death" ).fadeIn(2000).show();
 	};
 
+function enemyKilled(defender){
+	$('#enemy-ui-one').fadeOut(3000);
+	$('#enemyone').fadeOut(3000);
+	$('.alert-button').css('display','none');
+	$('#fight-menu').hide();
+	playerTurn = false;
+	alertMessage("You've killed " + zombieBob.name);
+}
+
+ // RELOAD AFTER YOUR DEATH
+
 $('.reload').click(function() {
     // location.reload();
 
@@ -210,19 +218,9 @@ $('.reload').click(function() {
 	$( '#death' ).hide();	
 	$('.popover-bg').hide();
 
-	pauseAudio();
-	playAudio();
 	setFightInfo();
 });
 
-function enemyKilled(defender){
-	$('#enemy-ui-one').fadeOut(3000);
-	$('#enemyone').fadeOut(3000);
-	$('.alert-button').css('display','none');
-	$('#fight-menu').hide();
-	playerTurn = false;
-	alertMessage("You've killed " + zombieBob.name);
-}
 
  // AUDIO CONTROLS
 

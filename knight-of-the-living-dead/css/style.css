@@ -147,10 +147,26 @@ button {
   top: 169px;
   left: 650px;
   position: absolute;
-  z-index: ;
+  z-index: 5;
   overflow: hidden;
   width:400px; /* you can use % */
   height: auto;
+}
+
+.corn-field {
+  top: 146px;
+  left: 935px;
+  position: absolute;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.trees {
+  top: 74px;
+  left: 0px;
+  position: absolute;
+  z-index: 10;
+  overflow: hidden;
 }
 
 .ground-menu {
