@@ -7,8 +7,8 @@ var hero = {
     toughness: 6,
     speed: 7,
     luck: 10,
-    weapon: ['Bone Scabre', 4, 9],
-    skillPointsCurrent:20,
+    weapon: ['Bone Scabre', 7, 9],
+    skillPointsCurrent:1,
     skillPoints:20,
     hitPointsCurrent:20,
     hitPoints:20,
@@ -16,7 +16,7 @@ var hero = {
 };
 
 var zombieBob = {
-    name:"Farmer Brains Bob",
+    name:"Farmer Bob Brains",
     level:8,
     type:"Zombie",
     accuracy: 6,
@@ -24,7 +24,7 @@ var zombieBob = {
     toughness: 7,
     speed: 3,
     luck: 1,
-    weapon: ['Pitch Fork', 8, 12],
+    weapon: ['Pitch Fork', 5, 15],
     skillPointsCurrent:10,
     skillPoints:10,
     hitPointsCurrent:18,

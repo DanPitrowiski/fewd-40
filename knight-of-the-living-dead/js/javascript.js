@@ -24,6 +24,8 @@
 		 	$( "#popover" ).fadeOut(2000);
 		 	// $( "#popover" ).css('background-color','rgba(0,0,0,0)');
 		 	$( "#hero-stats>.ch-name>.bold-stat").text(hero.name);
+
+		    alertMessage(zombieBob.name + " won't let you pass. Time for a fight!");
 			})});
 
 
@@ -98,7 +100,7 @@ function damage(attacker, defender){
 
 	alertMessage(message);
 	defender.hitPointsCurrent = defender.hitPointsCurrent -  dmgReceived;
-	setFightInfo(attacker, defender);
+	setFightInfo();
 
 };
 
@@ -108,10 +110,9 @@ function damage(attacker, defender){
 
 function alertMessage(message){
 		// $( '.game-alerts' ).promise().then(function(){
-			$( ".game-alerts" ).show().fadeIn(1000).html(message);
-			$( ".game-alerts").css('margin-bottom','40px');
+			$( ".game-alerts" ).fadeIn(500).html(message);
 			if (playerTurn === true){
-				$( ".alert-button" ).css('display','block').fadeIn(1000);
+				$( ".alert-button" ).fadeIn(500).css('display','block');
 			}
 	// });
 }
@@ -120,12 +121,12 @@ function alertMessage(message){
 // * RESETTING PAGE INFO
 // ******************************************
 
-function setFightInfo(attacker, defender){
+function setFightInfo(){
 	$( "#enemyone-name").text(zombieBob.name);
 
-	if (zombieBob.hitPointsCurrent < 0 ){
+	if (zombieBob.hitPointsCurrent <= 0 ){
 		zombieBob.hitPointsCurrent = 0; 
-		enemyKilled(defender.name);
+		enemyKilled(zombieBob.name);
 	}
 	if (hero.hitPointsCurrent < 0 ){
 		hero.hitPointsCurrent = 0; 
@@ -191,15 +192,27 @@ $( '#enemy-ui-one' ).hover(
 // ******************************************
 
 function death(){
-	$( '.game-alerts').css('margin-bottom','0');
 	$( '.game-alerts').css('display','none');
 	$('.reload').fadeIn(2000).css('display','block');
 	$('.popover-bg').fadeIn(2000).show();
 	$( "#death" ).fadeIn(2000).show();
-	}
+	};
 
 $('.reload').click(function() {
-    location.reload();
+    // location.reload();
+
+	var heroRevive = parseFloat(hero.hitPoints);
+	hero.hitPointsCurrent = heroRevive;
+
+	var zombieRevive = parseFloat(zombieBob.hitPoints);
+	zombieBob.hitPointsCurrent = zombieRevive;
+
+	$( '#death' ).hide();	
+	$('.popover-bg').hide();
+
+	pauseAudio();
+	playAudio();
+	setFightInfo();
 });
 
 function enemyKilled(defender){
@@ -208,7 +221,6 @@ function enemyKilled(defender){
 	$('.alert-button').css('display','none');
 	$('#fight-menu').hide();
 	playerTurn = false;
-
 	alertMessage("You've killed " + zombieBob.name);
 }
 
