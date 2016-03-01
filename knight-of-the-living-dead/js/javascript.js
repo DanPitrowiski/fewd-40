@@ -1,5 +1,5 @@
  var message;
- var playerTurn;
+ var playerTurn = true;
 
 // ******************************************
 // * START GAME
@@ -26,6 +26,7 @@
 		 	$( "#hero-stats>.ch-name>.bold-stat").text(hero.name);
 
 		    alertMessage(zombieBob.name + " won't let you pass. Time for a fight!");
+		    playerTurn = true;
 			})});
 
 
@@ -38,14 +39,11 @@ $('.attack-f').click( function(){
 	// DON'T LET PLAYER SELECT BUTTONS WHEN NOT IN THEIR TURN
 	if (playerTurn === false){ return; } //
 
-	playerTurn = false;
-
 	$('.fight-button').addClass('turnoffbuttons');
 	hitting(hero, zombieBob);
 });
 
 $('.alert-button').click( function(){
-	playerTurn = true;
 	console.log(playerTurn);
 	hitting(zombieBob,hero);
 	$('.fight-button').removeClass('turnoffbuttons');
@@ -70,6 +68,7 @@ function hitting(attacker, defender){
 		message = ( attacker.name + " missed " + defender.name );
 		console.log(message);
 		alertMessage(message);
+		setFightInfo();
 	}
 
 }
@@ -96,8 +95,8 @@ function damage(attacker, defender){
 	message = ( attacker.name + " hit " + defender.name +" dealing " + dmgReceived + " damage.");
 	console.log(message);
 
-	alertMessage(message);
 	defender.hitPointsCurrent = defender.hitPointsCurrent -  dmgReceived;
+	alertMessage(message);
 	setFightInfo();
 
 	if (playerTurn === false){
@@ -120,7 +119,8 @@ function alertMessage(message){
 
 			$( ".game-alerts" ).html("<h2>" + message + "</h2>");
 			$( ".game-alerts" ).fadeIn(500).css('display','block');
-			if (playerTurn === false){
+			console.log("before alert button should show = " + playerTurn)
+			if (playerTurn === true){
 				$( ".alert-button" ).fadeIn(500).css('display','block');
 			}
 	// });
@@ -144,6 +144,13 @@ function setFightInfo(){
 		hero.hitPointsCurrent = 0; 
 		death();
 	}
+
+	console.log("before " + playerTurn);
+
+	if (playerTurn === false) { playerTurn = true; } 
+	else if (playerTurn === true) { playerTurn = false;}
+
+	console.log("after " + playerTurn);
 
 	var enemyhealth = (zombieBob.hitPointsCurrent + "/" + zombieBob.hitPoints);
 	var herohealth = (hero.hitPointsCurrent + "/" + hero.hitPoints);
@@ -211,7 +218,6 @@ function enemyKilled(defender){
 	$('#enemy-ui-one').fadeOut(3000);
 	$('#enemyone').fadeOut(3000);
 	$('#fight-menu').hide();
-	playerTurn = true;
 	$('.alert-button').css('display','none');
 	alertMessage("You've killed " + zombieBob.name);
 }
@@ -231,6 +237,7 @@ $('.reload').click(function() {
 	$('.popover-bg').hide();
 
 	setFightInfo();
+	playerTurn=true;
 });
 
 
