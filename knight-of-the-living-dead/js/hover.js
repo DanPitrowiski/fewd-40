@@ -1,0 +1,79 @@
+// ******************************************
+// * STAT HOVER
+// ******************************************
+
+$( '#hero-ui' ).hover( 
+	function() {
+		$('.hero-stats').css('display','-webkit-box');
+		var heroStats = ( 
+			"<span class='statnum'>" + hero.name + "</span></br>" +
+			hero.type + "</br></br>" + 
+			"<span class='statnum'>" + hero.accuracy + "</span> ACCURACY </br>" + 
+			"<span class='statnum'>" + hero.strength + "</span> STRENGTH </br>" +
+			"<span class='statnum'>" + hero.toughness + "</span> TOUGHNESS </br>" + 
+			"<span class='statnum'>" + hero.speed + "</span> SPEED </br>" + 
+			"<span class='statnum'>" + hero.luck + "</span> LUCK</br>" +
+			"<span class='statnum'>" + hero.weapon[0] + "</span> dmg " + hero.weapon[1] + "-" + hero.weapon[2] + "</br>" );
+		$( '.hero-stats').html(heroStats); 
+
+	}, function() {
+    	$( '.hero-stats' ).css('display','none');
+  }
+  );
+
+$( '#hero-stats' ).hover( 
+	function() {
+		$('.hero-stats').css('display','-webkit-box');
+		var heroStats = ( 
+			"<span class='statnum'>" + hero.name + "</span></br>" +
+			hero.type + "</br></br>" + 
+			"<span class='statnum'>" + hero.accuracy + "</span> ACCURACY </br>" + 
+			"<span class='statnum'>" + hero.strength + "</span> STRENGTH </br>" +
+			"<span class='statnum'>" + hero.toughness + "</span> TOUGHNESS </br>" + 
+			"<span class='statnum'>" + hero.speed + "</span> SPEED </br>" + 
+			"<span class='statnum'>" + hero.luck + "</span> LUCK</br>" +
+			"<span class='statnum'>" + hero.weapon[0] + "</span> dmg " + hero.weapon[1] + "-" + hero.weapon[2] + "</br>" );
+		$( '.hero-stats').html(heroStats); 
+
+	}, function() {
+    	$( '.hero-stats' ).css('display','none');
+  }
+  );
+
+$( '#enemy-ui-one' ).hover( 
+	function() {
+		$('.enemy-stats').css('display','-webkit-box');
+		var enemyStats = ( 
+			"<span class='statnum'>" + zombieBob.name + "</span></br>" +
+			zombieBob.type + "</br></br>" + 
+			"<span class='statnum'>" + zombieBob.accuracy + "</span> ACCURACY </br>" + 
+			"<span class='statnum'>" + zombieBob.strength + "</span> STRENGTH </br>" +
+			"<span class='statnum'>" + zombieBob.toughness + "</span> TOUGHNESS </br>" + 
+			"<span class='statnum'>" + zombieBob.speed + "</span> SPEED </br>" + 
+			"<span class='statnum'>" + zombieBob.luck + "</span> LUCK</br>" +
+			"<span class='statnum'>" + zombieBob.weapon[0] + "</span> dmg " + zombieBob.weapon[1] + "-" + zombieBob.weapon[2] + "</br>" );
+		$( '.enemy-stats').html(enemyStats); 
+
+	}, function() {
+    	$( '.enemy-stats' ).css('display','none');
+  }
+  );
+
+$( '#enemyone' ).hover( 
+	function() {
+		$('.enemy-stats').css('display','-webkit-box');
+		var enemyStats = ( 
+			"<span class='statnum'>" + zombieBob.name + "</span></br>" +
+			zombieBob.type + "</br></br>" + 
+			"<span class='statnum'>" + zombieBob.accuracy + "</span> ACCURACY </br>" + 
+			"<span class='statnum'>" + zombieBob.strength + "</span> STRENGTH </br>" +
+			"<span class='statnum'>" + zombieBob.toughness + "</span> TOUGHNESS </br>" + 
+			"<span class='statnum'>" + zombieBob.speed + "</span> SPEED </br>" + 
+			"<span class='statnum'>" + zombieBob.luck + "</span> LUCK</br>" +
+			"<span class='statnum'>" + zombieBob.weapon[0] + "</span> dmg " + zombieBob.weapon[1] + "-" + zombieBob.weapon[2] + "</br>" );
+		$( '.enemy-stats').html(enemyStats); 
+
+	}, function() {
+    	$( '.enemy-stats' ).css('display','none');
+  }
+  );

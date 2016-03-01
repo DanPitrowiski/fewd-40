@@ -35,7 +35,6 @@
 // ******************************************
 
 $('.attack-f').click( function(){
-	
 	// DON'T LET PLAYER SELECT BUTTONS WHEN NOT IN THEIR TURN
 	if (playerTurn === false){ return; } //
 
@@ -49,7 +48,6 @@ $('.alert-button').click( function(){
 	$('.fight-button').removeClass('turnoffbuttons');
 	$( ".alert-button" ).css('display','none');
 });
-
 
 // ******************************************
 // * HITTING CALCULATION
@@ -70,7 +68,6 @@ function hitting(attacker, defender){
 		alertMessage(message);
 		setFightInfo();
 	}
-
 }
 
 // ******************************************
@@ -104,7 +101,6 @@ function damage(attacker, defender){
 	} else {
 		playHeroHit();
 	}
-
 };
 
 // ******************************************
@@ -123,7 +119,6 @@ function alertMessage(message){
 			if (playerTurn === true){
 				$( ".alert-button" ).fadeIn(500).css('display','block');
 			}
-	// });
 }
 
 // ******************************************
@@ -155,53 +150,11 @@ function setFightInfo(){
 	var enemyhealth = (zombieBob.hitPointsCurrent + "/" + zombieBob.hitPoints);
 	var herohealth = (hero.hitPointsCurrent + "/" + hero.hitPoints);
 
-		$( '.game-alerts' ).promise().done(function(){
-			$( "#enemyone-health").text(enemyhealth);
-			$( "#hero-health").text(herohealth);
-		});
+	$( '.game-alerts' ).promise().done(function(){
+		$( "#enemyone-health").text(enemyhealth);
+		$( "#hero-health").text(herohealth);
+	});
 }
-
-// ******************************************
-// * STAT HOVER
-// ******************************************
-
-$( '#hero-ui' ).hover( 
-	function() {
-		$('.hero-stats').css('display','-webkit-box');
-		var heroStats = ( 
-			"<span class='statnum'>" + hero.name + "</span></br>" +
-			hero.type + "</br></br>" + 
-			"<span class='statnum'>" + hero.accuracy + "</span> ACCURACY </br>" + 
-			"<span class='statnum'>" + hero.strength + "</span> STRENGTH </br>" +
-			"<span class='statnum'>" + hero.toughness + "</span> TOUGHNESS </br>" + 
-			"<span class='statnum'>" + hero.speed + "</span> SPEED </br>" + 
-			"<span class='statnum'>" + hero.luck + "</span> LUCK</br>" +
-			"<span class='statnum'>" + hero.weapon[0] + "</span> dmg " + hero.weapon[1] + "-" + hero.weapon[2] + "</br>" );
-		$( '.hero-stats').html(heroStats); 
-
-	}, function() {
-    	$( '.hero-stats' ).css('display','none');
-  }
-  );
-
-$( '#enemy-ui-one' ).hover( 
-	function() {
-		$('.enemy-stats').css('display','-webkit-box');
-		var enemyStats = ( 
-			"<span class='statnum'>" + zombieBob.name + "</span></br>" +
-			zombieBob.type + "</br></br>" + 
-			"<span class='statnum'>" + zombieBob.accuracy + "</span> ACCURACY </br>" + 
-			"<span class='statnum'>" + zombieBob.strength + "</span> STRENGTH </br>" +
-			"<span class='statnum'>" + zombieBob.toughness + "</span> TOUGHNESS </br>" + 
-			"<span class='statnum'>" + zombieBob.speed + "</span> SPEED </br>" + 
-			"<span class='statnum'>" + zombieBob.luck + "</span> LUCK</br>" +
-			"<span class='statnum'>" + zombieBob.weapon[0] + "</span> dmg " + zombieBob.weapon[1] + "-" + zombieBob.weapon[2] + "</br>" );
-		$( '.enemy-stats').html(enemyStats); 
-
-	}, function() {
-    	$( '.enemy-stats' ).css('display','none');
-  }
-  );
 
 // ******************************************
 // * DEATH
@@ -219,13 +172,16 @@ function enemyKilled(defender){
 	$('#enemyone').fadeOut(3000);
 	$('#fight-menu').hide();
 	$('.alert-button').css('display','none');
+	playerTurn = false;
 	alertMessage("You've killed " + zombieBob.name);
 }
 
- // RELOAD AFTER YOUR DEATH
+
+// ******************************************
+// * RELOAD AFTER YOUR DEATH
+// ******************************************
 
 $('.reload').click(function() {
-    // location.reload();
 
 	var heroRevive = parseFloat(hero.hitPoints);
 	hero.hitPointsCurrent = heroRevive;
@@ -240,12 +196,14 @@ $('.reload').click(function() {
 	playerTurn=true;
 });
 
-
- // AUDIO CONTROLS
+// ******************************************
+// * AUDIO CONTROLS
+// ******************************************
 
  var enemyHit = $('#enemyhit')[0]; 
  var heroHit = $('#herohit')[0]; 
  var weaponMiss = $('#weaponmiss')[0];
+ var x = $('#zombiemusic')[0]; 
 
  function playEnemyHit() { 
     enemyHit.play(); 
@@ -258,8 +216,6 @@ $('.reload').click(function() {
   function playWeaponMiss() { 
     weaponMiss.play(); 
  } 
-
- var x = $('#zombiemusic')[0]; 
 
  function playAudio() { 
     x.play(); 

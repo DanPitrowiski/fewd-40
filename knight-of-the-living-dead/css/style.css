@@ -208,7 +208,7 @@ button {
 
 #entry, #death {
   position: absolute;
-  top: 45%;
+  top: 40%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   margin: 0 auto;
@@ -438,6 +438,11 @@ div #fight-menu {
   margin: 0 auto;
   color: white;
   display: none;
+}
+
+.arrow-image {
+  float: right;
+  padding: 2px 2px 0 0;
 }
 
 
