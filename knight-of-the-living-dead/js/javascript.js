@@ -161,10 +161,9 @@ function setFightInfo(){
 // ******************************************
 
 function death(){
-	$( '.game-alerts').css('display','none');
-	$('.reload').fadeIn(2000).css('display','block');
-	$('.popover-bg').fadeIn(2000).show();
-	$( "#death" ).fadeIn(2000).show();
+	$('.reload').fadeIn(3000).css('display','block');
+	$('.popover-bg').fadeIn(4000).show();
+	$( "#death" ).fadeIn(3000).show();
 	};
 
 function enemyKilled(defender){
@@ -189,8 +188,10 @@ $('.reload').click(function() {
 	var zombieRevive = parseFloat(zombieBob.hitPoints);
 	zombieBob.hitPointsCurrent = zombieRevive;
 
+	$( ".game-alerts" ).css('display','none');
 	$( '#death' ).hide();	
 	$('.popover-bg').hide();
+	alertMessage("This time you won't be so lucky " + zombieBob.name);
 
 	setFightInfo();
 	playerTurn=true;
