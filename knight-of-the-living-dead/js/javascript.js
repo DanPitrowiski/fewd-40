@@ -1,5 +1,6 @@
  var message;
  var playerTurn = true;
+ var currentEnemies = [zombieBob];
 
 // ******************************************
 // * START GAME
@@ -25,7 +26,7 @@
 		 	// $( "#popover" ).css('background-color','rgba(0,0,0,0)');
 		 	$( "#hero-stats>.ch-name>.bold-stat").text(hero.name);
 
-		    alertMessage(zombieBob.name + " won't let you pass. Time for a fight!");
+		    alertMessage(currentEnemies[0].name + " won't let you pass. Time for a fight!", null, false);
 		    playerTurn = true;
 			})});
 
@@ -36,15 +37,19 @@
 
 $('.attack-f').click( function(){
 	// DON'T LET PLAYER SELECT BUTTONS WHEN NOT IN THEIR TURN
+	$('.alert-button').addClass('enemyturn');
 	if (playerTurn === false){ return; } //
 
 	$('.fight-button').addClass('turnoffbuttons');
-	hitting(hero, zombieBob);
+	hitting(hero, currentEnemies[0]);
+
 });
 
-$('.alert-button').click( function(){
+$('.enemyturn').click( function(){
+	debugger;
+	$('.alert-button').removeClass('enemyturn');
 	console.log(playerTurn);
-	hitting(zombieBob,hero);
+	hitting(currentEnemies[0],hero);
 	$('.fight-button').removeClass('turnoffbuttons');
 	$( ".alert-button" ).css('display','none');
 });
@@ -54,6 +59,8 @@ $('.alert-button').click( function(){
 // ******************************************
 
 function hitting(attacker, defender){
+
+
 	
 	var hitChance = Math.floor((Math.random() * (attacker.accuracy+defender.accuracy)) + 1);
 	console.log(hitChance);
@@ -65,7 +72,7 @@ function hitting(attacker, defender){
 		playWeaponMiss();
 		message = ( attacker.name + " missed " + defender.name );
 		console.log(message);
-		alertMessage(message);
+		alertMessage(message, "Enemy Turn", true);
 		setFightInfo();
 	}
 }
@@ -75,7 +82,6 @@ function hitting(attacker, defender){
 // ******************************************
 
 function damage(attacker, defender){
-
 	console.log("In damage function");
 
 	var attackerMaxDmg = parseFloat(attacker.weapon[2]);
@@ -93,7 +99,7 @@ function damage(attacker, defender){
 	console.log(message);
 
 	defender.hitPointsCurrent = defender.hitPointsCurrent -  dmgReceived;
-	alertMessage(message);
+	alertMessage(message, "Enemy Turn", true);
 	setFightInfo();
 
 	if (playerTurn === false){
@@ -107,7 +113,7 @@ function damage(attacker, defender){
 // * ALL ALERT NOTIFICATIONS
 // ******************************************
 
-function alertMessage(message){
+function alertMessage(message, buttonText, showAlertButton){
 		// $( '.game-alerts' ).promise().then(function(){
 			$( ".game-alerts" ).css('display','none');
 
@@ -115,8 +121,12 @@ function alertMessage(message){
 
 			$( ".game-alerts" ).html("<h2>" + message + "</h2>");
 			$( ".game-alerts" ).fadeIn(500).css('display','block');
+
 			console.log("before alert button should show = " + playerTurn)
-			if (playerTurn === true){
+
+			console.log(showAlertButton);
+			if (showAlertButton === true){
+				$( ".alert-button" ).text(buttonText);
 				$( ".alert-button" ).fadeIn(500).css('display','block');
 			}
 }
@@ -126,28 +136,24 @@ function alertMessage(message){
 // ******************************************
 
 function setFightInfo(){
-	$( "#enemyone-name").text(zombieBob.name);
-
-	$( "#enemyone-level").text(zombieBob.level);
+	$( "#enemyone-name").text(currentEnemies[0].name);
+	$( "#enemyone-level").text(currentEnemies[0].level);
 	$( "#hero-level").text(hero.level);
 
-	if (zombieBob.hitPointsCurrent <= 0 ){
-		zombieBob.hitPointsCurrent = 0; 
-		enemyKilled(zombieBob.name);
+	if (currentEnemies[0].hitPointsCurrent <= 0 ){
+		currentEnemies[0].hitPointsCurrent = 0; 
+		enemyKilled(currentEnemies[0].name);
 	}
 	if (hero.hitPointsCurrent <= 0 ){
 		hero.hitPointsCurrent = 0; 
 		death();
 	}
 
-	console.log("before " + playerTurn);
 
 	if (playerTurn === false) { playerTurn = true; } 
 	else if (playerTurn === true) { playerTurn = false;}
 
-	console.log("after " + playerTurn);
-
-	var enemyhealth = (zombieBob.hitPointsCurrent + "/" + zombieBob.hitPoints);
+	var enemyhealth = (currentEnemies[0].hitPointsCurrent + "/" + currentEnemies[0].hitPoints);
 	var herohealth = (hero.hitPointsCurrent + "/" + hero.hitPoints);
 
 	$( '.game-alerts' ).promise().done(function(){
@@ -172,26 +178,45 @@ function enemyKilled(defender){
 	$('#fight-menu').hide();
 	$('.alert-button').css('display','none');
 	playerTurn = false;
-	alertMessage("You've killed " + zombieBob.name);
+	alertMessage("You've killed " + currentEnemies[0].name, null , false);
+	$('#nextEnemy').html('<button class="nextEnemy">Ready For Next Enemy?</button>');
+	$( "#nextEnemy" ).show();
+	$(".nextEnemy").css('display','inherit');
 }
 
+$('.nextEnemy,#nextEnemy').click( function(){
+	$( ".nextEnemy,#zombieBob" ).css('display','none');
+	currentEnemies[0] = rockMonster;
+	$("#rockMonster").css('display','inherit');
+	$("#enemy-ui-one,#enemyone,#fight-menu").show();
+	$("#enemy-ui-one").css('display','inherit');
+	alertMessage("Prepare to fight " + currentEnemies[0].name, null , false);
+	$('.fight-button').removeClass('turnoffbuttons');
+	
+	var zombieRevive = parseFloat(currentEnemies[0].hitPoints);
+	currentEnemies[0].hitPointsCurrent = zombieRevive;
+
+	setFightInfo();
+	playerTurn = true;
+});
 
 // ******************************************
 // * RELOAD AFTER YOUR DEATH
 // ******************************************
 
-$('.reload').click(function() {
+$('.reload').click(function reload() {
 
 	var heroRevive = parseFloat(hero.hitPoints);
 	hero.hitPointsCurrent = heroRevive;
 
-	var zombieRevive = parseFloat(zombieBob.hitPoints);
-	zombieBob.hitPointsCurrent = zombieRevive;
+	var zombieRevive = parseFloat(currentEnemies[0].hitPoints);
+	currentEnemies[0].hitPointsCurrent = zombieRevive;
 
 	$( ".game-alerts" ).css('display','none');
 	$( '#death' ).hide();	
 	$('.popover-bg').hide();
-	alertMessage("This time you won't be so lucky " + zombieBob.name);
+	debugger;
+	alertMessage("This time you won't be so lucky " + currentEnemies[0].name, null , false);
 
 	setFightInfo();
 	playerTurn=true;

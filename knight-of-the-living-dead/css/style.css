@@ -157,7 +157,7 @@ button {
   top: 146px;
   left: 935px;
   position: absolute;
-  z-index: 10;
+  z-index: 6;
   overflow: hidden;
 }
 
@@ -363,6 +363,12 @@ button {
   display: none;
 }
 
+#rockMonster {
+  display: none;
+  margin-top: -110px;
+  z-index: 30;
+}
+
 /******************************************
 /* MENU
 /*******************************************/
@@ -430,6 +436,19 @@ div #fight-menu {
   font-size: 24px;
   position: inherit;
 
+  z-index: 25;
+  background-color: rgba(255,255,255,.1);
+  width: auto;
+  height: 50px;
+  border: 1px solid rgba(255,255,255,.8);
+  margin: 0 auto;
+  color: white;
+  display: none;
+}
+
+.nextEnemy {
+  font-size: 24px;
+  text-align: center;
   z-index: 25;
   background-color: rgba(255,255,255,.1);
   width: auto;

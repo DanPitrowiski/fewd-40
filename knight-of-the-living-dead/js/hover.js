@@ -22,14 +22,14 @@ $( '#enemy-ui-one,#enemyone' ).hover(
 	function() {
 		$('.enemy-stats').css('display','-webkit-box');
 		var enemyStats = ( 
-			"<span class='statnum'>" + zombieBob.name + "</span></br>" +
-			zombieBob.type + "</br></br>" + 
-			"<span class='statnum'>" + zombieBob.accuracy + "</span> ACCURACY </br>" + 
-			"<span class='statnum'>" + zombieBob.strength + "</span> STRENGTH </br>" +
-			"<span class='statnum'>" + zombieBob.toughness + "</span> TOUGHNESS </br>" + 
-			"<span class='statnum'>" + zombieBob.speed + "</span> SPEED </br>" + 
-			"<span class='statnum'>" + zombieBob.luck + "</span> LUCK</br>" +
-			"<span class='statnum'>" + zombieBob.weapon[0] + "</span> dmg " + zombieBob.weapon[1] + "-" + zombieBob.weapon[2] + "</br>" );
+			"<span class='statnum'>" + currentEnemies[0].name + "</span></br>" +
+			currentEnemies[0].type + "</br></br>" + 
+			"<span class='statnum'>" + currentEnemies[0].accuracy + "</span> ACCURACY </br>" + 
+			"<span class='statnum'>" + currentEnemies[0].strength + "</span> STRENGTH </br>" +
+			"<span class='statnum'>" + currentEnemies[0].toughness + "</span> TOUGHNESS </br>" + 
+			"<span class='statnum'>" + currentEnemies[0].speed + "</span> SPEED </br>" + 
+			"<span class='statnum'>" + currentEnemies[0].luck + "</span> LUCK</br>" +
+			"<span class='statnum'>" + currentEnemies[0].weapon[0] + "</span> dmg " + currentEnemies[0].weapon[1] + "-" + currentEnemies[0].weapon[2] + "</br>" );
 		$( '.enemy-stats').html(enemyStats); 
 
 	}, function() {
