@@ -166,9 +166,8 @@ select {
 
 }
 
-.default {
-  background-image: url(../images/citipix_skyline.jpg) no-repeat center center fixed;
-}
+
+
 .nyc {
   background-image: url(../images/nyc.jpg)
 }

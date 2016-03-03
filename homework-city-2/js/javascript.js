@@ -22,14 +22,12 @@ var city = ['NYC','SF','LA','ATX','SYD','PARIS','BOSTON','NV','RIO','BERLIN','CH
 
 $( "select" ).change( function() {
 	
+	$( '.dropdown-placeholder' ).css( 'display','none' );
 	x.pause(); 
 	$('#simcity').css('display','none');
 
 	var selected = $('#city-type').val();
 
-	if (selected === "Select a city") {
-
-	}
 
 	if (selected === 'NYC') {
 		$( 'body' ).attr( 'class','nyc' );
