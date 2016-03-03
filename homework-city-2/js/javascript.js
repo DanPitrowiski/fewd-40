@@ -3,8 +3,6 @@
   });
 
 
-//
-
 // when you click on the dropdown, you're shown the city
 // options available to you.
 
@@ -12,19 +10,18 @@
 // javascript, then <options>, then end the slect
 
 
-var city = ['NYC','SF','LA','ATX','SYD','PARIS','MASS','NV','RIO','BERLIN','CHICAGO','PHILLY','DANTOPIA'];
+var city = ['NYC','SF','LA','ATX','SYD','PARIS','BOSTON','NV','RIO','BERLIN','CHICAGO','PHILLY','DANTOPIA'];
 
 
   var text_input = $('#city-type');
   
-  for (i=0 ; i < city.length ; i++ ) {
-
-	$('select').append("<option>"+city[i]+"</option>");
-}
+  	for (i=0 ; i < city.length ; i++ ) {
+		$('select').append("<option>"+city[i]+"</option>");
+	}
 
 
 $( "select" ).change( function() {
-	console.log("YES");
+	
 	x.pause(); 
 	$('#simcity').css('display','none');
 
@@ -58,21 +55,26 @@ $( "select" ).change( function() {
 		$( 'body' ).attr( 'class','paris' );
 	}
 
-	else if (selected === 'MASS') {
+	else if (selected === 'BOSTON') {
 		$( 'body' ).attr( 'class','boston' );
 	}
+
 	else if (selected === 'NV') {
 		$( 'body' ).attr( 'class','nashville' );
 	}
+
 	else if (selected === 'RIO') {
 		$( 'body' ).attr( 'class','rio' );
 	}
+
 	else if (selected === 'BERLIN') {
 		$( 'body' ).attr( 'class','berlin' );
 	}
+
 	else if (selected === 'CHICAGO') {
 		$( 'body' ).attr( 'class','chicago' );
 	}
+
 	else if (selected === 'PHILLY') {
 		$( 'body' ).attr( 'class','philly' );
 	}
@@ -85,42 +87,6 @@ $( "select" ).change( function() {
 	}
 
 });
-
-// 	// ERRORS
-
-// 	else {
-// 		$('#error').css('display','inherit');
-// 		errorcount++;
-// 			if (errorcount < 2) {
-// 			$('#error').html('Try another city name');
-// 			} 
-// 			else if (errorcount === 2  ) {
-// 				$('#error').html('Try another city name... like Dantopia perhaps');
-// 				$('#error').css('background-color','#F38323');
-// 			}
-// 			else if  (errorcount > 2  ){
-// 				$('#error').html('Headline from Dantopia Tribune \'I Was Framed, Jokes Local Artist\'');
-// 				$('#error').css('background-color','#F34923');
-// 			}
-
-// 		}
-
-// 	// ALWAYS DO THESE
-
-// 	$('#city-type').val('').blur();
-
-// 	var text_input = $('#city-type')[0];
-// 	text_input.focus ();
-
-
-// 	//RESETS PAGE BEFORE ADDING NEW CONTENT
-
-// function resetPage() {
-// 	$('#simcity').css('display','none');
-// 	$( '#citipixmade' ).html( 'CitiPix' );
-// 	pauseAudio();
-// 	$( 'body' ).attr( 'class', '' );
-// }
 
  
  // AUDIO CONTROLS

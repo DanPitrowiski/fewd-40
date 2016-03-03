@@ -62,14 +62,6 @@ body {
 /* LAYOUT
 /*******************************************/
 
-/* Center the container */
-/*.container {
-	width: 80%;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-}*/
 
 .container {
   width: 100%;
