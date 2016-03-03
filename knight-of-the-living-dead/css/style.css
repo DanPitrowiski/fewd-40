@@ -147,7 +147,7 @@ button {
   top: 169px;
   left: 650px;
   position: absolute;
-  z-index: 5;
+  z-index: -10;
   overflow: hidden;
   width:400px; /* you can use % */
   height: auto;

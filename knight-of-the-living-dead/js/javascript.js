@@ -1,6 +1,7 @@
  var message;
  var playerTurn = true;
  var currentEnemies = [zombieBob];
+ var dmgReceived = 0;
 
 // ******************************************
 // * START GAME
@@ -35,23 +36,45 @@
 // * ATTACK START
 // ******************************************
 
+// HERO'S TURN
+
 $('.attack-f').click( function(){
 	// DON'T LET PLAYER SELECT BUTTONS WHEN NOT IN THEIR TURN
-	$('.alert-button').addClass('enemyturn');
-	if (playerTurn === false){ return; } //
+	// if (playerTurn === false){ return; } //
 
+	$('.alert-button').addClass('enemyturn');
 	$('.fight-button').addClass('turnoffbuttons');
+
 	hitting(hero, currentEnemies[0]);
+	damage(hero, currentEnemies[0]);
+
+	message = ( hero.name + " hit " + currentEnemies[0].name +" dealing " + dmgReceived + " damage.");
+	alertMessage(message, "Enemy Turn", true);
+
+	playEnemyHit();
+	setFightInfo();
+	endTurn();
 
 });
 
+// ENEMIES TURN
+
 $('.enemyturn').click( function(){
-	debugger;
 	$('.alert-button').removeClass('enemyturn');
-	console.log(playerTurn);
-	hitting(currentEnemies[0],hero);
 	$('.fight-button').removeClass('turnoffbuttons');
 	$( ".alert-button" ).css('display','none');
+
+	hitting(currentEnemies[0],hero);
+	damage(currentEnemies[0],hero);
+
+	message = ( currentEnemies[0].name + " hit " + hero.name +" dealing " + dmgReceived + " damage.");
+	alertMessage(message, null, false);
+
+	playHeroHit();
+	setFightInfo();
+	endTurn();
+
+
 });
 
 // ******************************************
@@ -66,14 +89,18 @@ function hitting(attacker, defender){
 	console.log(hitChance);
 
 	if ( hitChance <= attacker.accuracy) {
-		damage(attacker, defender);
+		return;
+		// damage(attacker, defender);
 	}
 	else {
 		playWeaponMiss();
 		message = ( attacker.name + " missed " + defender.name );
 		console.log(message);
-		alertMessage(message, "Enemy Turn", true);
+		// alertMessage(message, "Enemy Turn", true);
 		setFightInfo();
+		console.log("miss");
+		e.stopImmediatePropagation();
+		console.log("never see?");
 	}
 }
 
@@ -91,23 +118,22 @@ function damage(attacker, defender){
 
 	var dmgRandom = Math.floor((Math.random() * (attackerMaxDmg-attackerMinDmg) ) + attackerMinDmg);
 
-	var dmgReceived = dmgRandom * (attackerStrength/defenderToughness);
+	dmgReceived = dmgRandom * (attackerStrength/defenderToughness);
 
 	dmgReceived = Math.floor(dmgReceived);
 
-	message = ( attacker.name + " hit " + defender.name +" dealing " + dmgReceived + " damage.");
-	console.log(message);
-
 	defender.hitPointsCurrent = defender.hitPointsCurrent -  dmgReceived;
-	alertMessage(message, "Enemy Turn", true);
-	setFightInfo();
 
-	if (playerTurn === false){
-	playEnemyHit();
-	} else {
-		playHeroHit();
-	}
 };
+
+// ******************************************
+// * END TURN
+// ******************************************
+
+function endTurn(){
+	if (playerTurn === false) { playerTurn = true; } 
+	else if (playerTurn === true) { playerTurn = false;}
+}
 
 // ******************************************
 // * ALL ALERT NOTIFICATIONS
@@ -148,10 +174,6 @@ function setFightInfo(){
 		hero.hitPointsCurrent = 0; 
 		death();
 	}
-
-
-	if (playerTurn === false) { playerTurn = true; } 
-	else if (playerTurn === true) { playerTurn = false;}
 
 	var enemyhealth = (currentEnemies[0].hitPointsCurrent + "/" + currentEnemies[0].hitPoints);
 	var herohealth = (hero.hitPointsCurrent + "/" + hero.hitPoints);
