@@ -81,8 +81,7 @@ body {
 }
 
 #entry {
-  width: 80%;
-  margin: 0 auto;
+  text-align: center;
 }
 
 header {
@@ -139,6 +138,7 @@ header {
   border-radius: 2px;
 /*  box-shadow: #111 0 0 50px;*/
   cursor: pointer;
+  display: none;
 }
 #submit-btn:hover {
   background: rgba(255,246,0,.9);
