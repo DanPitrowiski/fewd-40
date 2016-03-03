@@ -132,7 +132,7 @@ button {
   /*background-image: url("../images/cloud.png");*/
   position: absolute;
   top: 160px;
-  z-index: 5;
+  z-index: -3;
   opacity: .6;
 }
 
@@ -140,7 +140,7 @@ button {
   top: 92px;
   left: 10px;
   position: absolute;
-  z-index: 6;
+  z-index: -1;
 }
 
 .mountain-image2 {
