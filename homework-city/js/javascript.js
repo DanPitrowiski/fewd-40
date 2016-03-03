@@ -1,27 +1,13 @@
- 
-// input city-name
-// return or hit submit
-// Do preventDefault() to make sure page doesn't reload
-// Remove previous error message
-// turn city-name into variable in javascript
-// standardize city-name to lower-case or uppercase to make consistent
+
 //
 
-// If var city-name === city names from list
-//  {
-// 	remove current class of city from body
-// 	add new city class to body
-//  Add City name to header
-//  Add Citipix name to subheader
-//  }
-//  else display error message
-//
+// when you click on the dropdown, you're shown the city
+// options available to you.
 
+// no html for this. So we need to add in the <select> as the
+// javascript, then <options>, then end the slect
+  // text_input.focus ();
 
-window.onload = function(){
-  var text_input = $('#city-type');
-  text_input.focus ();
-}
 
  $( document ).ready(function() {
   });
@@ -76,13 +62,13 @@ $('#entry').on('submit', function(e){
 		$( '#cityname' ).html( 'Paris' );
 	}
 
-	else if ((city === 'BOSTON') || (city === 'BEANTOWN')) {
+	else if ((city === 'BOSTON') || (city === 'BEANTOWN') || (city === 'MASS')) {
 		resetPage();
 		$( 'body' ).addClass( 'boston' );
 		$( '#cityname' ).html( 'Boston' );
 	}
 
-	else if ((city === 'NASHVILLE') || (city === 'MUSIC CITY')) {
+	else if ((city === 'NASHVILLE') || (city === 'MUSIC CITY') || (city === 'NV')) {
 		resetPage();
 		$( 'body' ).addClass( 'nashville' );
 		$( '#cityname' ).html( 'Nashville' );
