@@ -44,13 +44,17 @@ $('.attack-f').click( function(){
 	$('.alert-button').addClass('enemyturn');
 	$('.fight-button').addClass('turnoffbuttons');
 
-	hitting(hero, currentEnemies[0]);
+	var hit = hitting(hero, currentEnemies[0]);
+	
+	if (hit === true){
 	var dmgReceived = damage(hero, currentEnemies[0]);
-
 	message = ( hero.name + " hit " + currentEnemies[0].name +" dealing " + dmgReceived + " damage.");
-	alertMessage(message, "Enemy Turn", true);
+ 	playEnemyHit();
+ 	} else {
+		message = ( hero.name + " missed " + currentEnemies[0].name );
+ 	}
 
-	playEnemyHit();
+ 	alertMessage(message, "Enemy Turn", true); 
 	setFightInfo();
 	endTurn();
 
@@ -59,21 +63,23 @@ $('.attack-f').click( function(){
 // ENEMIES TURN
 
 $('.enemyturn').click( function(){
-	$('.alert-button').removeClass('enemyturn');
+	$('.alert-button').removeClass('enemyturn'); 
 	$('.fight-button').removeClass('turnoffbuttons');
 	$( ".alert-button" ).css('display','none');
 
-	hitting(currentEnemies[0],hero);
+	var hit = hitting(currentEnemies[0],hero);
+
+	if (hit === true){
 	var dmgReceived = damage(currentEnemies[0],hero);
-
 	message = ( currentEnemies[0].name + " hit " + hero.name +" dealing " + dmgReceived + " damage.");
-	alertMessage(message, null, false);
+ 	playHeroHit(); 
+ 	} else {
+ 		message = ( currentEnemies[0].name + " missed " + hero.name );
+ 	}
 
-	playHeroHit();
+	alertMessage(message, null, false);
 	setFightInfo();
 	endTurn();
-
-
 });
 
 // ******************************************
@@ -82,24 +88,16 @@ $('.enemyturn').click( function(){
 
 function hitting(attacker, defender){
 
-
-	
 	var hitChance = Math.floor((Math.random() * (attacker.accuracy+defender.accuracy)) + 1);
 	console.log(hitChance);
 
 	if ( hitChance <= attacker.accuracy) {
-		return;
+		return true;
 		// damage(attacker, defender);
 	}
 	else {
 		playWeaponMiss();
-		message = ( attacker.name + " missed " + defender.name );
-		console.log(message);
-		// alertMessage(message, "Enemy Turn", true);
-		setFightInfo();
-		console.log("miss");
-		e.stopImmediatePropagation();
-		console.log("never see?");
+		return false;
 	}
 }
 
@@ -118,7 +116,6 @@ function damage(attacker, defender){
 	var dmgRandom = Math.floor((Math.random() * (attackerMaxDmg-attackerMinDmg) ) + attackerMinDmg);
 
 	dmgReceived = dmgRandom * (attackerStrength/defenderToughness);
-
 	dmgReceived = Math.floor(dmgReceived);
 
 	defender.hitPointsCurrent = defender.hitPointsCurrent -  dmgReceived;
@@ -238,7 +235,6 @@ $('.reload').click(function reload() {
 	$( ".game-alerts" ).css('display','none');
 	$( '#death' ).hide();	
 	$('.popover-bg').hide();
-	debugger;
 	alertMessage("This time you won't be so lucky " + currentEnemies[0].name, null , false);
 
 	setFightInfo();

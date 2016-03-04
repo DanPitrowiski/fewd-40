@@ -27,7 +27,7 @@ var zombieBob = {
     weapon: ['Pitch Fork', 5, 15],
     skillPointsCurrent:10,
     skillPoints:10,
-    hitPointsCurrent:1,
+    hitPointsCurrent:18,
     hitPoints:18,
     skills:['Bite','Skewer!'],
 };
