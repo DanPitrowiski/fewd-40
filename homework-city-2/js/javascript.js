@@ -10,7 +10,7 @@
 // javascript, then <options>, then end the slect
 
 
-var city = ['NYC','SF','LA','ATX','SYD','PARIS','BOSTON','NV','RIO','BERLIN','CHICAGO','PHILLY','DANTOPIA'];
+var city = ['NYC','SF','LA','ATX','SYD','PARIS','BOSTON','NSH','RIO','BERLIN','CHICAGO','PHILLY','DANTOPIA'];
 
 
   var text_input = $('#city-type');
@@ -21,6 +21,8 @@ var city = ['NYC','SF','LA','ATX','SYD','PARIS','BOSTON','NV','RIO','BERLIN','CH
 
 
 $( "select" ).change( function() {
+
+	$('#citipixmade').html("The beautiful cities of Citipix");
 	
 	$( '.dropdown-placeholder' ).css( 'display','none' );
 	x.pause(); 
@@ -31,54 +33,67 @@ $( "select" ).change( function() {
 
 	if (selected === 'NYC') {
 		$( 'body' ).attr( 'class','nyc' );
+		$( '#cityname' ).html( 'New York City' );
 	}
 
 	else if (selected === 'SF') {
 		$( 'body' ).attr( 'class','sf' );
+		$( '#cityname' ).html( 'San Francisco' );
 	}
 
 	else if (selected  === 'LA') {
+		$( '#cityname' ).html( 'Los Angeles' );
 		$( 'body' ).attr( 'class','la' );
 	}
 
 	else if (selected === 'ATX') {
 		$( 'body' ).attr( 'class','austin' );
+		$( '#cityname' ).html( 'Austin' );
 	}
 
 	else if (selected === 'SYD') {
 		$( 'body' ).attr( 'class','sydney' );
+		$( '#cityname' ).html( 'Sydney' );
 	}
 
 	else if (selected === 'PARIS') {
 		$( 'body' ).attr( 'class','paris' );
+		$( '#cityname' ).html( 'Paris' );
 	}
 
 	else if (selected === 'BOSTON') {
 		$( 'body' ).attr( 'class','boston' );
+		$( '#cityname' ).html( 'Boston' );
 	}
 
-	else if (selected === 'NV') {
+	else if (selected === 'NSH') {
 		$( 'body' ).attr( 'class','nashville' );
+		$( '#cityname' ).html( 'Nashville' );
 	}
 
 	else if (selected === 'RIO') {
 		$( 'body' ).attr( 'class','rio' );
+		$( '#cityname' ).html( 'Rio' );
 	}
 
 	else if (selected === 'BERLIN') {
 		$( 'body' ).attr( 'class','berlin' );
+		$( '#cityname' ).html( 'Berlin' );
 	}
 
 	else if (selected === 'CHICAGO') {
 		$( 'body' ).attr( 'class','chicago' );
+		$( '#cityname' ).html( 'Chicago' );
 	}
 
 	else if (selected === 'PHILLY') {
 		$( 'body' ).attr( 'class','philly' );
+		$( '#cityname' ).html( 'Philly' );
 	}
 
 	else if (selected === 'DANTOPIA') {
 		$( 'body' ).attr( 'class','dan' );
+		$( '#cityname' ).html( 'Dantopia' );
 		$( '#simcity').html( 'Local Scientists Conclude: Kitties Like Fish, Dogs Less Picky'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+'\n\u2022'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+'Cats Demand Longer Breaks, Cleaner Litter, Slower Mice'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+'\n\u2022'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+'Typist Involved In Winter Traffic Accident, White-Out Conditions Blamed'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+'\n\u2022'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+'Broccoli Found To Cause Grumpiness In Children'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+'\n\u2022'+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+'Cat Hijacks Municipal Bus; Riders Applaud Good Timing At Stops And Courteous Meows');
 		$('#simcity').css('display','inherit');
 		playAudio();

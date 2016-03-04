@@ -1,7 +1,6 @@
  var message;
  var playerTurn = true;
  var currentEnemies = [zombieBob];
- var dmgReceived = 0;
 
 // ******************************************
 // * START GAME
@@ -46,7 +45,7 @@ $('.attack-f').click( function(){
 	$('.fight-button').addClass('turnoffbuttons');
 
 	hitting(hero, currentEnemies[0]);
-	damage(hero, currentEnemies[0]);
+	var dmgReceived = damage(hero, currentEnemies[0]);
 
 	message = ( hero.name + " hit " + currentEnemies[0].name +" dealing " + dmgReceived + " damage.");
 	alertMessage(message, "Enemy Turn", true);
@@ -65,7 +64,7 @@ $('.enemyturn').click( function(){
 	$( ".alert-button" ).css('display','none');
 
 	hitting(currentEnemies[0],hero);
-	damage(currentEnemies[0],hero);
+	var dmgReceived = damage(currentEnemies[0],hero);
 
 	message = ( currentEnemies[0].name + " hit " + hero.name +" dealing " + dmgReceived + " damage.");
 	alertMessage(message, null, false);
@@ -123,6 +122,8 @@ function damage(attacker, defender){
 	dmgReceived = Math.floor(dmgReceived);
 
 	defender.hitPointsCurrent = defender.hitPointsCurrent -  dmgReceived;
+
+	return dmgReceived;
 
 };
 
