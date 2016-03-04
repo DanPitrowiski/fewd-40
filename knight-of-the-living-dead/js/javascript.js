@@ -193,7 +193,7 @@ function death(){
 	};
 
 function enemyKilled(defender){
-	$('#enemy-ui-one').fadeOut(3000);
+	$('#enemy-ui-one').fadeOut(2000);
 	$('#enemyone').fadeOut(3000);
 	$('#fight-menu').hide();
 	$('.alert-button').css('display','none');
@@ -204,17 +204,22 @@ function enemyKilled(defender){
 	$(".nextEnemy").css('display','inherit');
 }
 
+// ******************************************
+// * LOAD NEXT ENEMY
+// ******************************************
+
 $('.nextEnemy,#nextEnemy').click( function(){
 	$( ".nextEnemy,#zombieBob" ).css('display','none');
 	currentEnemies[0] = rockMonster;
 	$("#rockMonster").css('display','inherit');
-	$("#enemy-ui-one,#enemyone,#fight-menu").show();
+	$("#fight-menu").show();
+	$("#enemy-ui-one,#enemyone").fadeIn(2000).show();
 	$("#enemy-ui-one").css('display','inherit');
 	alertMessage("Prepare to fight " + currentEnemies[0].name, null , false);
 	$('.fight-button').removeClass('turnoffbuttons');
 	
-	var zombieRevive = parseFloat(currentEnemies[0].hitPoints);
-	currentEnemies[0].hitPointsCurrent = zombieRevive;
+	var fillHitPoints = parseFloat(currentEnemies[0].hitPoints);
+	currentEnemies[0].hitPointsCurrent = fillHitPoints;
 
 	setFightInfo();
 	playerTurn = true;

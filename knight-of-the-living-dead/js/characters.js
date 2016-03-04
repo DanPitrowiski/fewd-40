@@ -33,7 +33,7 @@ var zombieBob = {
 };
 
 var rockMonster = {
-    name:"Rock Monster",
+    name:"Mountain Giant",
     level:10,
     type:"Rocking and Rolling",
     accuracy: 4,
