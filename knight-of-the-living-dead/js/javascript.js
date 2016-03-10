@@ -164,15 +164,6 @@ function setFightInfo(){
 	$( "#enemyone-level").text(currentEnemies[0].level);
 	$( "#hero-level").text(hero.level);
 
-	if (currentEnemies[0].hitPointsCurrent <= 0 ){
-		currentEnemies[0].hitPointsCurrent = 0; 
-		enemyKilled(currentEnemies[0].name);
-	}
-	if (hero.hitPointsCurrent <= 0 ){
-		hero.hitPointsCurrent = 0; 
-		death();
-	}
-
 	var enemyhealth = (currentEnemies[0].hitPointsCurrent + "/" + currentEnemies[0].hitPoints);
 	var herohealth = (hero.hitPointsCurrent + "/" + hero.hitPoints);
 
@@ -180,6 +171,15 @@ function setFightInfo(){
 		$( "#enemyone-health").text(enemyhealth);
 		$( "#hero-health").text(herohealth);
 	});
+
+	if (currentEnemies[0].hitPointsCurrent <= 0 ){
+	currentEnemies[0].hitPointsCurrent = 0; 
+	enemyKilled(currentEnemies[0].name);
+	}
+	if (hero.hitPointsCurrent <= 0 ){
+		hero.hitPointsCurrent = 0; 
+		death();
+	}
 }
 
 // ******************************************
