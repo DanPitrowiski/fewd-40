@@ -147,7 +147,7 @@ li {
   margin-right: auto;
  }
 
- .references p {
+.quote {
   font-size: 36px;
   font-weight: 300;
   font-style: italic;
@@ -430,6 +430,14 @@ a:visited {
 
 @media (max-width: 960px) {
 
+    .quote, .benefits-p, .benefits-list li {
+      font-size: 22px;
+    }
+
+    .references, .benefits {
+      padding: 60px 40px 60px 40px;
+    }
+
     .nav {
     text-align: center;
     float: none;
@@ -455,14 +463,41 @@ a:visited {
     text-align: center;
     }
 
-
     .blogaside {
     padding: 40px 20px 40px 20px;
+    }
+
+    .benefiller {
+      padding-top: 20px;
+    }
+
+    .category, .blogcontent {
+      font-size: 20px;
+    }
+
+    .blogaside-categories {
+      padding-left: 20px;
     }
 
   }
 
   @media all and (max-width: 599px) {
+
+    .quote, .benefits-p, .benefits-list li {
+      font-size: 18px;
+    }
+
+    .herosubheadline {
+      font-size: 30px;
+    }
+
+    .header {
+      padding: 250px 50px 150px 50px;
+    }
+
+    .references, .benefits {
+      padding: 80px 40px 80px 40px;
+    }
     
     .mainbody {
       width: 100%;
@@ -487,4 +522,5 @@ a:visited {
     .blogheadline {
       font-size: 28px;
     }
+
   }
