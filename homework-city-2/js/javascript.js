@@ -25,7 +25,7 @@ $( "select" ).change( function() {
 	$('#citipixmade').html("The beautiful cities of Citipix");
 	
 	$( '.dropdown-placeholder' ).css( 'display','none' );
-	x.pause(); 
+	pauseAudio();
 	$('#simcity').css('display','none');
 
 	var selected = $('#city-type').val();
@@ -104,13 +104,13 @@ $( "select" ).change( function() {
  
  // AUDIO CONTROLS
 
- var x = $('#simcityaudio')[0]; 
+ var simcityaudio = $('#simcityaudio')[0]; 
 
  function playAudio() { 
-    x.play(); 
+    simcityaudio.play(); 
  } 
 
  function pauseAudio() { 
-    x.pause(); 
+    simcityaudio.pause(); 
 } 
 
