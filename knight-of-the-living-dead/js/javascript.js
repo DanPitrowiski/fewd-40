@@ -1,6 +1,8 @@
  var message;
  var playerTurn = true;
+ var enemyList = [zombieBob, mountainGiant, zombieBob, mountainGiant, zombieBob];
  var currentEnemies = [zombieBob];
+
 
 // ******************************************
 // * START GAME
@@ -18,7 +20,7 @@
 		$('#entry').on('submit', function(e){
 			e.preventDefault();
 			e.stopImmediatePropagation();
-			x.play(); 
+			playAudio(); 
 			var name = $( '#hero-name' ).val();
 		 	hero.name = name;
 		 	$( "#entry" ).css('display','none');
@@ -49,14 +51,18 @@ $('.attack-f').click( function(){
 	if (hit === true){
 	var dmgReceived = damage(hero, currentEnemies[0]);
 	message = ( hero.name + " hit " + currentEnemies[0].name +" dealing " + dmgReceived + " damage.");
- 	playEnemyHit();
  	} else {
 		message = ( hero.name + " missed " + currentEnemies[0].name );
  	}
 
+ 	attackAnimation(hero, currentEnemies[0], hit);
+ 	
+    setTimeout(function(){
  	alertMessage(message, "Enemy Turn", true); 
+ 	if ( hit === true){ playEnemyHit(); } else { playWeaponMiss(); }
 	setFightInfo();
 	endTurn();
+	},100);
 
 });
 
@@ -77,9 +83,14 @@ $('.enemyturn').click( function(){
  		message = ( currentEnemies[0].name + " missed " + hero.name );
  	}
 
+ 	attackAnimation(currentEnemies[0],hero, hit);
+	
+	setTimeout(function(){
 	alertMessage(message, null, false);
+ 	if ( hit === true){ playHeroHit(); } else { playWeaponMiss(); }
 	setFightInfo();
 	endTurn();
+	},100);
 });
 
 // ******************************************
@@ -96,7 +107,6 @@ function hitting(attacker, defender){
 		// damage(attacker, defender);
 	}
 	else {
-		playWeaponMiss();
 		return false;
 	}
 }
@@ -115,7 +125,7 @@ function damage(attacker, defender){
 
 	var dmgRandom = Math.floor((Math.random() * (attackerMaxDmg-attackerMinDmg) ) + attackerMinDmg);
 
-	dmgReceived = dmgRandom * (attackerStrength/defenderToughness);
+	dmgReceived = dmgRandom + (attackerStrength-defenderToughness);
 	dmgReceived = Math.floor(dmgReceived);
 
 	defender.hitPointsCurrent = defender.hitPointsCurrent -  dmgReceived;
@@ -123,6 +133,40 @@ function damage(attacker, defender){
 	return dmgReceived;
 
 };
+
+// ******************************************
+// * ATTACK ANIMATION
+// ******************************************
+
+function attackAnimation(attacker, defender, hit){
+
+// var currentCenterPoint = $(attacker.ui_id).outerWidth() / 2;
+// var nextCenterPoint = $(defender.ui_id).next().outerWidth() / 2;
+
+console.log("Attacker: "+attacker.name+"   Defender:"+defender.name+" and hit "+hit)
+
+
+	if (attacker.ui_id === "#hero-ui" ){  
+		  $(attacker["ui_id"]).addClass("hero-attacking movetofront");
+		  if ( hit === false ){
+			$(defender["ui_id"]).addClass("enemy-dodge");
+		}
+		  setTimeout(function(){
+		  $(attacker["ui_id"]).removeClass("hero-attacking movetofront");
+		  $(defender["ui_id"]).removeClass("enemy-dodge");
+		  }, 2000);
+	} 
+	else {
+		$(attacker["ui_id"]).addClass("enemy-attacking movetofront");
+	  	if ( hit === false ){
+			$(defender["ui_id"]).addClass("hero-dodge");
+		}
+	  	setTimeout(function(){
+	    $(attacker["ui_id"]).removeClass("enemy-attacking movetofront");
+	    $(defender["ui_id"]).removeClass("hero-dodge");
+	  	}, 2000);
+	}
+}
 
 // ******************************************
 // * END TURN
@@ -209,11 +253,19 @@ function enemyKilled(defender){
 // ******************************************
 
 $('.nextEnemy,#nextEnemy').click( function(){
-	$( ".nextEnemy,#zombieBob" ).css('display','none');
-	currentEnemies[0] = rockMonster;
-	$("#rockMonster").css('display','inherit');
+	$( "#nextEnemy").css('display','none');
+
+	console.log("What ID are we hiding "+currentEnemies[0].img_id);
+	
+	enemyList.splice( enemyList[0], 1 );
+	oldEnemies = currentEnemies[0].img_id;
+	currentEnemies[0] = enemyList[0];
+	$(oldEnemies).remove();
+	currentEnemies[0].img();
+
+	$(currentEnemies[0].img_id).css('display','inherit');
 	$("#fight-menu").show();
-	$("#enemy-ui-one,#enemyone").fadeIn(2000).show();
+	$("#enemy-ui-one,#enemyone,.enemies").fadeIn(2000).show();
 	$("#enemy-ui-one").css('display','inherit');
 	alertMessage("Prepare to fight " + currentEnemies[0].name, null , false);
 	$('.fight-button').removeClass('turnoffbuttons');
@@ -221,6 +273,7 @@ $('.nextEnemy,#nextEnemy').click( function(){
 	var fillHitPoints = parseFloat(currentEnemies[0].hitPoints);
 	currentEnemies[0].hitPointsCurrent = fillHitPoints;
 
+	playEnemyEntrance(currentEnemies[0]);
 	setFightInfo();
 	playerTurn = true;
 });
@@ -253,7 +306,7 @@ $('.reload').click(function reload() {
  var enemyHit = $('#enemyhit')[0]; 
  var heroHit = $('#herohit')[0]; 
  var weaponMiss = $('#weaponmiss')[0];
- var x = $('#zombiemusic')[0]; 
+ var gameMusic = $('#zombiemusic')[0]; 
 
  function playEnemyHit() { 
     enemyHit.play(); 
@@ -268,9 +321,19 @@ $('.reload').click(function reload() {
  } 
 
  function playAudio() { 
-    x.play(); 
+    gameMusic.play(); 
  } 
 
  function pauseAudio() { 
-    x.pause(); 
+    gameMusic.pause(); 
 } 
+
+function playEnemyEntrance(enemy){
+	if (enemy.img_id === "#mountainGiant"){
+	var audio = $('#mountainGiant-entrance')[0];
+	}
+	if (enemy.img_id === "#zombieBob"){
+	var audio = $('#zombieBob-entrance')[0];
+	}
+	audio.play();
+}

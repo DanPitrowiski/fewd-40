@@ -1,5 +1,6 @@
 var hero = {
     name:"Farva",
+    uid: "hero",
     level:5,
     type:"Undead Knight",
     accuracy: 10,
@@ -13,10 +14,12 @@ var hero = {
     hitPointsCurrent:20,
     hitPoints:20,
     skills:['Finish Him','Light on your toes'],
+    ui_id: "#hero-ui",
 };
 
 var zombieBob = {
     name:"Farmer Bob Brains",
+    uid: "zombieBob",
     level:8,
     type:"Zombie Botanist",
     accuracy: 6,
@@ -27,13 +30,17 @@ var zombieBob = {
     weapon: ['Pitch Fork', 5, 15],
     skillPointsCurrent:10,
     skillPoints:10,
-    hitPointsCurrent:18,
+    hitPointsCurrent:1,
     hitPoints:18,
     skills:['Bite','Skewer!'],
+    ui_id: "#enemy-ui-one",
+    img_id: "#zombieBob",
+    img: function(){$("#enemy-ui-one").append('<img id="'+currentEnemies[0].uid+'" class="ememies" src="images/zombie-farmer.png">');},
 };
 
-var rockMonster = {
+var mountainGiant = {
     name:"Mountain Giant",
+    uid: "mountainGiant",
     level:10,
     type:"Rocking and Rolling",
     accuracy: 4,
@@ -44,7 +51,10 @@ var rockMonster = {
     weapon: ['Fists', 10, 13],
     skillPointsCurrent:4,
     skillPoints:4,
-    hitPointsCurrent:30,
-    hitPoints:30,
+    hitPointsCurrent:5,
+    hitPoints:5,
     skills:['Crush','Pound'],
+    ui_id: "#enemy-ui-one",
+    img_id: "#mountainGiant",
+    img: function(){$("#enemy-ui-one").append('<img id="'+currentEnemies[0].uid+'" class="ememies" src="images/rock-monster.png">');},
 };

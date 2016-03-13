@@ -68,26 +68,13 @@
 			  <source src="sound/weapon-miss.mp3" type="audio/mpeg">
 			</audio>
 
-			<!--******************************************
-			/	HERO CHARACTER GRAPHICS AND STATS
-			/********************************************* -->
-
-
-			<p class="hero-stats"></p>
-			<div id="hero-ui">
-				<img src="images/hero.png">
-			</div>
-
-			<!-- /******************************************
-			/* ENEMY CHARACTER GRAPHICS
-			/*******************************************/  -->
-
-			<p class="enemy-stats"></p>
-			<div id="enemy-ui-one">
-				<img id="zombieBob" src="images/zombie-farmer.png">
-				<img id="rockMonster" src="images/rock-monster.png">
-			</div>
-
+			<audio id="zombieBob-entrance">
+				<source class="entrance" src="sound/DeadRising.wav" type="audio/mpeg">
+			</audio>
+			<audio id="mountainGiant-entrance">
+				<source class="entrance" src="sound/EnterMountainGiant.wav" type="audio/mpeg">
+			</audio>
+				
 			<!-- /******************************************
 			/* BOTTOM GAME MENU AND CHARACTERS
 			/*******************************************/  -->			
@@ -124,6 +111,26 @@
 				<marquee behavior="scroll" direction="left" scrollamount="1" class="cloud-image"><img src="images/cloud.png"></marquee>
 				<marquee behavior="scroll" direction="left" scrollamount="2.2" class="cloud-image2"><img src="images/cloud.png"></marquee>
 			</div>
+
+			<!--******************************************
+			/	HERO CHARACTER GRAPHICS AND STATS
+			/********************************************* -->
+
+
+			<p class="hero-stats"></p>
+			<div id="hero-ui">
+				<img src="images/hero.png">
+			</div>
+
+			<!-- /******************************************
+			/* ENEMY CHARACTER GRAPHICS
+			/*******************************************/  -->
+
+			<p class="enemy-stats"></p>
+			<div id="enemy-ui-one">
+				<img id="zombieBob" class="enemies" src="images/zombie-farmer.png">
+			</div>
+
 		</div>
 
 
@@ -131,6 +138,7 @@
 		<script src="js/characters.js"></script>
 		<script src="js/hover.js"></script>
 		<script src="js/javascript.js"></script>
+
 
 	</body>
 </html>

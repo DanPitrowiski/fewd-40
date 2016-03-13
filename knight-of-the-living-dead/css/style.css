@@ -363,8 +363,7 @@ button {
   display: none;
 }
 
-#rockMonster {
-  display: none;
+#mountainGiant {
   margin-top: -110px;
   z-index: 30;
 }
@@ -489,3 +488,95 @@ div #fight-menu {
   color: white;
 }
 
+/******************************************
+/* ATTACKING
+/*******************************************/
+
+.movetofront {
+  z-index: 10000;
+}
+
+    /* HERO ANIMATION */
+@-webkit-keyframes hero-attack {
+    0%   {}
+    10%  {transform: translateX(-30px);}
+    25% {transform: translateX(440px);}
+    100% {transform: translateX(0px);}
+}
+
+@keyframes hero-attack {
+    0%   {}
+    10%  {transform: translateX(-30px);}
+    25% {transform: translateX(440px);}
+    100% {transform: translateX(0px);}
+}
+
+@keyframes hero-dodge {
+    0%   {}
+    15%  {transform: translateX(0px); }
+    30%  {transform: translateX(-80px);}
+    50%  {transform: translateX(-80px);}
+    100% {}
+}
+
+@-webkit-keyframes hero-dodge {
+    0%   {}
+    15%  { transform: translateX(0px); }
+    30%  {transform: translateX(-80px);}
+    50%  {transform: translateX(-80px);}
+    100% {}
+}
+    /* ENEMY ANIMATION */
+@-webkit-keyframes enemy-attacking {
+    0%   {transform: translateX(20px);}
+    10%  {transform: translateX(0px);}
+    25% {transform: translateX(-440px);}
+    100% {transform: translateX(0px);}
+}
+
+@keyframes enemy-attacking {
+    0%   {transform: translateX(20px);}
+    10%  {transform: translateX(0px);}
+    25% {transform: translateX(-440px);}
+    100% {transform: translateX(0px);}
+}
+
+@keyframes enemy-dodge {
+    0%   {}
+    15%  {transform: translateX(0px);}
+    30%  {transform: translateX(65px);}
+    50%  {transform: translateX(65px);}
+    100% {}
+}
+
+@-webkit-keyframes enemy-dodge {
+    0%   {}
+    15%  {transform: translateX(0px);}
+    30%  {transform: translateX(65px);}
+    50%  {transform: translateX(65px);}
+    100% {}
+}
+
+.hero-attacking {
+    -webkit-animation: hero-attack 1.2s;
+    animation: hero-attack 1.2s;
+}
+
+.hero-dodge {
+    -webkit-animation: hero-dodge 1.2s;
+    animation: hero-dodge 1.2s;
+}
+
+.enemy-attacking {
+    -webkit-animation: enemy-attacking 1.2s;
+    animation: enemy-attacking 1.2s;
+}
+
+.enemy-dodge {
+    -webkit-animation: enemy-dodge 1.2s;
+    animation: enemy-dodge 1.2s;
+}
+
+.enemies {
+  display: inherit;
+}
