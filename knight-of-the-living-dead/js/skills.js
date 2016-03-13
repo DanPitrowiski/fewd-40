@@ -5,14 +5,14 @@
 var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 
 	var finishhim = {
-		name: "Finish Him!",
-		statAdj: 5,
+		name: "Finish Him",
+		statAdj: 10,
 		skillpointCost: 2,
 		turns: 3,
 		turnsCount: 0,
 		uid: "finishhim",
 		heroOwns: true,
-		effectDescription: "+5 dmg 3 turns", 
+		effectDescription: "+10 dmg 3 turns", 
 		adjHero: function (){
 			hero.weapon[1] += finishhim.statAdj;
 			console.log("Working finish him");
@@ -23,7 +23,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 	};
 
 	var lightonyourfeet = {
-		name: "Light on your feet!",
+		name: "Light on your feet",
 		statAdj: 20,
 		skillpointCost: 1,
 		turns: 5,
@@ -38,14 +38,14 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 	};
 
 	var armorup = {
-		name: "Armor up!",
-		statAdj: 2,
+		name: "Armor up",
+		statAdj: 3,
 		skillpointCost: 1,
 		turns: 99,
 		turnsCount: 0,
 		uid: "armorup",
 		heroOwns: true,
-		effectDescription: "+2 armor all battle", 
+		effectDescription: "+4 armor all battle", 
 		adjHero: function (){
 			hero.armor += armorup.statAdj; },
 		negHero: function (){
@@ -53,7 +53,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 	};
 
 	var keeneye = {
-		name: "Keen eye!",
+		name: "Keen eye",
 		statAdj: 10,
 		skillpointCost: 1,
 		turns: 99,
@@ -113,6 +113,8 @@ function skillsSet(){
 			eval(skillList[i]).turnsCount--;
 			if(eval(skillList[i]).turnsCount === 0){
 				eval(skillList[i]).negHero();
+				var message = (eval(skillList[i]).name+"'s effects just wore off.");
+				alertMessage(message, null, false);
 				$('#'+eval(skillList[i]).uid).css('display','inherit');
 			}
 		}

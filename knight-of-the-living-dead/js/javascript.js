@@ -2,6 +2,7 @@
  var playerTurn = true;
  var enemyList = [zombieBob, mountainGiant, zombieBob, mountainGiant, zombieBob];
  var currentEnemies = [zombieBob];
+ var myDiv = document.getElementById("div-history");
 
 
 // ******************************************
@@ -56,8 +57,8 @@ $('.attack-f').click( function(){
 });
 
 function heroAttack(){
-
 	$('.alert-button').addClass('enemyturn');
+	$('.turns-alerts').remove();
 	$('.fight-button').addClass('turnoffbuttons');
 	$('.skill-button').addClass('turnoffbuttons');
 
@@ -95,7 +96,9 @@ $('.enemyturn').click( function(){
 
 
 function enemyAttack(){
+	debugger;
 	$('.alert-button').removeClass('enemyturn'); 
+	$('.turns-alerts').remove();
 	$('.fight-button').removeClass('turnoffbuttons');
 	$('.skill-button').removeClass('turnoffbuttons');
 	$( ".alert-button" ).css('display','none');
@@ -221,16 +224,23 @@ function alertMessage(message, buttonText, showAlertButton){
 
 			console.log('.game-alerts');
 
-			$( ".game-alerts" ).html("<h2>" + message + "</h2>");
+			$( ".game-alerts" ).append("<h2 class='turns-alerts'>" + message + "</h2>");
 			$( ".game-alerts" ).fadeIn(500).css('display','block');
 
-			console.log("before alert button should show = " + playerTurn)
+			console.log("before alert button should show = " + playerTurn);
+
+			$('.history').prepend('<p class="message">'+message+'</p>');
+			historyScroll();
 
 			console.log(showAlertButton);
 			if (showAlertButton === true){
 				$( ".alert-button" ).text(buttonText);
 				$( ".alert-button" ).fadeIn(500).css('display','block');
 			}
+}
+
+function historyScroll() {
+	$('#div-history').scrollTop("0");
 }
 
 // ******************************************
@@ -297,6 +307,7 @@ $('.nextEnemy,#nextEnemy').click( function(){
 	$('.skill-button').removeClass('turnoffbuttons');
 	$("#enemy-ui-one").css('display','inherit');
 	$("#fight-menu").show();
+	$('.turns-alerts').remove();
 	$("#enemy-ui-one,#enemyone,.enemies").fadeIn(2000).show();
 
 	console.log("What ID are we hiding "+currentEnemies[0].img_id);
@@ -315,6 +326,7 @@ $('.nextEnemy,#nextEnemy').click( function(){
 	currentEnemies[0].hitPointsCurrent = currentEnemies[0].hitPoints;
 
 	playEnemyEntrance(currentEnemies[0]);
+	playerTurn=true;
 	setFightInfo();
 });
 
@@ -330,6 +342,7 @@ $('.reload').click(function reload() {
 	$( ".game-alerts" ).css('display','none');
 	$('.popover-bg').hide();
 	$('#death').hide();
+	$('.turns-alerts').remove();
 	alertMessage("This time you won't be so lucky " + currentEnemies[0].name, null , false);
 
 	setFightInfo();
