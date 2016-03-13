@@ -22,6 +22,8 @@ heroSave.damageAdj[2] = 3;
 hero.weapon[1] = hero.weapon[1] * 2;
 hero.weapon[2] = hero.weapon[2] * 2;
 setFightInfo();
+
+$('.finish-him').css('display','none');
 console.log("Finish him is working!");
 
 heroAttack();
@@ -39,6 +41,7 @@ if (heroSave.damageAdj[2] >= 1){
 	if(heroSave.damageAdj[2] === 0){
 		 hero.weapon[1] = heroSave.damageAdj[0];
 		 hero.weapon[2] = heroSave.damageAdj[1];
+		 $('.finish-him').css('display','inherit');
 	}
 
 }
