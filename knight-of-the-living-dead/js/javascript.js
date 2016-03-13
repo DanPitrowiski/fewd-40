@@ -32,6 +32,18 @@
 		    playerTurn = true;
 			})});
 
+// ******************************************
+// * MENU
+// ******************************************
+
+$('.skill-f').click( function(){
+skillsClose();
+});
+
+
+function skillsClose(){
+	$('#skills-menu').toggle();
+};
 
 // ******************************************
 // * ATTACK START
@@ -40,6 +52,10 @@
 // HERO'S TURN
 
 $('.attack-f').click( function(){
+heroAttack();	
+});
+
+function heroAttack(){
 	// DON'T LET PLAYER SELECT BUTTONS WHEN NOT IN THEIR TURN
 	// if (playerTurn === false){ return; } //
 
@@ -51,8 +67,12 @@ $('.attack-f').click( function(){
 	if (hit === true){
 	var dmgReceived = damage(hero, currentEnemies[0]);
 	message = ( hero.name + " hit " + currentEnemies[0].name +" dealing " + dmgReceived + " damage.");
- 	} else {
+ 	} 
+ 	if (hit === false){
 		message = ( hero.name + " missed " + currentEnemies[0].name );
+ 	}
+ 	if (hit === "dodge") {
+ 		message = ( currentEnemies[0].name + " dodged " + hero.name );
  	}
 
  	attackAnimation(hero, currentEnemies[0], hit);
@@ -61,10 +81,11 @@ $('.attack-f').click( function(){
  	alertMessage(message, "Enemy Turn", true); 
  	if ( hit === true){ playEnemyHit(); } else { playWeaponMiss(); }
 	setFightInfo();
+	skillsSet();
 	endTurn();
 	},100);
 
-});
+};
 
 // ENEMIES TURN
 
@@ -75,12 +96,16 @@ $('.enemyturn').click( function(){
 
 	var hit = hitting(currentEnemies[0],hero);
 
+	console.log(hit);
+
 	if (hit === true){
 	var dmgReceived = damage(currentEnemies[0],hero);
 	message = ( currentEnemies[0].name + " hit " + hero.name +" dealing " + dmgReceived + " damage.");
  	playHeroHit(); 
- 	} else {
+ 	} if (hit === false){
  		message = ( currentEnemies[0].name + " missed " + hero.name );
+ 	} if (hit === "dodge") {
+ 		message = ( hero.name + " dodged " + currentEnemies[0].name );
  	}
 
  	attackAnimation(currentEnemies[0],hero, hit);
@@ -99,10 +124,15 @@ $('.enemyturn').click( function(){
 
 function hitting(attacker, defender){
 
-	var hitChance = Math.floor((Math.random() * (attacker.accuracy+defender.accuracy)) + 1);
-	console.log(hitChance);
+	var hitChanceRandom = Math.floor((Math.random() * 100) + 1);
+	console.log(hitChanceRandom);
+	var hitChance = attacker.accuracy;
 
-	if ( hitChance <= attacker.accuracy) {
+	if ( hitChanceRandom <= hitChance) {
+		var dodgeChance = Math.floor((Math.random() * 100) + 1);
+		if ( dodgeChance <= defender.dodge){
+			return "dodge";
+		}
 		return true;
 		// damage(attacker, defender);
 	}
@@ -120,13 +150,10 @@ function damage(attacker, defender){
 
 	var attackerMaxDmg = parseFloat(attacker.weapon[2]);
 	var attackerMinDmg = parseFloat(attacker.weapon[1]);
-	var defenderToughness = parseFloat(defender.toughness);
-	var attackerStrength = parseFloat(attacker.strength);
 
 	var dmgRandom = Math.floor((Math.random() * (attackerMaxDmg-attackerMinDmg) ) + attackerMinDmg);
 
-	dmgReceived = dmgRandom + (attackerStrength-defenderToughness);
-	dmgReceived = Math.floor(dmgReceived);
+	dmgReceived = Math.floor(dmgRandom - defender.armor);
 
 	defender.hitPointsCurrent = defender.hitPointsCurrent -  dmgReceived;
 
@@ -148,7 +175,7 @@ console.log("Attacker: "+attacker.name+"   Defender:"+defender.name+" and hit "+
 
 	if (attacker.ui_id === "#hero-ui" ){  
 		  $(attacker["ui_id"]).addClass("hero-attacking movetofront");
-		  if ( hit === false ){
+		  if ( hit === "dodge" ){
 			$(defender["ui_id"]).addClass("enemy-dodge");
 		}
 		  setTimeout(function(){
@@ -158,7 +185,7 @@ console.log("Attacker: "+attacker.name+"   Defender:"+defender.name+" and hit "+
 	} 
 	else {
 		$(attacker["ui_id"]).addClass("enemy-attacking movetofront");
-	  	if ( hit === false ){
+	  	if ( hit === "dodge"  ){
 			$(defender["ui_id"]).addClass("hero-dodge");
 		}
 	  	setTimeout(function(){
@@ -210,10 +237,13 @@ function setFightInfo(){
 
 	var enemyhealth = (currentEnemies[0].hitPointsCurrent + "/" + currentEnemies[0].hitPoints);
 	var herohealth = (hero.hitPointsCurrent + "/" + hero.hitPoints);
+	var heroskillpoints = (hero.skillPointsCurrent + "/" + hero.skillPoints);
 
 	$( '.game-alerts' ).promise().done(function(){
 		$( "#enemyone-health").text(enemyhealth);
 		$( "#hero-health").text(herohealth);
+		$( '#hero-skillpoints').text(heroskillpoints);
+
 	});
 
 	if (currentEnemies[0].hitPointsCurrent <= 0 ){

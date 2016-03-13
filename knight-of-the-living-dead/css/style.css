@@ -390,6 +390,31 @@ div #fight-menu {
   width: auto;
 }
 
+div #skills-menu {
+  height: 165px;
+  top: 430px;
+  left: 255px;
+  display: absolute;
+  width: 290px;
+  overflow: scroll;
+  display: none;
+}
+
+.skill-button {
+  border-radius: 2px;
+  border: 1px solid rgba(152, 172, 195);
+  padding: 5px;
+  background-color: rgba(74,144,226,1);
+  text-decoration: none;
+  color: white;
+  cursor:pointer;
+  margin-bottom: 5px;
+}
+
+.skills-desc {
+  font-size: 14px;
+}
+
 .fight-button {
   width: 210px;
   height: 44px;

@@ -71,6 +71,7 @@
 			<audio id="zombieBob-entrance">
 				<source class="entrance" src="sound/zombie-rising.mp3" type="audio/mpeg">
 			</audio>
+
 			<audio id="mountainGiant-entrance">
 				<source class="entrance" src="sound/EnterMountainGiant.wav" type="audio/mpeg">
 			</audio>
@@ -82,7 +83,7 @@
 			<div id="hero-stats" class="ground-menu">
 				<p class="ch-name"><span class="bold-stat">Farva</span> - lvl <span id="hero-level">5</span></p>
 				<div class="ch-hitpoints"><span class="bold-stat">HP: </span><span id="hero-health"></span></div>
-				<div class="ch-skillpoints"><span class="bold-stat">SP: </span> 22/24</div>
+				<div class="ch-skillpoints"><span class="bold-stat">SP: </span><span id="hero-skillpoints"></span></div>
 			</div>
 
 			<div id="fight-menu" class="ground-menu">
@@ -90,6 +91,17 @@
 				<button class="skill-f fight-button">SKILLS<img class="arrow-image" src="images/arrow.png"></button>
 				<button class="item-f fight-button">ITEMS<img class="arrow-image" src="images/arrow.png"></button>
 			</div>
+			<div id="skills-menu" class="ground-menu">
+				<div class="finish-him skill-button">
+				Finish Him - 2SP<br><span class="skills-desc"> Double damage for 3 turns</span>
+				</div>
+				<div class="light-on-your-toes skill-button">
+				Light on your toes - 2SP<br><span class="skills-desc">20% more likely to dodge</span>
+				</div>
+				<div class="armor-up skill-button">
+				Armor Up - 1SP<br><span class="skills-desc">+1 armor for the battle</span>
+				</div>
+			</div>	
 
 			<div id="enemyone" class="ground-menu">
 				<p class="ch-name"><span id="enemyone-name" class="boldstate">Farmer Zombie Bob</span> - lvl <span id="enemyone-level">3</p>
@@ -135,6 +147,7 @@
 
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="js/skills.js"></script>
 		<script src="js/characters.js"></script>
 		<script src="js/hover.js"></script>
 		<script src="js/javascript.js"></script>
