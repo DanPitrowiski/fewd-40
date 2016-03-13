@@ -29,7 +29,6 @@
 		 	$( "#hero-stats>.ch-name>.bold-stat").text(hero.name);
 
 		    alertMessage(currentEnemies[0].name + " won't let you pass. Time for a fight!", null, false);
-		    playerTurn = true;
 			})});
 
 // ******************************************
@@ -52,12 +51,11 @@ function skillsClose(){
 // HERO'S TURN
 
 $('.attack-f').click( function(){
-heroAttack();	
+	if (playerTurn == false){ return; }
+	heroAttack();	
 });
 
 function heroAttack(){
-	// DON'T LET PLAYER SELECT BUTTONS WHEN NOT IN THEIR TURN
-	// if (playerTurn === false){ return; } //
 
 	$('.alert-button').addClass('enemyturn');
 	$('.fight-button').addClass('turnoffbuttons');
@@ -83,8 +81,8 @@ function heroAttack(){
  	alertMessage(message, "Enemy Turn", true); 
  	if ( hit === true){ playEnemyHit(); } else { playWeaponMiss(); }
 	skillsSet();
-	setFightInfo();
 	endTurn();
+	setFightInfo();
 	},100);
 
 };
@@ -92,6 +90,11 @@ function heroAttack(){
 // ENEMIES TURN
 
 $('.enemyturn').click( function(){
+	enemyAttack();
+});
+
+
+function enemyAttack(){
 	$('.alert-button').removeClass('enemyturn'); 
 	$('.fight-button').removeClass('turnoffbuttons');
 	$('.skill-button').removeClass('turnoffbuttons');
@@ -116,10 +119,10 @@ $('.enemyturn').click( function(){
 	setTimeout(function(){
 	alertMessage(message, null, false);
  	if ( hit === true){ playHeroHit(); } else { playWeaponMiss(); }
-	setFightInfo();
 	endTurn();
+	setFightInfo();
 	},100);
-});
+};
 
 // ******************************************
 // * HITTING CALCULATION
@@ -203,6 +206,7 @@ console.log("Attacker: "+attacker.name+"   Defender:"+defender.name+" and hit "+
 // ******************************************
 
 function endTurn(){
+	console.log("endTurn what is playerTurn="+playerTurn)
 	if (playerTurn === false) { playerTurn = true; } 
 	else if (playerTurn === true) { playerTurn = false;}
 }
@@ -230,7 +234,7 @@ function alertMessage(message, buttonText, showAlertButton){
 }
 
 // ******************************************
-// * RESETTING PAGE INFO
+// * RESETTING FIGHT INFO
 // ******************************************
 
 function setFightInfo(){
@@ -250,8 +254,8 @@ function setFightInfo(){
 	});
 
 	if (currentEnemies[0].hitPointsCurrent <= 0 ){
-	currentEnemies[0].hitPointsCurrent = 0; 
-	enemyKilled(currentEnemies[0].name);
+		currentEnemies[0].hitPointsCurrent = 0; 
+		enemyKilled(currentEnemies[0].name);
 	}
 	if (hero.hitPointsCurrent <= 0 ){
 		hero.hitPointsCurrent = 0; 
@@ -275,7 +279,6 @@ function enemyKilled(defender){
 	$('#skills-menu').hide();
 	$('#fight-menu').hide();
 	$('.alert-button').css('display','none');
-	playerTurn = false;
 	alertMessage("You've killed " + currentEnemies[0].name, null , false);
 	$('#nextEnemy').html('<button class="nextEnemy">Ready For Next Enemy?</button>');
 	$( "#nextEnemy" ).show();
@@ -287,30 +290,32 @@ function enemyKilled(defender){
 // ******************************************
 
 $('.nextEnemy,#nextEnemy').click( function(){
+	// CSS changes and fades
+
 	$( "#nextEnemy").css('display','none');
+	$('.fight-button').removeClass('turnoffbuttons');
+	$('.skill-button').removeClass('turnoffbuttons');
+	$("#enemy-ui-one").css('display','inherit');
+	$("#fight-menu").show();
+	$("#enemy-ui-one,#enemyone,.enemies").fadeIn(2000).show();
 
 	console.log("What ID are we hiding "+currentEnemies[0].img_id);
 	
+	// Select Next Enemy
+
 	enemyList.splice( enemyList[0], 1 );
 	oldEnemies = currentEnemies[0].img_id;
 	currentEnemies[0] = enemyList[0];
 	$(oldEnemies).remove();
 	currentEnemies[0].img();
-
-	$(currentEnemies[0].img_id).css('display','inherit');
-	$("#fight-menu").show();
-	$("#enemy-ui-one,#enemyone,.enemies").fadeIn(2000).show();
-	$("#enemy-ui-one").css('display','inherit');
-	alertMessage("Prepare to fight " + currentEnemies[0].name, null , false);
-	$('.fight-button').removeClass('turnoffbuttons');
+ 	$(currentEnemies[0].img_id).css('display','inherit');
 	
-	var fillHitPoints = parseFloat(currentEnemies[0].hitPoints);
-	currentEnemies[0].hitPointsCurrent = fillHitPoints;
+	alertMessage("Prepare to fight " + currentEnemies[0].name, null , false);
+	
+	currentEnemies[0].hitPointsCurrent = currentEnemies[0].hitPoints;
 
 	playEnemyEntrance(currentEnemies[0]);
-
 	setFightInfo();
-	playerTurn = true;
 });
 
 // ******************************************

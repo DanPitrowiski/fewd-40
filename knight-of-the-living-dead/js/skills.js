@@ -76,6 +76,8 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 // ******************************************
 
 $('.skill-button').click( function(){
+	console.log("Skills page - player turn = "+ playerTurn)
+	if (playerTurn == false){ return; }
 
 	var heroskill = $(this).attr('id');
 
@@ -91,7 +93,9 @@ $('.skill-button').click( function(){
 	$('#'+eval(heroskill).uid).css('display','none');
 
 	alertMessage(message, null, false);
+	endTurn();
 	setFightInfo();
+	enemyAttack();
 
 });
 

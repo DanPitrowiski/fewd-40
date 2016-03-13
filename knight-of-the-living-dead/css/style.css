@@ -170,9 +170,10 @@ button {
 }
 
 .ground-menu {
-  background-color: rgba(0,0,0,.4);
+  background-color: rgba(52,26,2,.5);
   border-radius: 2px;
   background-blend-mode: soft-light;
+  background-blend-mode: multiply;
   height: 50px;
   width: 530px;
   position: absolute;
