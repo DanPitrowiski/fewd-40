@@ -61,6 +61,8 @@ function heroAttack(){
 
 	$('.alert-button').addClass('enemyturn');
 	$('.fight-button').addClass('turnoffbuttons');
+	$('.skill-button').addClass('turnoffbuttons');
+
 
 	var hit = hitting(hero, currentEnemies[0]);
 	
@@ -92,6 +94,7 @@ function heroAttack(){
 $('.enemyturn').click( function(){
 	$('.alert-button').removeClass('enemyturn'); 
 	$('.fight-button').removeClass('turnoffbuttons');
+	$('.skill-button').removeClass('turnoffbuttons');
 	$( ".alert-button" ).css('display','none');
 
 	var hit = hitting(currentEnemies[0],hero);
@@ -305,8 +308,6 @@ $('.nextEnemy,#nextEnemy').click( function(){
 	currentEnemies[0].hitPointsCurrent = fillHitPoints;
 
 	playEnemyEntrance(currentEnemies[0]);
-
-	$('#keeneye').css('display','inherit');
 
 	setFightInfo();
 	playerTurn = true;

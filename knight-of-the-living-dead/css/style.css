@@ -489,7 +489,7 @@ div #skills-menu {
 }
 
 #keeneye {
-  display: none;
+  display: inherit;
 }
 
 /******************************************

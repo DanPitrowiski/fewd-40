@@ -79,15 +79,12 @@ $('.skill-button').click( function(){
 
 	var heroskill = $(this).attr('id');
 
-	heroskill = String(heroskill);
-
 	console.log(heroskill);
-	skillsClose();
+	// skillsClose();
 	playSkillActivated();
 
 	eval(heroskill).turnsCount = eval(heroskill).turns;
 	hero.skillPointsCurrent -= eval(heroskill).skillpointCost;
-
 	eval(heroskill).adjHero();
 	
 	var message = ( hero.name + " activated "+eval(heroskill).name+" ("+eval(heroskill).effectDescription+")");
