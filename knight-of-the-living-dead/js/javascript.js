@@ -80,8 +80,8 @@ function heroAttack(){
     setTimeout(function(){
  	alertMessage(message, "Enemy Turn", true); 
  	if ( hit === true){ playEnemyHit(); } else { playWeaponMiss(); }
-	setFightInfo();
 	skillsSet();
+	setFightInfo();
 	endTurn();
 	},100);
 
@@ -269,6 +269,7 @@ function death(){
 function enemyKilled(defender){
 	$('#enemy-ui-one').fadeOut(2000);
 	$('#enemyone').fadeOut(3000);
+	$('#skills-menu').hide();
 	$('#fight-menu').hide();
 	$('.alert-button').css('display','none');
 	playerTurn = false;
@@ -304,6 +305,9 @@ $('.nextEnemy,#nextEnemy').click( function(){
 	currentEnemies[0].hitPointsCurrent = fillHitPoints;
 
 	playEnemyEntrance(currentEnemies[0]);
+
+	$('#keeneye').css('display','inherit');
+
 	setFightInfo();
 	playerTurn = true;
 });
@@ -314,15 +318,12 @@ $('.nextEnemy,#nextEnemy').click( function(){
 
 $('.reload').click(function reload() {
 
-	var heroRevive = parseFloat(hero.hitPoints);
-	hero.hitPointsCurrent = heroRevive;
-
-	var zombieRevive = parseFloat(currentEnemies[0].hitPoints);
-	currentEnemies[0].hitPointsCurrent = zombieRevive;
+	currentEnemies[0].hitPointsCurrent = currentEnemies[0].hitPoints;
+	hero.hitPointsCurrent = hero.hitPoints;
 
 	$( ".game-alerts" ).css('display','none');
-	$( '#death' ).hide();	
 	$('.popover-bg').hide();
+	$('#death').hide();
 	alertMessage("This time you won't be so lucky " + currentEnemies[0].name, null , false);
 
 	setFightInfo();
@@ -333,30 +334,23 @@ $('.reload').click(function reload() {
 // * AUDIO CONTROLS
 // ******************************************
 
- var enemyHit = $('#enemyhit')[0]; 
- var heroHit = $('#herohit')[0]; 
- var weaponMiss = $('#weaponmiss')[0];
- var gameMusic = $('#zombiemusic')[0]; 
+var enemyHit = $('#enemyhit')[0]; 
+var heroHit = $('#herohit')[0]; 
+var weaponMiss = $('#weaponmiss')[0];
+var gameMusic = $('#zombiemusic')[0]; 
+var skillActivated = $('#skillactivated')[0];
 
- function playEnemyHit() { 
-    enemyHit.play(); 
- } 
+function playEnemyHit() { enemyHit.play(); } 
 
- function playHeroHit() { 
-    heroHit.play(); 
- } 
+function playHeroHit() { heroHit.play(); } 
 
-  function playWeaponMiss() { 
-    weaponMiss.play(); 
- } 
+function playWeaponMiss() { weaponMiss.play(); } 
 
- function playAudio() { 
-    gameMusic.play(); 
- } 
+function playAudio() { gameMusic.play(); } 
 
- function pauseAudio() { 
-    gameMusic.pause(); 
-} 
+function pauseAudio() { gameMusic.pause(); } 
+
+function playSkillActivated() { skillActivated.play(); }
 
 function playEnemyEntrance(enemy){
 	if (enemy.img_id === "#mountainGiant"){

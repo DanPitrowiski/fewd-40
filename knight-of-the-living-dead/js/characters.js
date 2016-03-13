@@ -11,7 +11,7 @@ var hero = {
     skillPoints:5,
     hitPointsCurrent:20,
     hitPoints:20,
-    skills:['Finish Him','Light on your toes'],
+    skills:['Finish Him!','Light on your feet','Armor Up'],
     ui_id: "#hero-ui",
 };
 

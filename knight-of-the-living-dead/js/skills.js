@@ -1,50 +1,119 @@
-var heroSave = {
-    attackAdj: [0,0],
-    dodgeAdj: [0,0],
-    damageAdj: [0,0,0],
-    armorAdj: [0,0],
-    spAdj: [0,0],
-    hpAdj: [0,0],
-}
+// ******************************************
+// * SKILLS LIST
+// ******************************************
 
+var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
+
+	var finishhim = {
+		name: "Finish Him!",
+		statAdj: 5,
+		skillpointCost: 2,
+		turns: 3,
+		turnsCount: 0,
+		uid: "finishhim",
+		heroOwns: true,
+		effectDescription: "+5 dmg 3 turns", 
+		adjHero: function (){
+			hero.weapon[1] += finishhim.statAdj;
+			console.log("Working finish him");
+			hero.weapon[2] += finishhim.statAdj;} ,
+		negHero: function (){
+			hero.weapon[1] -= finishhim.statAdj;
+			hero.weapon[2] -= finishhim.statAdj;},
+	};
+
+	var lightonyourfeet = {
+		name: "Light on your feet!",
+		statAdj: 20,
+		skillpointCost: 1,
+		turns: 5,
+		turnsCount: 0,
+		uid: "lightonyourfeet",
+		heroOwns: true,
+		effectDescription: "+20 dodge 5 turns", 
+		adjHero: function (){
+			hero.dodge += lightonyourfeet.statAdj; },
+		negHero: function (){
+			hero.dodge -= lightonyourfeet.statAdj; },
+	};
+
+	var armorup = {
+		name: "Armor up!",
+		statAdj: 2,
+		skillpointCost: 1,
+		turns: 99,
+		turnsCount: 0,
+		uid: "armorup",
+		heroOwns: true,
+		effectDescription: "+2 armor all battle", 
+		adjHero: function (){
+			hero.armor += armorup.statAdj; },
+		negHero: function (){
+			hero.armor -= armorup.statAdj; },
+	};
+
+	var keeneye = {
+		name: "Keen eye!",
+		statAdj: 10,
+		skillpointCost: 1,
+		turns: 99,
+		turnsCount: 0,
+		uid: "keeneye",
+		heroOwns: false,
+		effectDescription: "+10 accuracy all battle", 
+		adjHero: function (){
+			hero.accuracy += keeneye.statAdj; },
+		negHero: function (){
+			hero.accuracy -= keeneye.statAdj; },
+		// insertSkill: function (){
+		// 	$('#skills-menu').append('<div id="keeneye" class="skill-button"> Keen Eye with Accuracy - 1SP<br><span class="skills-desc">+10 accuracy all battle</span></div>');
+		// }
+	};
 
 
 // ******************************************
-// * Finish Him
+// * CLICK SKILL
 // ******************************************
 
-$('.finish-him').click( function(){
-skillsClose();
+$('.skill-button').click( function(){
 
-heroSave.damageAdj[0] = hero.weapon[1];
-heroSave.damageAdj[1] = hero.weapon[2];
-heroSave.damageAdj[2] = 3;
-hero.weapon[1] = hero.weapon[1] * 2;
-hero.weapon[2] = hero.weapon[2] * 2;
-setFightInfo();
+	var heroskill = $(this).attr('id');
 
-$('.finish-him').css('display','none');
-console.log("Finish him is working!");
+	heroskill = String(heroskill);
 
-heroAttack();
+	console.log(heroskill);
+	skillsClose();
+	playSkillActivated();
+
+	eval(heroskill).turnsCount = eval(heroskill).turns;
+	hero.skillPointsCurrent -= eval(heroskill).skillpointCost;
+
+	eval(heroskill).adjHero();
+	
+	var message = ( hero.name + " activated "+eval(heroskill).name+" ("+eval(heroskill).effectDescription+")");
+	$('#'+eval(heroskill).uid).css('display','none');
+
+	alertMessage(message, null, false);
+	setFightInfo();
 
 });
 
+
+
 // ******************************************
-// * Skill Set
+// * Skill Counter and Set
 // ******************************************
 
 function skillsSet(){
 
-if (heroSave.damageAdj[2] >= 1){
-	heroSave.damageAdj[2]--;
-	if(heroSave.damageAdj[2] === 0){
-		 hero.weapon[1] = heroSave.damageAdj[0];
-		 hero.weapon[2] = heroSave.damageAdj[1];
-		 $('.finish-him').css('display','inherit');
+	var count = skillList.length;
+	for (var i=0; i < count; i++){
+		if (eval(skillList[i]).turnsCount >= 1){
+			eval(skillList[i]).turnsCount--;
+			if(eval(skillList[i]).turnsCount === 0){
+				eval(skillList[i]).negHero();
+				$('#'+eval(skillList[i]).uid).css('display','inherit');
+			}
+		}
 	}
-
-}
-
-
 }

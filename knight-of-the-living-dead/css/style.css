@@ -402,9 +402,9 @@ div #skills-menu {
 
 .skill-button {
   border-radius: 2px;
-  border: 1px solid rgba(152, 172, 195);
+/*  border: 1px solid rgba(152, 172, 195);*/
   padding: 5px;
-  background-color: rgba(74,144,226,1);
+  background-color: rgba(74,144,226,.8);
   text-decoration: none;
   color: white;
   cursor:pointer;
@@ -488,6 +488,9 @@ div #skills-menu {
   padding: 2px 2px 0 0;
 }
 
+#keeneye {
+  display: none;
+}
 
 /******************************************
 /* POPOVER
