@@ -8,7 +8,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 		name: "Finish Him",
 		statAdj: 10,
 		skillpointCost: 2,
-		turns: 3,
+		turns: 4,
 		turnsCount: 0,
 		uid: "finishhim",
 		heroOwns: true,
@@ -40,7 +40,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 	var armorup = {
 		name: "Armor up",
 		statAdj: 3,
-		skillpointCost: 1,
+		skillpointCost: 3,
 		turns: 99,
 		turnsCount: 0,
 		uid: "armorup",
@@ -55,7 +55,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 	var keeneye = {
 		name: "Keen eye",
 		statAdj: 10,
-		skillpointCost: 1,
+		skillpointCost: 2,
 		turns: 99,
 		turnsCount: 0,
 		uid: "keeneye",
@@ -75,7 +75,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 $('.skill-button').click( function(){
 	if (playerTurn == false){ return; }
 	var heroskill = $(this).attr('id');
-	
+
 	$('.turns-alerts').remove();
 
 	if (eval(heroskill).skillpointCost > hero.skillPointsCurrent){
