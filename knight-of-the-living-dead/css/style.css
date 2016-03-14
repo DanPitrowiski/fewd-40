@@ -421,6 +421,7 @@ div #skills-menu, div #items-menu {
   width: 290px;
   overflow: scroll;
   display: none;
+  overflow-x: hidden;
 }
 
 .skill-button, .item-button {
