@@ -65,9 +65,6 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 			hero.accuracy += keeneye.statAdj; },
 		negHero: function (){
 			hero.accuracy -= keeneye.statAdj; },
-		// insertSkill: function (){
-		// 	$('#skills-menu').append('<div id="keeneye" class="skill-button"> Keen Eye with Accuracy - 1SP<br><span class="skills-desc">+10 accuracy all battle</span></div>');
-		// }
 	};
 
 
