@@ -3,6 +3,7 @@
  var enemyList = [zombieBob, ogre, mountainGiant, zombieBob, ogre, mountainGiant, zombieBob];
  var currentEnemies = [zombieBob];
  var myDiv = document.getElementById("div-history");
+ var skipEnemy;
 
 
 // ******************************************
@@ -66,36 +67,51 @@ $('.attack-f').click( function(){
 });
 
 function heroAttack(){
+	debugger;
+	endTurn();
 	$('.alert-button').addClass('enemyturn');
 	$('.turns-alerts').remove();
 	$('.fight-button').addClass('turnoffbuttons');
 	$('.item-button').addClass('turnoffbuttons');
 	$('.skill-button').addClass('turnoffbuttons');
 
-
 	var hit = hitting(hero, currentEnemies[0]);
-	
-	if (hit === true){
-	var dmgReceived = damage(hero, currentEnemies[0]);
-	message = ( hero.name + " hit " + currentEnemies[0].name +" dealing " + dmgReceived + " damage.");
- 	} 
- 	if (hit === false){
-		message = ( hero.name + " missed " + currentEnemies[0].name );
- 	}
- 	if (hit === "dodge") {
- 		message = ( currentEnemies[0].name + " dodged " + hero.name );
- 	}
 
+ 	message = createHitMessage(hero, currentEnemies[0], hit);
  	attackAnimation(hero, currentEnemies[0], hit);
  	
     setTimeout(function(){
- 	alertMessage(message, "Enemy Turn", true); 
- 	if ( hit === true){ playEnemyHit(); } else { playWeaponMiss(); }
-	skillsSet();
-	endTurn();
-	setFightInfo();
-	},100);
+	 	alertMessage(message, null, false);
+	 	debugger;
+	 	if ( hit === true){ playEnemyHit(); } else { playWeaponMiss(); }
+			skillsSet();
+			skipEnemy = setFightInfo();
+	},300);
 
+    console.log("2-What is skipEnemy: " + skipEnemy);
+
+	// ENEMIES TURN
+
+	setTimeout(function(){
+		if (skipEnemy === true){ return; }
+		$('.turns-alerts').remove();
+		var hit = hitting(currentEnemies[0],hero);
+
+		console.log(hit);
+
+	 	message = createHitMessage(currentEnemies[0], hero, hit);
+	 	attackAnimation(currentEnemies[0],hero, hit);
+		
+		setTimeout(function(){
+		alertMessage(message, null, false);
+	 	if ( hit === true){ playHeroHit(); } else { playWeaponMiss(); }
+			setFightInfo();
+			$('.fight-button').removeClass('turnoffbuttons');
+			$('.item-button').removeClass('turnoffbuttons');
+			$('.skill-button').removeClass('turnoffbuttons');
+			endTurn();
+		},300);
+	},1500);
 };
 
 // ENEMIES TURN
@@ -106,35 +122,24 @@ $('.enemyturn').click( function(){
 
 
 function enemyAttack(){
-	$('.alert-button').removeClass('enemyturn'); 
 	$('.turns-alerts').remove();
 	$('.fight-button').removeClass('turnoffbuttons');
 	$('.item-button').removeClass('turnoffbuttons');
 	$('.skill-button').removeClass('turnoffbuttons');
-	$( ".alert-button" ).css('display','none');
 
 	var hit = hitting(currentEnemies[0],hero);
 
 	console.log(hit);
 
-	if (hit === true){
-	var dmgReceived = damage(currentEnemies[0],hero);
-	message = ( currentEnemies[0].name + " hit " + hero.name +" dealing " + dmgReceived + " damage.");
- 	playHeroHit(); 
- 	} if (hit === false){
- 		message = ( currentEnemies[0].name + " missed " + hero.name );
- 	} if (hit === "dodge") {
- 		message = ( hero.name + " dodged " + currentEnemies[0].name );
- 	}
-
+	message = createHitMessage(currentEnemies[0], hero, hit);
  	attackAnimation(currentEnemies[0],hero, hit);
 	
 	setTimeout(function(){
-	alertMessage(message, null, false);
- 	if ( hit === true){ playHeroHit(); } else { playWeaponMiss(); }
-	endTurn();
-	setFightInfo();
-	},100);
+		alertMessage(message, null, false);
+	 	if ( hit === true){ playHeroHit(); } else { playWeaponMiss(); }
+			endTurn();
+			setFightInfo();
+	},300);
 };
 
 // ******************************************
@@ -197,7 +202,7 @@ console.log("Attacker: "+attacker.name+"   Defender:"+defender.name+" and hit "+
 		  if ( hit === "dodge" ){
 			$(defender["ui_id"]).addClass("enemy-dodge");
 		}
-		  setTimeout(function(){
+		  setTimeout( function(){
 		  $(attacker["ui_id"]).removeClass("hero-attacking movetofront");
 		  $(defender["ui_id"]).removeClass("enemy-dodge");
 		  }, 2000);
@@ -207,7 +212,7 @@ console.log("Attacker: "+attacker.name+"   Defender:"+defender.name+" and hit "+
 	  	if ( hit === "dodge"  ){
 			$(defender["ui_id"]).addClass("hero-dodge");
 		}
-	  	setTimeout(function(){
+	  	setTimeout( function(){
 	    $(attacker["ui_id"]).removeClass("enemy-attacking movetofront");
 	    $(defender["ui_id"]).removeClass("hero-dodge");
 	  	}, 2000);
@@ -229,28 +234,38 @@ function endTurn(){
 // ******************************************
 
 function alertMessage(message, buttonText, showAlertButton){
-		// $( '.game-alerts' ).promise().then(function(){
-			$( ".game-alerts" ).css('display','none');
+	// $( '.game-alerts' ).promise().then(function(){
+	$( ".game-alerts" ).css('display','none');
 
-			console.log('.game-alerts');
+	console.log('.game-alerts');
 
-			$( ".game-alerts" ).append("<h2 class='turns-alerts'>" + message + "</h2>");
-			$( ".game-alerts" ).fadeIn(500).css('display','block');
+	$( ".game-alerts" ).append("<h2 class='turns-alerts'>" + message + "</h2>");
+	$( ".game-alerts" ).fadeIn(500).css('display','block');
 
-			console.log("before alert button should show = " + playerTurn);
+	console.log("before alert button should show = " + playerTurn);
 
-			$('.history').prepend('<p class="message">'+message+'</p>');
-			historyScroll();
+	$('.history').prepend('<p class="message">'+message+'</p>');
 
-			console.log(showAlertButton);
-			if (showAlertButton === true){
-				$( ".alert-button" ).text(buttonText);
-				$( ".alert-button" ).fadeIn(500).css('display','block');
-			}
+	if (showAlertButton === true){
+		$( ".alert-button" ).text(buttonText);
+		$( ".alert-button" ).fadeIn(500).css('display','block');
+	}
 }
 
 function historyScroll() {
 	$('#div-history').scrollTop("0");
+}
+
+function createHitMessage(attacker, defender, hit){
+	if (hit === true){
+	var dmgReceived = damage(attacker,defender);
+	message = ( attacker.name + " hit " + defender.name +" dealing " + dmgReceived + " damage.");
+ 	} if (hit === false){
+ 		message = ( attacker.name + " missed " + defender.name );
+ 	} if (hit === "dodge") {
+ 		message = ( defender.name + " dodged " + attacker.name );
+ 	}
+ 	return message;
 }
 
 // ******************************************
@@ -270,18 +285,25 @@ function setFightInfo(){
 		$( "#enemyone-health").text(enemyhealth);
 		$( "#hero-health").text(herohealth);
 		$( '#hero-skillpoints').text(heroskillpoints);
-
 	});
 
 	if (currentEnemies[0].hitPointsCurrent <= 0 ){
 		currentEnemies[0].hitPointsCurrent = 0; 
 		enemyKilled(currentEnemies[0].name);
+		return true;
 	}
 	if (hero.hitPointsCurrent <= 0 ){
 		hero.hitPointsCurrent = 0; 
 		death();
+		return true;
 	}
+	return false; 
 }
+
+ function myfunction(e)
+  {
+       e.stopImmediatePropagation();
+  }
 
 // ******************************************
 // * DEATH

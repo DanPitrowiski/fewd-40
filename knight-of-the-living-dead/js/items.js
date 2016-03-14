@@ -16,8 +16,12 @@ $('.item-button').click( function(){
 	}
 
 	playItemRestore();
+	$('.turns-alerts').remove();
 	alertMessage(message, null, false);
 	endTurn();
 	setFightInfo();
-	enemyAttack();
+
+	setTimeout(function(){
+		enemyAttack();
+	},1700);
 });

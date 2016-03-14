@@ -73,23 +73,26 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 // ******************************************
 
 $('.skill-button').click( function(){
-	console.log("Skills page - player turn = "+ playerTurn)
 	if (playerTurn == false){ return; }
-
 	var heroskill = $(this).attr('id');
-
-	console.log(heroskill);
-	// skillsClose();
+	
+	$('.turns-alerts').remove();
 
 	if (eval(heroskill).skillpointCost > hero.skillPointsCurrent){
 		var message = ("You need more skillpoints for that.");
-		$('.turns-alerts').remove();
 		alertMessage(message, null, false);
 		return;
 	}
+	console.log("Skills page - player turn = "+ playerTurn);
+
+	$('.alert-button').addClass('enemyturn');
+	$('.fight-button').addClass('turnoffbuttons');
+	$('.item-button').addClass('turnoffbuttons');
+	$('.skill-button').addClass('turnoffbuttons');
 
 	eval(heroskill).turnsCount = eval(heroskill).turns;
 	hero.skillPointsCurrent -= eval(heroskill).skillpointCost;
+	
 	eval(heroskill).adjHero();
 	
 	var message = ( hero.name + " activated "+eval(heroskill).name+" ("+eval(heroskill).effectDescription+")");
@@ -99,7 +102,10 @@ $('.skill-button').click( function(){
 	alertMessage(message, null, false);
 	endTurn();
 	setFightInfo();
-	enemyAttack();
+
+	setTimeout(function(){
+		enemyAttack();
+	},2500);
 
 });
 

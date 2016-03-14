@@ -596,15 +596,15 @@ div #skills-menu, div #items-menu {
 }
     /* ENEMY ANIMATION */
 @-webkit-keyframes enemy-attacking {
-    0%   {transform: translateX(20px);}
-    10%  {transform: translateX(0px);}
+    0%   {transform: translateX();}
+    10%  {transform: translateX(30px);}
     25% {transform: translateX(-440px);}
     100% {transform: translateX(0px);}
 }
 
 @keyframes enemy-attacking {
-    0%   {transform: translateX(20px);}
-    10%  {transform: translateX(0px);}
+    0%   {transform: translateX();}
+    10%  {transform: translateX(30px);}
     25% {transform: translateX(-440px);}
     100% {transform: translateX(0px);}
 }
