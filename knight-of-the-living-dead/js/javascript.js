@@ -10,7 +10,7 @@
 // ******************************************
 
  $( document ).ready(function() {
- 	$( "#popover" ).html("<form id='entry'><img src='images/hero.png'><h2>Choose the name of your hero</h2><input type='text' id='hero-name' placeholder='Choose a hero name...'><input type='submit' value='Update' id='submit-btn'></form>");
+ 	$( "#popover" ).html("<form id='entry'><h1>Knight of the Living Dead</h1><img src='images/hero.png'><h3>Choose the name of your hero</h3><input type='text' id='hero-name' placeholder='Choose a hero name...'><input type='submit' value='Update' id='submit-btn'></form>");
  	$( "#popover" ).addClass('popover-bg');
  	var text_input = $('#entry');
   	text_input.focus ();
