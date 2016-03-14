@@ -1,6 +1,6 @@
  var message;
  var playerTurn = true;
- var enemyList = [zombieBob, ogre, mountainGiant, zombieBob, ogre, mountainGiant, zombieBob];
+ var enemyList = [zombieBob, berserker, ogre, mountainGiant, zombieBob, ogre, mountainGiant, zombieBob];
  var currentEnemies = [zombieBob];
  var myDiv = document.getElementById("div-history");
  var skipEnemy;
@@ -422,6 +422,9 @@ function playEnemyEntrance(enemy){
 	}
 	if (enemy.img_id === "#ogre"){
 	var audio = $('#ogre-entrance')[0];
+	}
+	if (enemy.img_id === "#berserker"){
+	var audio = $('#berserker-entrance')[0];
 	}
 	audio.play();
 }

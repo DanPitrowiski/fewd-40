@@ -12,7 +12,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 		turnsCount: 0,
 		uid: "finishhim",
 		heroOwns: true,
-		effectDescription: "+10 dmg 3 turns", 
+		effectDescription: "+10 dmg 4 turns", 
 		adjHero: function (){
 			hero.weapon[1] += finishhim.statAdj;
 			console.log("Working finish him");
@@ -45,7 +45,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 		turnsCount: 0,
 		uid: "armorup",
 		heroOwns: true,
-		effectDescription: "+4 armor all battle", 
+		effectDescription: "+3 armor all battle", 
 		adjHero: function (){
 			hero.armor += armorup.statAdj; },
 		negHero: function (){

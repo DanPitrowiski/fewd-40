@@ -2,6 +2,11 @@ $('.item-button').click( function(){
 
 	debugger;
 
+	$('.alert-button').addClass('enemyturn');
+	$('.fight-button').addClass('turnoffbuttons');
+	$('.item-button').addClass('turnoffbuttons');
+	$('.skill-button').addClass('turnoffbuttons');
+
 	if (playerTurn == false){ return; }
 	var item = $(this).attr('id');
 
