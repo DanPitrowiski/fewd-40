@@ -4,7 +4,7 @@ var hero = {
     level:5,
     type:"Undead Knight",
     accuracy: 70,
-    dodge: 20,
+    dodge: 28,
     armor: 2,
     weapon: ['Bone Scabre', 7, 12],
     skillPointsCurrent:5,
@@ -13,6 +13,7 @@ var hero = {
     hitPoints:20,
     skills:['Finish Him!','Light on your feet','Armor Up'],
     ui_id: "#hero-ui",
+    items: ['Health Potion','Rejuvenation Potion'],
 };
 
 var zombieBob = {
@@ -39,7 +40,6 @@ var mountainGiant = {
     uid: "mountainGiant",
     level:10,
     type:"Rocking and Rolling",
-    accuracy: 4,
     accuracy: 55,
     dodge: 5,
     armor: 5,
@@ -52,5 +52,24 @@ var mountainGiant = {
     ui_id: "#enemy-ui-one",
     img_id: "#mountainGiant",
     img: function(){$("#enemy-ui-one").append('<img id="'+currentEnemies[0].uid+'" class="ememies" src="images/rock-monster.png">');},
+};
+
+var ogre = {
+    name:"Ogre Chief",
+    uid: "ogre",
+    level:7,
+    type:"Crush, kill, than eat",
+    accuracy: 65,
+    dodge: 22,
+    armor: 2,
+    weapon: ['Club', 8, 10],
+    skillPointsCurrent:4,
+    skillPoints:4,
+    hitPointsCurrent:25,
+    hitPoints:25,
+    skills:['Crush','Pound'],
+    ui_id: "#enemy-ui-one",
+    img_id: "#ogre",
+    img: function(){$("#enemy-ui-one").append('<img id="'+currentEnemies[0].uid+'" class="ememies" src="images/ogre.png">');},
 };
 

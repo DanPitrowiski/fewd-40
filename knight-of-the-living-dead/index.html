@@ -76,9 +76,19 @@
 				<source class="entrance" src="sound/EnterMountainGiant.wav" type="audio/mpeg">
 			</audio>
 
+			<audio id="ogre-entrance">	
+				<source class="entrance" src="sound/ogre.wav" type="audio/mpeg">
+			</audio>
+
 			<audio id="skillactivated">	
 				<source class="entrance" src="sound/skillactivated.mp3" type="audio/mpeg">
 			</audio>
+
+			<audio id="itemrestore">	
+				<source class="entrance" src="sound/ItemRestore.wav" type="audio/mpeg">
+			</audio>
+
+
 
 			<!-- /******************************************
 			/* BOTTOM GAME MENU AND CHARACTERS
@@ -112,6 +122,17 @@
 				</div>
 				<div id="keeneye" class="skill-button"> Keen Eye with Accuracy - 1SP<br><span class="skills-desc">+10 accuracy all battle</span></div>
 			</div>	
+
+			<!-- ITEMS MENU -->
+
+			<div id="items-menu" class="ground-menu">
+				<div id="healthpotion" class="item-button">
+				Health Potion<br><span class="skills-desc">Regain full hitpoints</span>
+				</div>
+				<div id="skillspotion" class="item-button">
+				Skill Rejuvenation<br><span class="skills-desc">Regain full skillpoints</span>
+				</div>
+			</div>
 
 			<!-- ENEMY MENU -->
 
@@ -167,9 +188,10 @@
 			/* ENEMY CHARACTER GRAPHICS
 			/*******************************************/  -->
 
-				<h3 class="game-name">Knight of the Living Dead dreamed up by <a href="http://danpitrowiski.github.io/fewd-40/portfolio-site/index.html">Dan Pitrowiski</a></h3>
+				<h3 class="game-name">Knight of the Living Dead dreamed up by <a target="_blank" href="http://danpitrowiski.github.io/fewd-40/portfolio-site/index.html">Dan Pitrowiski</a></h3>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="js/items.js"></script>
 		<script src="js/skills.js"></script>
 		<script src="js/characters.js"></script>
 		<script src="js/hover.js"></script>

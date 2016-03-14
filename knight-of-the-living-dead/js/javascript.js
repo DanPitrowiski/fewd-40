@@ -1,6 +1,6 @@
  var message;
  var playerTurn = true;
- var enemyList = [zombieBob, mountainGiant, zombieBob, mountainGiant, zombieBob];
+ var enemyList = [zombieBob, ogre, ogre, mountainGiant, zombieBob, mountainGiant, zombieBob];
  var currentEnemies = [zombieBob];
  var myDiv = document.getElementById("div-history");
 
@@ -40,9 +40,18 @@ $('.skill-f').click( function(){
 skillsClose();
 });
 
+$('.item-f').click( function(){
+itemsClose();
+});
 
 function skillsClose(){
+	$('#items-menu').hide();
 	$('#skills-menu').toggle();
+};
+
+function itemsClose(){
+	$('#skills-menu').hide();
+	$('#items-menu').toggle();
 };
 
 // ******************************************
@@ -60,6 +69,7 @@ function heroAttack(){
 	$('.alert-button').addClass('enemyturn');
 	$('.turns-alerts').remove();
 	$('.fight-button').addClass('turnoffbuttons');
+	$('.item-button').addClass('turnoffbuttons');
 	$('.skill-button').addClass('turnoffbuttons');
 
 
@@ -96,10 +106,10 @@ $('.enemyturn').click( function(){
 
 
 function enemyAttack(){
-	debugger;
 	$('.alert-button').removeClass('enemyturn'); 
 	$('.turns-alerts').remove();
 	$('.fight-button').removeClass('turnoffbuttons');
+	$('.item-button').removeClass('turnoffbuttons');
 	$('.skill-button').removeClass('turnoffbuttons');
 	$( ".alert-button" ).css('display','none');
 
@@ -286,6 +296,7 @@ function death(){
 function enemyKilled(defender){
 	$('#enemy-ui-one').fadeOut(2000);
 	$('#enemyone').fadeOut(3000);
+	$('#items-menu').hide();
 	$('#skills-menu').hide();
 	$('#fight-menu').hide();
 	$('.alert-button').css('display','none');
@@ -304,6 +315,7 @@ $('.nextEnemy,#nextEnemy').click( function(){
 
 	$( "#nextEnemy").css('display','none');
 	$('.fight-button').removeClass('turnoffbuttons');
+	$('.item-button').removeClass('turnoffbuttons');
 	$('.skill-button').removeClass('turnoffbuttons');
 	$("#enemy-ui-one").css('display','inherit');
 	$("#fight-menu").show();
@@ -338,6 +350,7 @@ $('.reload').click(function reload() {
 
 	currentEnemies[0].hitPointsCurrent = currentEnemies[0].hitPoints;
 	hero.hitPointsCurrent = hero.hitPoints;
+	hero.skillPointsCurrent = hero.skillPoints;
 
 	$( ".game-alerts" ).css('display','none');
 	$('.popover-bg').hide();
@@ -358,6 +371,7 @@ var heroHit = $('#herohit')[0];
 var weaponMiss = $('#weaponmiss')[0];
 var gameMusic = $('#zombiemusic')[0]; 
 var skillActivated = $('#skillactivated')[0];
+var itemRestore = $('#itemrestore')[0];
 
 function playEnemyHit() { enemyHit.play(); } 
 
@@ -371,12 +385,17 @@ function pauseAudio() { gameMusic.pause(); }
 
 function playSkillActivated() { skillActivated.play(); }
 
+function playItemRestore() { itemRestore.play(); }
+
 function playEnemyEntrance(enemy){
 	if (enemy.img_id === "#mountainGiant"){
 	var audio = $('#mountainGiant-entrance')[0];
 	}
 	if (enemy.img_id === "#zombieBob"){
 	var audio = $('#zombieBob-entrance')[0];
+	}
+	if (enemy.img_id === "#ogre"){
+	var audio = $('#ogre-entrance')[0];
 	}
 	audio.play();
 }
