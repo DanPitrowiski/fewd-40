@@ -80,7 +80,13 @@ $('.skill-button').click( function(){
 
 	console.log(heroskill);
 	// skillsClose();
-	playSkillActivated();
+
+	if (eval(heroskill).skillpointCost > hero.skillPointsCurrent){
+		var message = ("You need more skillpoints for that.");
+		$('.turns-alerts').remove();
+		alertMessage(message, null, false);
+		return;
+	}
 
 	eval(heroskill).turnsCount = eval(heroskill).turns;
 	hero.skillPointsCurrent -= eval(heroskill).skillpointCost;
@@ -89,6 +95,7 @@ $('.skill-button').click( function(){
 	var message = ( hero.name + " activated "+eval(heroskill).name+" ("+eval(heroskill).effectDescription+")");
 	$('#'+eval(heroskill).uid).css('display','none');
 
+	playSkillActivated();
 	alertMessage(message, null, false);
 	endTurn();
 	setFightInfo();

@@ -358,6 +358,7 @@ $('.reload').click(function reload() {
 	$('.turns-alerts').remove();
 	alertMessage("This time you won't be so lucky " + currentEnemies[0].name, null , false);
 
+	playResurrected();
 	setFightInfo();
 	playerTurn=true;
 });
@@ -372,6 +373,7 @@ var weaponMiss = $('#weaponmiss')[0];
 var gameMusic = $('#zombiemusic')[0]; 
 var skillActivated = $('#skillactivated')[0];
 var itemRestore = $('#itemrestore')[0];
+var resurrected = $('#resurrected')[0];
 
 function playEnemyHit() { enemyHit.play(); } 
 
@@ -386,6 +388,8 @@ function pauseAudio() { gameMusic.pause(); }
 function playSkillActivated() { skillActivated.play(); }
 
 function playItemRestore() { itemRestore.play(); }
+
+function playResurrected() { resurrected.play(); }
 
 function playEnemyEntrance(enemy){
 	if (enemy.img_id === "#mountainGiant"){
