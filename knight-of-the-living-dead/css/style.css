@@ -528,6 +528,7 @@ div #skills-menu, div #items-menu {
     width: 530px;
     height: 225px;
     overflow: auto;
+    display: none;
   }
 
 .message {
