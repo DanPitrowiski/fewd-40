@@ -105,7 +105,7 @@ $('.skill-button').click( function(){
 
 	setTimeout(function(){
 		enemyAttack();
-	},2500);
+	},1700);
 
 });
 

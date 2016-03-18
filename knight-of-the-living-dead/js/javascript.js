@@ -111,7 +111,7 @@ function heroAttack(){
 			$('.skill-button').removeClass('turnoffbuttons');
 			endTurn();
 		},300);
-	},1500);
+	},1000);
 };
 
 // ENEMIES TURN

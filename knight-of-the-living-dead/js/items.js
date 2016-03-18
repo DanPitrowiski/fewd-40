@@ -28,5 +28,5 @@ $('.item-button').click( function(){
 
 	setTimeout(function(){
 		enemyAttack();
-	},1700);
+	},1900);
 });
