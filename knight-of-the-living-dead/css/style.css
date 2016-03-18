@@ -445,13 +445,16 @@ div #skills-menu, div #items-menu {
   font-size: 14px;
 }
 
+button {
+  font-family: 'Varela Round', sans-serif;
+}
+
 .fight-button {
   width: 210px;
   height: 44px;
   border-radius: 5px;
   border: none;
   color: white;
-  font-family: 'Varela Round', sans-serif;
   font-size: 18px;
 }
 
@@ -561,6 +564,29 @@ div #skills-menu, div #items-menu {
   border-radius: 5px;
   margin: 0 auto;
   color: white;
+}
+
+#objective {
+  display: none;
+  margin: 0 auto;
+  margin-top: 1.5em;
+}
+
+.next-choose-adj {
+  border-radius: 2px;
+  padding: 5px;
+  text-decoration: none;
+  color: white;
+  cursor:pointer;
+  margin-bottom: 5px;
+  background-color: rgba(126,191,54,1);
+  display: block;
+  margin: 0 auto;
+  border: none;
+  height: 50px;
+  font-size: 18px;
+  margin-top: 1.5em;
+  padding: 0 1em;
 }
 
 /******************************************

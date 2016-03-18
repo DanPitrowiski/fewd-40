@@ -11,27 +11,40 @@
 // ******************************************
 
  $( document ).ready(function() {
- 	$( "#popover" ).html("<form id='entry'><h1>Knight of the Living Dead</h1><img src='images/hero.png'><h3>Choose the name of your hero</h3><input type='text' id='hero-name' placeholder='Choose a hero name...'><input type='submit' value='Update' id='submit-btn'></form>");
+ 	// $( "#popover" ).html("<form id='entry'><h1>Knight of the Living Dead</h1><img src='images/hero.png'><h3>Choose the name of your hero</h3><input type='text' id='hero-name' placeholder='Choose a hero name...'><input type='submit' value='Update' id='submit-btn'></form>");
  	$( "#popover" ).addClass('popover-bg');
- 	var text_input = $('#entry');
-  	text_input.focus ();
+ 	var text_input = $('#hero-name');
+  	text_input.focus();
   	setFightInfo();
   });
 
-	$( document ).ready(function() {
-		$('#entry').on('submit', function(e){
-			e.preventDefault();
-			e.stopImmediatePropagation();
-			playAudio(); 
-			var name = $( '#hero-name' ).val();
-		 	hero.name = name;
-		 	$( "#entry" ).css('display','none');
-		 	$( "#popover" ).fadeOut(2000);
-		 	// $( "#popover" ).css('background-color','rgba(0,0,0,0)');
-		 	$( "#hero-stats>.ch-name>.bold-stat").text(hero.name);
+$('#entry').on('submit', function(e){
+	$('#hero-name').blur(); 
+	e.preventDefault();
+	e.stopImmediatePropagation();
+	gameObjective();
+});
 
-		    alertMessage(currentEnemies[0].name + " won't let you pass. Time for a fight!", null, false);
-			})});
+
+function gameObjective(){
+	playAudio();
+	var name = $( '#hero-name' ).val();
+ 	hero.name = name;
+ 	$( "#entry" ).fadeOut(500);
+ 	$( "#objective").fadeIn(2000);
+};
+
+$('.next-choose-adj').click( function(){
+	loadGame();
+});
+
+function loadGame(){
+ 	$( "#popover" ).fadeOut(2000);
+ 	// $( "#popover" ).css('background-color','rgba(0,0,0,0)');
+ 	$( "#hero-stats>.ch-name>.bold-stat").text(hero.name);
+
+    alertMessage(currentEnemies[0].name + " won't let you pass. Time for a fight!", null, false);
+};
 
 // ******************************************
 // * MENU
@@ -111,7 +124,7 @@ function heroAttack(){
 			$('.skill-button').removeClass('turnoffbuttons');
 			endTurn();
 		},300);
-	},1000);
+	},1600);
 };
 
 // ENEMIES TURN
