@@ -12,7 +12,6 @@
 
  $( document ).ready(function() {
  	// $( "#popover" ).html("<form id='entry'><h1>Knight of the Living Dead</h1><img src='images/hero.png'><h3>Choose the name of your hero</h3><input type='text' id='hero-name' placeholder='Choose a hero name...'><input type='submit' value='Update' id='submit-btn'></form>");
- 	$( "#popover" ).addClass('popover-bg');
  	var text_input = $('#hero-name');
   	text_input.focus();
   	setFightInfo();
@@ -35,8 +34,13 @@ function gameObjective(){
 };
 
 $('.next-choose-adj').click( function(){
-	loadGame();
+	$( "#objective" ).fadeOut(200);
+	levelUp();
+	// loadGame();
 });
+
+
+
 
 function loadGame(){
  	$( "#popover" ).fadeOut(2000);
@@ -301,7 +305,8 @@ function setFightInfo(){
 	});
 
 	if (currentEnemies[0].hitPointsCurrent <= 0 ){
-		currentEnemies[0].hitPointsCurrent = 0; 
+		currentEnemies[0].hitPointsCurrent = 0;
+		levelUp(); 
 		enemyKilled(currentEnemies[0].name);
 		return true;
 	}
@@ -324,8 +329,9 @@ function setFightInfo(){
 
 function death(){
 	$('.reload').fadeIn(3000).css('display','block');
-	$('.popover-bg').fadeIn(4000).show();
+	$('#popover').fadeIn(4000).show();
 	$( "#death" ).fadeIn(3000).show();
+	$('#death').addClass('popover-bg');
 	};
 
 function enemyKilled(defender){
@@ -347,7 +353,7 @@ function enemyKilled(defender){
 
 $('.nextEnemy,#nextEnemy').click( function(){
 	// CSS changes and fades
-
+	$('#game-container').addClass('darker-game-bg');
 	$( "#nextEnemy").css('display','none');
 	$('.fight-button').removeClass('turnoffbuttons');
 	$('.item-button').removeClass('turnoffbuttons');
@@ -360,7 +366,6 @@ $('.nextEnemy,#nextEnemy').click( function(){
 	console.log("What ID are we hiding "+currentEnemies[0].img_id);
 	
 	// Select Next Enemy
-
 	enemyList.splice( enemyList[0], 1 );
 	oldEnemies = currentEnemies[0].img_id;
 	currentEnemies[0] = enemyList[0];
@@ -375,6 +380,7 @@ $('.nextEnemy,#nextEnemy').click( function(){
 	playEnemyEntrance(currentEnemies[0]);
 	playerTurn=true;
 	setFightInfo();
+	levelUp();
 });
 
 // ******************************************
@@ -388,7 +394,7 @@ $('.reload').click(function reload() {
 	hero.skillPointsCurrent = hero.skillPoints;
 
 	$( ".game-alerts" ).css('display','none');
-	$('.popover-bg').hide();
+	$('#popover').hide();
 	$('#death').hide();
 	$('.turns-alerts').remove();
 	alertMessage("This time you won't be so lucky " + currentEnemies[0].name, null , false);
