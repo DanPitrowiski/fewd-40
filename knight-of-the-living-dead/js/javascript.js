@@ -124,8 +124,8 @@ function heroAttack(){
 			$('.fight-button').removeClass('turnoffbuttons');
 			$('.item-button').removeClass('turnoffbuttons');
 			$('.skill-button').removeClass('turnoffbuttons');
-			setFightInfo();
 			skillsSet();
+			setFightInfo();
 			endTurn();
 		},300);
 	},1600);

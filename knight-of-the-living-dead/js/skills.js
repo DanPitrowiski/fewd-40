@@ -2,7 +2,7 @@
 // * SKILLS LIST
 // ******************************************
 
-var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
+var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","extralife"];
 
 	var finishhim = {
 		name: "Finish Him",
@@ -77,12 +77,30 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 		heroOwns: false,
 		effectDescription: "+30 damage for 3 turns", 
 		adjHero: function (){
-			hero.weapon[1] += finishhim.statAdj;
-			console.log("Working finish him");
-			hero.weapon[2] += finishhim.statAdj;} ,
+			hero.weapon[1] += execute.statAdj;
+			hero.weapon[2] += execute.statAdj;} ,
 		negHero: function (){
-			hero.weapon[1] -= finishhim.statAdj;
-			hero.weapon[2] -= finishhim.statAdj;},
+			hero.weapon[1] -= execute.statAdj;
+			hero.weapon[2] -= execute.statAdj;},
+	};
+
+	var extralife = {
+		name: "Extra Life",
+		statAdj: 40,
+		skillpointCost: 4,
+		turns: 10,
+		turnsCount: 0,
+		uid: "extralife",
+		heroOwns: false,
+		effectDescription: "+40 hitpoints for 10 turns", 
+		adjHero: function (){
+			hero.hitPointsCurrent += extralife.statAdj;
+			hero.hitPoints += extralife.statAdj;} ,
+		negHero: function (){
+			hero.hitPoints -= extralife.statAdj;
+			if (hero.hitPointsCurrent > hero.hitPoints){
+				hero.hitPointsCurrent = hero.hitPoints;}
+			},
 	};
 
 

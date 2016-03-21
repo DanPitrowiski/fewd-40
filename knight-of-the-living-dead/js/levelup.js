@@ -8,6 +8,8 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	level4: ['Harbinger', 20, 30],
 	level5: ['Repentance', 26, 36],
 	level6: ['Death Blow', 35, 40],
+	level7: ["Death's Touch", 40, 40],
+	level8: ['Exacto Knife', 40, 50],
 	nextLevel: ["level1", 1],
 	currentLevel: 1,
 	maxLevel: 4,
@@ -26,6 +28,8 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	level4: 8,
 	level5: 10,
 	level6: 13,
+	level7: 16,
+	level8: 19,
 	nextLevel: ["level1", 1],
 	maxLevel: 5,
 	img: "images/icons/armor.png",
@@ -37,7 +41,9 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	level3: 81,
 	level4: 87,
 	level5: 93,
-	level6: 100,
+	level6: 99,
+	level7: 100,
+	level8: 105,
 	nextLevel: ["level1", 1],
 	maxLevel: 5, 
 	img: "images/icons/accuracy.png",
@@ -46,9 +52,10 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	var skillsLevel = {
 	level1: 'armorup',
 	level2: 'finishhim',
-	level3: 'lightonyourfeet',
-	level4: 'keeneye',
-	level5: 'execute',
+	level3: 'extralife',
+	level4: 'lightonyourfeet',
+	level5: 'keeneye',
+	level6: 'execute',
 	nextLevel: ["level1", 1],
 	maxLevel: 2,
 	img: "images/icons/skills.png",
@@ -57,10 +64,12 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	var dodgeLevel = {
 	level1: 35,
 	level2: 42,
-	level3: 50,
-	level4: 58,
-	level5: 68,
-	level6: 80,
+	level3: 49,
+	level4: 57,
+	level5: 65,
+	level6: 73,
+	level7: 81,
+	level8: 90,
 	nextLevel: ["level1", 1],
 	maxLevel: 5,
 	img: "images/icons/dodge.png",
@@ -73,19 +82,23 @@ function levelUp() {
 	$( "#popover" ).fadeIn(2000);
 	$( ".insert-lvl").html(hero.level);
 
+	// Give Random Hitpoint Bonus
 	var addHitPoints = Math.floor((Math.random() * 5) + 1);
     hero.hitPointsCurrent += addHitPoints;
     hero.hitPoints += addHitPoints;
     $('.editHitPoints').html(addHitPoints);
 
-    var addSkillPoints = Math.floor((Math.random() * 2) + 1);
+    // Give Random Skillpoint Bonus
+    var addSkillPoints = Math.floor((Math.random() * 3) + 1);
     hero.skillPointsCurrent += addSkillPoints;
     hero.skillPoints += addSkillPoints;
     $('.editSkillPoints').html(addSkillPoints);
 
     setCharacterStats();
 
+    // Randomize Next Upgrade
 	levelUpOptions = shuffle(levelUpOptions);
+
 	var level;
 	console.log(levelUpOptions);
 

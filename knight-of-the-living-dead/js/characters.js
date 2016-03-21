@@ -18,7 +18,7 @@ var hero = {
     skills:['Finish Him!','Light on your feet','Armor Up'],
     ui_id: "#hero-ui",
     healthpotion: 6,
-    skillspotion: 3,
+    skillspotion: 4,
 };
 
 var zombieBob = {
