@@ -67,6 +67,24 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 			hero.accuracy -= keeneye.statAdj; },
 	};
 
+	var execute = {
+		name: "Execute",
+		statAdj: 30,
+		skillpointCost: 3,
+		turns: 3,
+		turnsCount: 0,
+		uid: "execute",
+		heroOwns: false,
+		effectDescription: "+30 damage for 3 turns", 
+		adjHero: function (){
+			hero.weapon[1] += finishhim.statAdj;
+			console.log("Working finish him");
+			hero.weapon[2] += finishhim.statAdj;} ,
+		negHero: function (){
+			hero.weapon[1] -= finishhim.statAdj;
+			hero.weapon[2] -= finishhim.statAdj;},
+	};
+
 
 // ******************************************
 // * CLICK SKILL
