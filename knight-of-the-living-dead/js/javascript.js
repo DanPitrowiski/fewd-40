@@ -404,6 +404,9 @@ $('.nextEnemy,#nextEnemy').click( function(){
 	} else{
 		$('.enemiescount').fadeOut();
 	}
+	if (roundCounter === 6){
+		alertMessage("Even kings bow before me puny creature!", null, false);
+	}
 
 	setFightInfo();
 });

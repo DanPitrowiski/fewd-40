@@ -81,7 +81,7 @@ var ogre = {
 var berserker = {
     name:"Imperial Berserker",
     uid: "berserker",
-    level:8,
+    level:6,
     type:"Heads will roll.",
     accuracy: 75,
     dodge: 25,
@@ -121,7 +121,7 @@ var dragon = {
     uid: "dragon",
     level:20,
     type:"Peon crusher",
-    accuracy: 75,
+    accuracy: 80,
     dodge: 30,
     armor: 4,
     weapon: ['Dragon Claws', 18, 22],
