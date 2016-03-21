@@ -1,6 +1,6 @@
  var message;
  var playerTurn = true;
- var enemyList = [zombieBob, berserker, ogre, mountainGiant, zombieBob, ogre, mountainGiant, zombieBob];
+ var enemyList = [zombieBob, ogre, mountainGiant, castleGuard, berserker, theking, dragon];
  var currentEnemies = [zombieBob];
  var myDiv = document.getElementById("div-history");
  var skipEnemy;
@@ -11,14 +11,16 @@
 // ******************************************
 
  $( document ).ready(function() {
- 	// $( "#popover" ).html("<form id='entry'><h1>Knight of the Living Dead</h1><img src='images/hero.png'><h3>Choose the name of your hero</h3><input type='text' id='hero-name' placeholder='Choose a hero name...'><input type='submit' value='Update' id='submit-btn'></form>");
  	var text_input = $('#hero-name');
   	text_input.focus();
   	setFightInfo();
   });
 
 $('#entry').on('submit', function(e){
+	debugger;
 	$('#hero-name').blur(); 
+	var name = $( '#hero-name' ).val();
+ 	hero.name = name;
 	e.preventDefault();
 	e.stopImmediatePropagation();
 	gameObjective();
@@ -27,28 +29,28 @@ $('#entry').on('submit', function(e){
 
 function gameObjective(){
 	playAudio();
-	var name = $( '#hero-name' ).val();
- 	hero.name = name;
  	$( "#entry" ).fadeOut(500);
  	$( "#objective").fadeIn(2000);
 };
 
 $('.next-choose-adj').click( function(){
-	$( "#objective" ).fadeOut(200);
+	$( "#objective" ).fadeOut(0);
 	levelUp();
-	// loadGame();
+	$( "#hero-stats>.ch-name>.bold-stat").text(hero.name);
+    alertMessage(currentEnemies[0].name + " won't let you pass. Time for a fight!", null, false);
+
 });
 
 
 
 
-function loadGame(){
- 	$( "#popover" ).fadeOut(2000);
- 	// $( "#popover" ).css('background-color','rgba(0,0,0,0)');
- 	$( "#hero-stats>.ch-name>.bold-stat").text(hero.name);
+// function loadGame(){
+//  	// $( "#popover" ).css('background-color','rgba(0,0,0,0)');
+//  	$( "#hero-stats>.ch-name>.bold-stat").text(hero.name);
 
-    alertMessage(currentEnemies[0].name + " won't let you pass. Time for a fight!", null, false);
-};
+//     alertMessage(currentEnemies[0].name + " won't let you pass. Time for a fight!", null, false);
+
+// };
 
 // ******************************************
 // * MENU
@@ -84,7 +86,6 @@ $('.attack-f').click( function(){
 });
 
 function heroAttack(){
-	debugger;
 	endTurn();
 	$('.alert-button').addClass('enemyturn');
 	$('.turns-alerts').remove();
@@ -99,9 +100,7 @@ function heroAttack(){
  	
     setTimeout(function(){
 	 	alertMessage(message, null, false);
-	 	debugger;
 	 	if ( hit === true){ playEnemyHit(); } else { playWeaponMiss(); }
-			skillsSet();
 			skipEnemy = setFightInfo();
 	},300);
 
@@ -122,10 +121,11 @@ function heroAttack(){
 		setTimeout(function(){
 		alertMessage(message, null, false);
 	 	if ( hit === true){ playHeroHit(); } else { playWeaponMiss(); }
-			setFightInfo();
 			$('.fight-button').removeClass('turnoffbuttons');
 			$('.item-button').removeClass('turnoffbuttons');
 			$('.skill-button').removeClass('turnoffbuttons');
+			setFightInfo();
+			skillsSet();
 			endTurn();
 		},300);
 	},1600);
@@ -154,6 +154,7 @@ function enemyAttack(){
 	setTimeout(function(){
 		alertMessage(message, null, false);
 	 	if ( hit === true){ playHeroHit(); } else { playWeaponMiss(); }
+			skillsSet();
 			endTurn();
 			setFightInfo();
 	},300);
@@ -195,6 +196,10 @@ function damage(attacker, defender){
 	var dmgRandom = Math.floor((Math.random() * (attackerMaxDmg-attackerMinDmg) ) + attackerMinDmg);
 
 	dmgReceived = Math.floor(dmgRandom - defender.armor);
+
+	if ( dmgReceived < 1){
+		dmgReceived = 1;
+	}
 
 	defender.hitPointsCurrent = defender.hitPointsCurrent -  dmgReceived;
 
@@ -292,17 +297,8 @@ function createHitMessage(attacker, defender, hit){
 function setFightInfo(){
 	$( "#enemyone-name").text(currentEnemies[0].name);
 	$( "#enemyone-level").text(currentEnemies[0].level);
-	$( "#hero-level").text(hero.level);
 
-	var enemyhealth = (currentEnemies[0].hitPointsCurrent + "/" + currentEnemies[0].hitPoints);
-	var herohealth = (hero.hitPointsCurrent + "/" + hero.hitPoints);
-	var heroskillpoints = (hero.skillPointsCurrent + "/" + hero.skillPoints);
-
-	$( '.game-alerts' ).promise().done(function(){
-		$( "#enemyone-health").text(enemyhealth);
-		$( "#hero-health").text(herohealth);
-		$( '#hero-skillpoints').text(heroskillpoints);
-	});
+	setCharacterStats();
 
 	if (currentEnemies[0].hitPointsCurrent <= 0 ){
 		currentEnemies[0].hitPointsCurrent = 0;
@@ -318,13 +314,23 @@ function setFightInfo(){
 	return false; 
 }
 
- function myfunction(e)
-  {
-       e.stopImmediatePropagation();
-  }
+function setCharacterStats(){
+	var enemyhealth = (currentEnemies[0].hitPointsCurrent + "/" + currentEnemies[0].hitPoints);
+	var herohealth = (hero.hitPointsCurrent + "/" + hero.hitPoints);
+	var heroskillpoints = (hero.skillPointsCurrent + "/" + hero.skillPoints);
+
+	$( '.game-alerts' ).promise().done(function(){
+		$( "#enemyone-health").text(enemyhealth);
+		$( "#hero-health").text(herohealth);
+		$( '#hero-skillpoints').text(heroskillpoints);
+		$( "#hero-level").text(hero.level);
+		$('.editHealthPotion').html(hero.healthpotion);
+		$('.editSkillPotion').html(hero.skillspotion);
+	});
+}
 
 // ******************************************
-// * DEATH
+// * DEATH OR WIN
 // ******************************************
 
 function death(){
@@ -332,6 +338,14 @@ function death(){
 	$('#popover').fadeIn(4000).show();
 	$( "#death" ).fadeIn(3000).show();
 	$('#death').addClass('popover-bg');
+	};
+
+function winner(){
+	$('#level-up').hide();
+	$('.editHeroName').text(hero.name);
+	$('#popover').fadeIn(4000).show();
+	$( "#winner" ).fadeIn(3000).show();
+	$('#winner').addClass('popover-bg');
 	};
 
 function enemyKilled(defender){
@@ -345,6 +359,8 @@ function enemyKilled(defender){
 	$('#nextEnemy').html('<button class="nextEnemy">Ready For Next Enemy?</button>');
 	$( "#nextEnemy" ).show();
 	$(".nextEnemy").css('display','inherit');
+	
+	updateGameBG();
 }
 
 // ******************************************
@@ -354,6 +370,7 @@ function enemyKilled(defender){
 $('.nextEnemy,#nextEnemy').click( function(){
 	// CSS changes and fades
 	$('#game-container').addClass('darker-game-bg');
+
 	$( "#nextEnemy").css('display','none');
 	$('.fight-button').removeClass('turnoffbuttons');
 	$('.item-button').removeClass('turnoffbuttons');
@@ -379,8 +396,16 @@ $('.nextEnemy,#nextEnemy').click( function(){
 
 	playEnemyEntrance(currentEnemies[0]);
 	playerTurn=true;
+
+	// Setting How Many Enemies Before King
+	if (roundCounter < 5){
+		var count = (4 - roundCounter);
+		$('.editEnemiesCounter').html(count)
+	} else{
+		$('.enemiescount').fadeOut();
+	}
+
 	setFightInfo();
-	levelUp();
 });
 
 // ******************************************
@@ -412,6 +437,11 @@ var enemyHit = $('#enemyhit')[0];
 var heroHit = $('#herohit')[0]; 
 var weaponMiss = $('#weaponmiss')[0];
 var gameMusic = $('#zombiemusic')[0]; 
+var epicMusic = $('#epicmusic')[0];
+var rainPlay = $('#rainambience')[0];
+var windPlay = $('#wind')[0]; 
+var thunderandrainPlay = $('#thunderandrain')[0];
+var dragonEntranceTwo = $('#dragon-entrance2')[0];
 var skillActivated = $('#skillactivated')[0];
 var itemRestore = $('#itemrestore')[0];
 var resurrected = $('#resurrected')[0];
@@ -423,8 +453,19 @@ function playHeroHit() { heroHit.play(); }
 function playWeaponMiss() { weaponMiss.play(); } 
 
 function playAudio() { gameMusic.play(); } 
-
 function pauseAudio() { gameMusic.pause(); } 
+
+function playEpicMusic() { epicMusic.play(); } 
+function pauseEpicMusic() { epicMusic.pause(); } 
+
+function playRain() { rainPlay.play(); }
+function pauseRain() { rainPlay.play(); }
+
+function playWind() { windPlay.play(); }
+
+function playThunderandrain() { thunderandrain.play(); }
+
+function playDragonEntranceTwo() { dragonEntranceTwo.play(); }
 
 function playSkillActivated() { skillActivated.play(); }
 
@@ -444,6 +485,16 @@ function playEnemyEntrance(enemy){
 	}
 	if (enemy.img_id === "#berserker"){
 	var audio = $('#berserker-entrance')[0];
+	}
+	if (enemy.img_id === "#dragon"){
+	var audio = $('#dragon-entrance')[0];
+	playDragonEntranceTwo();
+	}
+	if (enemy.img_id === "#theking"){
+	var audio = $('#theking-entrance')[0];
+	}
+	if (enemy.img_id === "#castleGuard"){
+	var audio = $('#castleGuard-entrance')[0];
 	}
 	audio.play();
 }

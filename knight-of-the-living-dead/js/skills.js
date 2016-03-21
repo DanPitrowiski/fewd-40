@@ -7,12 +7,12 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 	var finishhim = {
 		name: "Finish Him",
 		statAdj: 10,
-		skillpointCost: 2,
-		turns: 4,
+		skillpointCost: 4,
+		turns: 5,
 		turnsCount: 0,
 		uid: "finishhim",
 		heroOwns: true,
-		effectDescription: "+10 dmg 4 turns", 
+		effectDescription: "+10 dmg 5 turns", 
 		adjHero: function (){
 			hero.weapon[1] += finishhim.statAdj;
 			console.log("Working finish him");
@@ -24,13 +24,13 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 
 	var lightonyourfeet = {
 		name: "Light on your feet",
-		statAdj: 20,
-		skillpointCost: 1,
-		turns: 5,
+		statAdj: 30,
+		skillpointCost: 3,
+		turns: 10,
 		turnsCount: 0,
 		uid: "lightonyourfeet",
 		heroOwns: true,
-		effectDescription: "+20 dodge 5 turns", 
+		effectDescription: "+30 dodge 10 turns", 
 		adjHero: function (){
 			hero.dodge += lightonyourfeet.statAdj; },
 		negHero: function (){
@@ -39,13 +39,13 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 
 	var armorup = {
 		name: "Armor up",
-		statAdj: 3,
-		skillpointCost: 3,
-		turns: 99,
+		statAdj: 4,
+		skillpointCost: 5,
+		turns: 10,
 		turnsCount: 0,
 		uid: "armorup",
 		heroOwns: true,
-		effectDescription: "+3 armor all battle", 
+		effectDescription: "+4 armor for 10 turns", 
 		adjHero: function (){
 			hero.armor += armorup.statAdj; },
 		negHero: function (){
@@ -54,13 +54,13 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye"];
 
 	var keeneye = {
 		name: "Keen eye",
-		statAdj: 10,
-		skillpointCost: 2,
-		turns: 99,
+		statAdj: 15,
+		skillpointCost: 1,
+		turns: 10,
 		turnsCount: 0,
 		uid: "keeneye",
 		heroOwns: false,
-		effectDescription: "+10 accuracy all battle", 
+		effectDescription: "+15 accuracy for 10 turns", 
 		adjHero: function (){
 			hero.accuracy += keeneye.statAdj; },
 		negHero: function (){

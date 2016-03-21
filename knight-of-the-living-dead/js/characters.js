@@ -1,23 +1,24 @@
 var hero = {
     name:"Farva",
     uid: "hero",
-    level:1,
+    level:0,
     type:"Undead Knight",
     accuracy: 65,
     accuracySaved: 65,
     dodge: 28,
     dodgeSaved: 28,
-    armor: 2,
-    armorSaved: 2,
+    armor: 1,
+    armorSaved: 1,
     weapon: ['Bone Scabre', 7, 12],
-    weaponSaved: [ 7, 12],
+    weaponSaved: [ "", 7, 12],
     skillPointsCurrent:5,
     skillPoints:5,
-    hitPointsCurrent:1,
-    hitPoints:20,
+    hitPointsCurrent:24,
+    hitPoints:24,
     skills:['Finish Him!','Light on your feet','Armor Up'],
     ui_id: "#hero-ui",
-    items: ['Health Potion','Rejuvenation Potion'],
+    healthpotion: 6,
+    skillspotion: 3,
 };
 
 var zombieBob = {
@@ -59,9 +60,9 @@ var mountainGiant = {
 };
 
 var ogre = {
-    name:"Ogre Chief",
+    name:"Mogor",
     uid: "ogre",
-    level:7,
+    level:4,
     type:"Crush, kill, than eat",
     accuracy: 65,
     dodge: 22,
@@ -96,3 +97,59 @@ var berserker = {
     img: function(){$("#enemy-ui-one").append('<img id="'+currentEnemies[0].uid+'" class="ememies" src="images/berserker.png">');},
 };
 
+var castleGuard = {
+    name:"Castle Guard",
+    uid: "castleGuard",
+    level:8,
+    type:"None shall pass.",
+    accuracy: 70,
+    dodge: 35,
+    armor: 1,
+    weapon: ['Ginsu Axe', 12, 18],
+    skillPointsCurrent:4,
+    skillPoints:4,
+    hitPointsCurrent:28,
+    hitPoints:28,
+    skills:['Violent Strike','Face-off'],
+    ui_id: "#enemy-ui-one",
+    img_id: "#castleGuard",
+    img: function(){$("#enemy-ui-one").append('<img id="'+currentEnemies[0].uid+'" class="ememies" src="images/castle-guard.png">');},
+};
+
+var dragon = {
+    name:"Deathbringer",
+    uid: "dragon",
+    level:20,
+    type:"Peon crusher",
+    accuracy: 75,
+    dodge: 30,
+    armor: 4,
+    weapon: ['Dragon Claws', 18, 22],
+    skillPointsCurrent:4,
+    skillPoints:4,
+    hitPointsCurrent:50,
+    hitPoints:50,
+    skills:['Bite Head Off','Fire Breath'],
+    ui_id: "#enemy-ui-one",
+    img_id: "#dragon",
+    img: function(){$("#enemy-ui-one").append('<img id="'+currentEnemies[0].uid+'" class="ememies" src="images/dragon.png">');},
+};
+
+var theking = {
+    name:"King Vlad the Inhaler",
+    uid: "theking",
+    level:8,
+    type:"Supreme Ruler & Overall Good Guy",
+    accuracy: 85,
+    dodge: 60,
+    armor: 5,
+    weapon: ['Lights Edge', 15, 20],
+    skillPointsCurrent:10,
+    skillPoints:10,
+    hitPointsCurrent:30,
+    hitPoints:30,
+    skills:['Cleave','Accurate Strike'],
+    ui_id: "#enemy-ui-one",
+    img_id: "#theking",
+    img: function(){$("#enemy-ui-one").append('<img id="'+currentEnemies[0].uid+'" class="ememies" src="images/theking.png">');},
+};

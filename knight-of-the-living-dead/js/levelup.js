@@ -6,6 +6,7 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	level2: ['Death Seeker', 14, 16],
 	level3: ['Harbinger', 10, 30],
 	level4: ['Repentance', 20, 30],
+	level5: ['Death Blow', 26, 36],
 	nextLevel: ["level1", 1],
 	currentLevel: 1,
 	maxLevel: 4,
@@ -18,11 +19,12 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	}
 
 	var armorLevel = {
-	level1: 3,
+	level1: 2,
 	level2: 4,
-	level3: 5,
-	level4: 6,
-	level5: 7,
+	level3: 6,
+	level4: 8,
+	level5: 10,
+	level6: 13,
 	nextLevel: ["level1", 1],
 	maxLevel: 5,
 	img: "images/icons/armor.png",
@@ -30,10 +32,11 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 
 	var accuracyLevel = {
 	level1: 70,
-	level2: 76,
-	level3: 83,
-	level4: 91,
-	level5: 100,
+	level2: 75,
+	level3: 81,
+	level4: 87,
+	level5: 93,
+	level6: 100,
 	nextLevel: ["level1", 1],
 	maxLevel: 5, 
 	img: "images/icons/accuracy.png",
@@ -52,18 +55,33 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	var dodgeLevel = {
 	level1: 35,
 	level2: 42,
-	level3: 49,
-	level4: 56,
-	level5: 65,
+	level3: 50,
+	level4: 58,
+	level5: 68,
+	level6: 80,
 	nextLevel: ["level1", 1],
 	maxLevel: 5,
 	img: "images/icons/dodge.png",
 	}
 
 function levelUp() {
+	hero.level += 1;
 	$( "#popover" ).addClass("popover-bg-opaque");
 	$( "#level-up" ).fadeIn(2000);
 	$( "#popover" ).fadeIn(2000);
+	$( ".insert-lvl").html(hero.level);
+
+	var addHitPoints = Math.floor((Math.random() * 5) + 1);
+    hero.hitPointsCurrent += addHitPoints;
+    hero.hitPoints += addHitPoints;
+    $('.editHitPoints').html(addHitPoints);
+
+    var addSkillPoints = Math.floor((Math.random() * 2) + 1);
+    hero.skillPointsCurrent += addSkillPoints;
+    hero.skillPoints += addSkillPoints;
+    $('.editSkillPoints').html(addSkillPoints);
+
+    setCharacterStats();
 
 	levelUpOptions = shuffle(levelUpOptions);
 	var level;
@@ -74,7 +92,7 @@ function levelUp() {
 		upgradeTo = attackLevel.nextLevel[0];
 		console.log(level);
 		$('#level-up').append('<div class="levelup-option border-attacklevel">'+'<div class="img-bg"><img class="center skill-img" src='+attackLevel.img+'></div><h1>UPGRADE YOUR WEAPON</h1></br>'+
-						  	'<p>Upgrade your weapon from ' + hero.weapon[0] + ' ('+ hero.weapon[1] + '-' + hero.weapon[2] + ') dmg to the '+
+						  	'<p>Upgrade your weapon from ' + hero.weapon[0] + ' ('+ hero.weaponSaved[1] + '-' + hero.weaponSaved[2] + ') dmg to the '+
 						  	attackLevel[upgradeTo][0] + ' ('+ attackLevel[upgradeTo][1] + '-' + attackLevel[upgradeTo][2] + ' dmg).</p><button class="levelup-button center" id="attackLevel">CHOOSE UPGRADE</button></div>'
 						  	);
 	}
@@ -107,10 +125,11 @@ function levelUp() {
 		// level = attackLevel.currentLevel += 1;
 		upgradeTo = dodgeLevel.nextLevel[0];
 		console.log(level);
-		$('#level-up').append('<div class="levelup-option border-dodgelevel">'+'<div class="img-bg"><img class="center skill-img" src='+dodgeLevel.img+'></div><h1>CHOOSE A NEW SKILL</h1></br>'+
+		$('#level-up').append('<div class="levelup-option border-dodgelevel">'+'<div class="img-bg"><img class="center skill-img" src='+dodgeLevel.img+'></div><h1>DODGE AND MOVE!</h1></br>'+
 							  '<p>Upgrade your dodge level from '+ hero.dodgeSaved + '% to '+dodgeLevel[upgradeTo]+ '%.</p><button class="levelup-button center" id="dodgeLevel">CHOOSE UPGRADE</button></div>');
 	}
 
+	
 	$('.levelup-button').click( function(){
 	
 	var upgrade = $(this).attr('id');
@@ -118,10 +137,16 @@ function levelUp() {
 	var addDifference;
 
 	if (upgrade === "attackLevel"){
+		var addDifference1 = hero.weapon[1] - hero.weaponSaved[1];
+		var addDifference2 = hero.weapon[2] - hero.weaponSaved[2];
+
 		upgradeTo = attackLevel.nextLevel[0];
+
 		hero.weapon[0] = attackLevel[upgradeTo][0];
-		hero.weapon[1] = attackLevel[upgradeTo][1];
-		hero.weapon[2] = attackLevel[upgradeTo][2];
+		hero.weapon[1] = attackLevel[upgradeTo][1] + addDifference1;
+		hero.weapon[2] = attackLevel[upgradeTo][2] + addDifference2;
+		hero.weaponSaved[1] = attackLevel[upgradeTo][1];
+		hero.weaponSaved[2] = attackLevel[upgradeTo][2];
 		attackLevel.nextLevel[1] += 1;
 		attackLevel.nextLevel[0] = "level" + attackLevel.nextLevel[1];
 	}
@@ -154,7 +179,6 @@ function levelUp() {
 
 	if (upgrade === "skillsLevel"){
 		upgradeTo = skillsLevel.nextLevel[0];
-		debugger;
 		$('#'+skillsLevel[upgradeTo]).css('display','inherit');
 		skillsLevel.nextLevel[1] += 1;
 		skillsLevel.nextLevel[0] = "level" + skillsLevel.nextLevel[1];
@@ -165,8 +189,10 @@ function levelUp() {
 	eval(upgrade);
 	$( "#popover" ).fadeOut(200);
 	playSkillActivated();
+	// setFightInfo();
 	$( ".levelup-option" ).remove();
 	$( "#level-up" ).fadeOut(2000);
+	setCharacterStats();
 	// if ( turnzero != 0 ) {
 	// 	enemyKilled(currentEnemies[0].name);
 	// }
