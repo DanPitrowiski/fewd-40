@@ -1,6 +1,6 @@
  var message;
  var playerTurn = true;
- var enemyList = [zombieBob, ogre, mountainGiant, castleGuard, berserker, theking, dragon];
+ var enemyList = [zombieBob, ogre, mountainGiant, berserker, castleGuard, theking, dragon];
  var currentEnemies = [zombieBob];
  var myDiv = document.getElementById("div-history");
  var skipEnemy;

@@ -78,19 +78,19 @@
 			<source class="entrance" src="sound/EnterMountainGiant.wav" type="audio/mpeg">
 		</audio>
 
-		<audio id="ogre-entrance">	
+		<audio id="ogre-entrance">
 			<source class="entrance" src="sound/ogre-enter.ogg" type="audio/mpeg">
 		</audio>
 
-		<audio id="berserker-entrance">	
+		<audio id="berserker-entrance">
 			<source class="entrance" src="sound/berserker.wav" type="audio/mpeg">
 		</audio>
 
-		<audio id="castleGuard-entrance">	
+		<audio id="castleGuard-entrance">
 			<source class="entrance" src="sound/castle-guard-enter.ogg" type="audio/mpeg">
 		</audio>
 
-		<audio id="dragon-entrance">	
+		<audio id="dragon-entrance">
 			<source class="entrance" src="sound/dragon-enter.ogg" type="audio/mpeg">
 		</audio>
 
@@ -98,27 +98,27 @@
 				<source class="entrance" src="sound/dragon-enter2.ogg" type="audio/mpeg">
 		</audio>
 
-		<audio id="theking-entrance">	
+		<audio id="theking-entrance">
 			<source class="entrance" src="sound/theking-enter.ogg" type="audio/mpeg">
 		</audio>
 
-		<audio id="skillactivated">	
+		<audio id="skillactivated">
 			<source class="entrance" src="sound/skillactivated.mp3" type="audio/mpeg">
 		</audio>
 
-		<audio id="itemrestore">	
+		<audio id="itemrestore">
 			<source class="entrance" src="sound/ItemRestore.wav" type="audio/mpeg">
 		</audio>
 
-		<audio id="resurrected">	
+		<audio id="resurrected">
 			<source class="entrance" src="sound/resurrected.wav" type="audio/mpeg">
 		</audio>
 
 
 		<!-- /******************************************
 		/* BOTTOM GAME MENU AND CHARACTERS
-		/*******************************************/  -->			
-		
+		/*******************************************/  -->
+
 		<div id="hero-stats" class="ground-menu">
 			<p class="ch-name"><span class="bold-stat">Farva</span> - lvl <span id="hero-level">5</span></p>
 			<div class="ch-hitpoints"><span class="bold-stat">HP: </span><span id="hero-health"></span>
@@ -127,7 +127,7 @@
 			</div>
 		</div>
 
-		<!-- FIGHT MENU	 -->		
+		<!-- FIGHT MENU	 -->
 
 		<div id="fight-menu" class="ground-menu">
 			<button class="attack-f fight-button">ATTACK</button>
@@ -147,16 +147,19 @@
 			<div id="armorup" class="skill-button">
 				Armor Up - 5SP<br><span class="skills-desc">+4 armor for 10 turns</span>
 			</div>
-			<div id="keeneye" class="skill-button"> 
+			<div id="keeneye" class="skill-button">
 				Keen Eye with Accuracy - 2SP<br><span class="skills-desc">+15 accuracy for 10 turns</span>
 			</div>
-			<div id="execute" class="skill-button"> 
+			<div id="execute" class="skill-button">
 				Execute an enemy - 3SP<br><span class="skills-desc">+30 damage for 3 turns</span>
 			</div>
-			<div id="extralife" class="skill-button"> 
+			<div id="morepotions" class="skill-button">
+				Brew Potions - 6SP<br><span class="skills-desc">2 Skill and Health potions</span>
+			</div>
+			<div id="extralife" class="skill-button">
 				Extra Life - 4SP<br><span class="skills-desc">+40 hitpoints for 10 turns</span>
 			</div>
-		</div>	
+		</div>
 
 		<!-- ITEMS MENU -->
 
@@ -239,34 +242,34 @@
 			<input type='text' id='hero-name' placeholder='Choose a hero name...'>
 			<input type='submit' value='Update' id='submit-btn'>
 		</form>
-		
-		<div id="objective">	
+
+		<div id="objective">
 			<h1>When the dead rise, kings will fall</h1>
 			<p>Time to take the throne from the mortal King. Battle his minions on your way to the final confrontation. If you die, he wins. Survive!</p>
 
 			<div class="light-on-dark-divider"></div>
 
-			<div class="objective-skill center"> 
+			<div class="objective-skill center">
 				<img class="intro-icon" src="images/icons/attack.png">
 				<p class="intro-text"><strong>DAMAGE</strong> is determined randomly from your weapon's damage range.</p>
 			</div>
 
-			<div class="objective-skill center"> 
+			<div class="objective-skill center">
 				<img class="intro-icon" src="images/icons/armor.png">
 				<p class="intro-text"><strong>ARMOR</strong> negates this much damage from every hit.</p>
 			</div>
 
-			<div class="objective-skill center"> 
+			<div class="objective-skill center">
 				<img class="intro-icon" src="images/icons/accuracy.png">
 				<p class="intro-text"><strong>ACCURACY</strong> is the % chance you’ll hit.</p>
 			</div>
 
-			<div class="objective-skill center"> 
+			<div class="objective-skill center">
 				<img class="intro-icon" src="images/icons/skills.png">
 				<p class="intro-text"><strong>SKILLS</strong> are abilities you can activate during battle.</p>
 			</div>
 
-			<div class="objective-skill center"> 
+			<div class="objective-skill center">
 				<img class="intro-icon" src="images/icons/dodge.png">
 				<p class="intro-text"><strong>DODGE</strong> is the % chance you’ll dodge a hit.</p>
 			</div>

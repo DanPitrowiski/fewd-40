@@ -2,7 +2,7 @@
 // * SKILLS LIST
 // ******************************************
 
-var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","extralife"];
+var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","extralife","morepotions"];
 
 	var finishhim = {
 		name: "Finish Him",
@@ -55,7 +55,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","ex
 	var keeneye = {
 		name: "Keen eye",
 		statAdj: 15,
-		skillpointCost: 1,
+		skillpointCost: 2,
 		turns: 10,
 		turnsCount: 0,
 		uid: "keeneye",
@@ -84,6 +84,21 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","ex
 			hero.weapon[2] -= execute.statAdj;},
 	};
 
+	var morepotions = {
+		name: "More Potions",
+		statAdj: 2,
+		skillpointCost: 6,
+		turns: 0,
+		turnsCount: 0,
+		uid: "morepotions",
+		heroOwns: false,
+		effectDescription: "2 Skill & Health potions",
+		adjHero: function (){
+			hero.healthpotion += 2;
+			hero.skillspotion += 2;} ,
+		negHero: function (){},
+	};
+
 	var extralife = {
 		name: "Extra Life",
 		statAdj: 40,
@@ -109,6 +124,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","ex
 // ******************************************
 
 $('.skill-button').click( function(){
+	debugger;
 	if (playerTurn == false){ return; }
 	var heroskill = $(this).attr('id');
 
@@ -132,7 +148,10 @@ $('.skill-button').click( function(){
 	eval(heroskill).adjHero();
 
 	var message = ( hero.name + " activated "+eval(heroskill).name+" ("+eval(heroskill).effectDescription+")");
-	$('#'+eval(heroskill).uid).css('display','none');
+
+	if (eval(heroskill).uid != "morepotions") {
+		$('#'+eval(heroskill).uid).css('display','none');
+	}
 
 	playSkillActivated();
 	alertMessage(message, null, false);
