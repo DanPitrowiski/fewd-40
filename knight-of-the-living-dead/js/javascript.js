@@ -4,6 +4,7 @@
  var currentEnemies = [zombieBob];
  var myDiv = document.getElementById("div-history");
  var skipEnemy;
+ var deathCount = 0; //Only one continue
 
 
 // ******************************************
@@ -18,7 +19,7 @@
 
 $('#entry').on('submit', function(e){
 	debugger;
-	$('#hero-name').blur(); 
+	$('#hero-name').blur();
 	var name = $( '#hero-name' ).val();
  	hero.name = name;
 	e.preventDefault();
@@ -82,7 +83,7 @@ function itemsClose(){
 
 $('.attack-f').click( function(){
 	if (playerTurn == false){ return; }
-	heroAttack();	
+	heroAttack();
 });
 
 function heroAttack(){
@@ -97,7 +98,7 @@ function heroAttack(){
 
  	message = createHitMessage(hero, currentEnemies[0], hit);
  	attackAnimation(hero, currentEnemies[0], hit);
- 	
+
     setTimeout(function(){
 	 	alertMessage(message, null, false);
 	 	if ( hit === true){ playEnemyHit(); } else { playWeaponMiss(); }
@@ -117,7 +118,7 @@ function heroAttack(){
 
 	 	message = createHitMessage(currentEnemies[0], hero, hit);
 	 	attackAnimation(currentEnemies[0],hero, hit);
-		
+
 		setTimeout(function(){
 		alertMessage(message, null, false);
 	 	if ( hit === true){ playHeroHit(); } else { playWeaponMiss(); }
@@ -150,7 +151,7 @@ function enemyAttack(){
 
 	message = createHitMessage(currentEnemies[0], hero, hit);
  	attackAnimation(currentEnemies[0],hero, hit);
-	
+
 	setTimeout(function(){
 		alertMessage(message, null, false);
 	 	if ( hit === true){ playHeroHit(); } else { playWeaponMiss(); }
@@ -219,7 +220,7 @@ function attackAnimation(attacker, defender, hit){
 console.log("Attacker: "+attacker.name+"   Defender:"+defender.name+" and hit "+hit)
 
 
-	if (attacker.ui_id === "#hero-ui" ){  
+	if (attacker.ui_id === "#hero-ui" ){
 		  $(attacker["ui_id"]).addClass("hero-attacking movetofront");
 		  if ( hit === "dodge" ){
 			$(defender["ui_id"]).addClass("enemy-dodge");
@@ -228,7 +229,7 @@ console.log("Attacker: "+attacker.name+"   Defender:"+defender.name+" and hit "+
 		  $(attacker["ui_id"]).removeClass("hero-attacking movetofront");
 		  $(defender["ui_id"]).removeClass("enemy-dodge");
 		  }, 2000);
-	} 
+	}
 	else {
 		$(attacker["ui_id"]).addClass("enemy-attacking movetofront");
 	  	if ( hit === "dodge"  ){
@@ -247,7 +248,7 @@ console.log("Attacker: "+attacker.name+"   Defender:"+defender.name+" and hit "+
 
 function endTurn(){
 	console.log("endTurn what is playerTurn="+playerTurn)
-	if (playerTurn === false) { playerTurn = true; } 
+	if (playerTurn === false) { playerTurn = true; }
 	else if (playerTurn === true) { playerTurn = false;}
 }
 
@@ -302,16 +303,16 @@ function setFightInfo(){
 
 	if (currentEnemies[0].hitPointsCurrent <= 0 ){
 		currentEnemies[0].hitPointsCurrent = 0;
-		levelUp(); 
+		levelUp();
 		enemyKilled(currentEnemies[0].name);
 		return true;
 	}
 	if (hero.hitPointsCurrent <= 0 ){
-		hero.hitPointsCurrent = 0; 
+		hero.hitPointsCurrent = 0;
 		death();
 		return true;
 	}
-	return false; 
+	return false;
 }
 
 function setCharacterStats(){
@@ -338,6 +339,12 @@ function death(){
 	$('#popover').fadeIn(4000).show();
 	$( "#death" ).fadeIn(3000).show();
 	$('#death').addClass('popover-bg');
+	deathCount += 1;
+	if ( deathCount === 2){
+		$('.reload').hide();
+		$('.death-text').append("</br>The End.");
+	}
+
 	};
 
 function winner(){
@@ -359,7 +366,7 @@ function enemyKilled(defender){
 	$('#nextEnemy').html('<button class="nextEnemy">Ready For Next Enemy?</button>');
 	$( "#nextEnemy" ).show();
 	$(".nextEnemy").css('display','inherit');
-	
+
 	updateGameBG();
 }
 
@@ -381,7 +388,7 @@ $('.nextEnemy,#nextEnemy').click( function(){
 	$("#enemy-ui-one,#enemyone,.enemies").fadeIn(2000).show();
 
 	console.log("What ID are we hiding "+currentEnemies[0].img_id);
-	
+
 	// Select Next Enemy
 	enemyList.splice( enemyList[0], 1 );
 	oldEnemies = currentEnemies[0].img_id;
@@ -389,9 +396,9 @@ $('.nextEnemy,#nextEnemy').click( function(){
 	$(oldEnemies).remove();
 	currentEnemies[0].img();
  	$(currentEnemies[0].img_id).css('display','inherit');
-	
+
 	alertMessage("Prepare to fight " + currentEnemies[0].name, null , false);
-	
+
 	currentEnemies[0].hitPointsCurrent = currentEnemies[0].hitPoints;
 
 	playEnemyEntrance(currentEnemies[0]);
@@ -436,30 +443,30 @@ $('.reload').click(function reload() {
 // * AUDIO CONTROLS
 // ******************************************
 
-var enemyHit = $('#enemyhit')[0]; 
-var heroHit = $('#herohit')[0]; 
+var enemyHit = $('#enemyhit')[0];
+var heroHit = $('#herohit')[0];
 var weaponMiss = $('#weaponmiss')[0];
-var gameMusic = $('#zombiemusic')[0]; 
+var gameMusic = $('#zombiemusic')[0];
 var epicMusic = $('#epicmusic')[0];
 var rainPlay = $('#rainambience')[0];
-var windPlay = $('#wind')[0]; 
+var windPlay = $('#wind')[0];
 var thunderandrainPlay = $('#thunderandrain')[0];
 var dragonEntranceTwo = $('#dragon-entrance2')[0];
 var skillActivated = $('#skillactivated')[0];
 var itemRestore = $('#itemrestore')[0];
 var resurrected = $('#resurrected')[0];
 
-function playEnemyHit() { enemyHit.play(); } 
+function playEnemyHit() { enemyHit.play(); }
 
-function playHeroHit() { heroHit.play(); } 
+function playHeroHit() { heroHit.play(); }
 
-function playWeaponMiss() { weaponMiss.play(); } 
+function playWeaponMiss() { weaponMiss.play(); }
 
-function playAudio() { gameMusic.play(); } 
-function pauseAudio() { gameMusic.pause(); } 
+function playAudio() { gameMusic.play(); }
+function pauseAudio() { gameMusic.pause(); }
 
-function playEpicMusic() { epicMusic.play(); } 
-function pauseEpicMusic() { epicMusic.pause(); } 
+function playEpicMusic() { epicMusic.play(); }
+function pauseEpicMusic() { epicMusic.pause(); }
 
 function playRain() { rainPlay.play(); }
 function pauseRain() { rainPlay.play(); }

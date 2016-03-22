@@ -1,4 +1,4 @@
-var turnzero = 0; 
+var turnzero = 0;
 var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','accuracyLevel'];
 
 	var attackLevel = {
@@ -22,14 +22,14 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	}
 
 	var armorLevel = {
-	level1: 2,
-	level2: 4,
-	level3: 6,
-	level4: 8,
-	level5: 10,
+	level1: 3,
+	level2: 5,
+	level3: 7,
+	level4: 9,
+	level5: 11,
 	level6: 13,
-	level7: 16,
-	level8: 19,
+	level7: 15,
+	level8: 17,
 	nextLevel: ["level1", 1],
 	maxLevel: 5,
 	img: "images/icons/armor.png",
@@ -45,7 +45,7 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	level7: 100,
 	level8: 105,
 	nextLevel: ["level1", 1],
-	maxLevel: 5, 
+	maxLevel: 5,
 	img: "images/icons/accuracy.png",
 	}
 
@@ -107,7 +107,7 @@ function levelUp() {
 		upgradeTo = attackLevel.nextLevel[0];
 		console.log(level);
 		$('#level-up').append('<div class="levelup-option border-attacklevel">'+'<div class="img-bg"><img class="center skill-img" src='+attackLevel.img+'></div><h1>UPGRADE YOUR WEAPON</h1></br>'+
-						  	'<p>Upgrade your weapon from ' + hero.weapon[0] + ' ('+ hero.weaponSaved[1] + '-' + hero.weaponSaved[2] + ') dmg to the '+
+						  	'<p>Upgrade your weapon from ' + hero.weapon[0] + ' ('+ hero.weaponSaved[1] + '-' + hero.weaponSaved[2] + ' dmg) to the '+
 						  	attackLevel[upgradeTo][0] + ' ('+ attackLevel[upgradeTo][1] + '-' + attackLevel[upgradeTo][2] + ' dmg).</p><button class="levelup-button center" id="attackLevel">CHOOSE UPGRADE</button></div>'
 						  	);
 	}
@@ -144,9 +144,9 @@ function levelUp() {
 							  '<p>Upgrade your dodge level from '+ hero.dodgeSaved + '% to '+dodgeLevel[upgradeTo]+ '%.</p><button class="levelup-button center" id="dodgeLevel">CHOOSE UPGRADE</button></div>');
 	}
 
-	
+
 	$('.levelup-button').click( function(){
-	
+
 	var upgrade = $(this).attr('id');
 	var upgradeTo;
 	var addDifference;

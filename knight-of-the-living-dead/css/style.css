@@ -477,9 +477,10 @@ div #skills-menu, div #items-menu {
   left: 255px;
   display: absolute;
   width: 290px;
-  overflow: scroll;
   display: none;
+  overflow: scroll;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 #armorup, #finishhim, #keeneye, #lightonyourfeet, #execute, #extralife   {

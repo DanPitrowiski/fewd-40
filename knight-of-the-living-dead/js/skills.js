@@ -12,7 +12,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","ex
 		turnsCount: 0,
 		uid: "finishhim",
 		heroOwns: true,
-		effectDescription: "+10 dmg 5 turns", 
+		effectDescription: "+10 dmg 5 turns",
 		adjHero: function (){
 			hero.weapon[1] += finishhim.statAdj;
 			console.log("Working finish him");
@@ -30,7 +30,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","ex
 		turnsCount: 0,
 		uid: "lightonyourfeet",
 		heroOwns: true,
-		effectDescription: "+30 dodge 10 turns", 
+		effectDescription: "+30 dodge 10 turns",
 		adjHero: function (){
 			hero.dodge += lightonyourfeet.statAdj; },
 		negHero: function (){
@@ -45,7 +45,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","ex
 		turnsCount: 0,
 		uid: "armorup",
 		heroOwns: true,
-		effectDescription: "+4 armor for 10 turns", 
+		effectDescription: "+4 armor for 10 turns",
 		adjHero: function (){
 			hero.armor += armorup.statAdj; },
 		negHero: function (){
@@ -60,7 +60,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","ex
 		turnsCount: 0,
 		uid: "keeneye",
 		heroOwns: false,
-		effectDescription: "+15 accuracy for 10 turns", 
+		effectDescription: "+15 accuracy for 10 turns",
 		adjHero: function (){
 			hero.accuracy += keeneye.statAdj; },
 		negHero: function (){
@@ -75,7 +75,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","ex
 		turnsCount: 0,
 		uid: "execute",
 		heroOwns: false,
-		effectDescription: "+30 damage for 3 turns", 
+		effectDescription: "+30 damage for 3 turns",
 		adjHero: function (){
 			hero.weapon[1] += execute.statAdj;
 			hero.weapon[2] += execute.statAdj;} ,
@@ -92,7 +92,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","ex
 		turnsCount: 0,
 		uid: "extralife",
 		heroOwns: false,
-		effectDescription: "+40 hitpoints for 10 turns", 
+		effectDescription: "+40 hitpoints for 10 turns",
 		adjHero: function (){
 			hero.hitPointsCurrent += extralife.statAdj;
 			hero.hitPoints += extralife.statAdj;} ,
@@ -128,9 +128,9 @@ $('.skill-button').click( function(){
 
 	eval(heroskill).turnsCount = eval(heroskill).turns;
 	hero.skillPointsCurrent -= eval(heroskill).skillpointCost;
-	
+
 	eval(heroskill).adjHero();
-	
+
 	var message = ( hero.name + " activated "+eval(heroskill).name+" ("+eval(heroskill).effectDescription+")");
 	$('#'+eval(heroskill).uid).css('display','none');
 
