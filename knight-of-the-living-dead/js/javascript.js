@@ -410,6 +410,7 @@ $('.nextEnemy,#nextEnemy').click( function(){
 		$('.enemiescount').fadeOut();
 	}
 	if (roundCounter === 6){
+		$('.turns-alerts').remove();
 		alertMessage("Even kings bow before me puny creature!", null, false);
 	}
 

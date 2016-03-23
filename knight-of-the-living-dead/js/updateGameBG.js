@@ -16,11 +16,14 @@ roundCounter++;
 		$('.large-grey-cloud2').css('display','inherit');
 		$('canvas').css('display','inherit');
 		playRain();
-    gameMusic.volume = 0.4;
+    gameMusic.volume = 0.7;
 	};
 	if (roundCounter === 4){
 		$('#game-container').addClass('twilight-game-bg');
 		playWind();
+    gravity = .5;
+    wind = .2;
+    rain_chance = .5;
 	};
 
 	if (roundCounter === 5){
@@ -28,17 +31,24 @@ roundCounter++;
 		pauseAudio();
 		playEpicMusic();
 		playThunderandrain();
+    gravity = .6;
+    wind = .3;
+    rain_chance = .75;
 	};
 
 	if (roundCounter === 6){
 		$('.turns-alerts').remove();
 		alertMessage("Is that it? Is there no one left to challenge me?!", null, false);
 		$('#game-container').addClass('night-game-bg');
+    $('#thunder').addClass('thunder');
+    wind = 0.4;
+    gravity = 0.7;
+    rain_chance = 1;
 	};
 
 	if (roundCounter === 7){
 		winner();
-	};	
+	};
 
 }
 
@@ -58,7 +68,7 @@ window.requestAnimFrame =
         window.setTimeout(callback, 1000 / 60);
     };
 
-var canvas = document.getElementById('c');
+var canvas = document.getElementById('rain');
 var ctx = canvas.getContext('2d');
 canvas.width = 1100;
 canvas.height = 350;

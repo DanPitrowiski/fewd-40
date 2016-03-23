@@ -124,7 +124,6 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","ex
 // ******************************************
 
 $('.skill-button').click( function(){
-	debugger;
 	if (playerTurn == false){ return; }
 	var heroskill = $(this).attr('id');
 

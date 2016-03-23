@@ -480,7 +480,6 @@ div #skills-menu, div #items-menu {
   display: none;
   overflow: scroll;
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 #armorup, #finishhim, #lightonyourfeet, #execute, #extralife, #morepotions {
@@ -897,13 +896,48 @@ strong {
 }
 
 /******************************************
-/* RAIN
+/* RAIN AND THUNDER
 /*******************************************/
 
 canvas {
   position: fixed;
-  top: 35px;
   z-index: -5;
   display: none;
 }
 
+#rain {
+  top: 35px;
+}
+
+#thunder {
+  top: 35px;
+  width: 1100px;
+  height: 330px;
+}
+
+.thunder {
+  -webkit-animation: thunder-bg 8s infinite;
+}
+
+@-webkit-keyframes thunder-bg {
+  0%    { background-color: rgba(255,255,255,0.0); }
+  9%    { background-color: rgba(255,255,255,0.0); }
+  10%   { background-color: rgba(255,255,255,1); }
+  10.5%   { background-color: rgba(255,255,255,0.0); }
+  80%   { background-color: rgba(255,255,255,0.0); }
+  82%   { background-color: rgba(255,255,255,0.0); }
+  83%   { background-color: rgba(255,255,255,0.0); }
+  83.5%   { background-color: rgba(255,255,255,1); }
+  100%  { background-color: rgba(255,255,255,0.0); }
+}
+/*@-webkit-keyframes thunder-bg {
+  0%    { background-color: #1f1f33; }
+  9%    { background-color: #1f1f33; }
+  10%   { background-color: #484877; }
+  10.5%   { background-color: #1f1f33; }
+  80%   { background-color: #1f1f33; }
+  82%   { background-color: #484877; }
+  83%   { background-color: #1f1f33; }
+  83.5%   { background-color: #484877; }
+  100%  { background-color: #1f1f33; }
+}*/
