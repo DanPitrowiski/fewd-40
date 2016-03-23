@@ -5,6 +5,10 @@
  var myDiv = document.getElementById("div-history");
  var skipEnemy;
  var deathCount = 0; //Only one continue
+ var totalTurns = 0;
+
+ var myFirebaseRef = new Firebase('https://blazing-fire-8790.firebaseio.com/');
+
 
 
 // ******************************************
@@ -86,6 +90,7 @@ $('.attack-f').click( function(){
 });
 
 function heroAttack(){
+	totalTurns += 1;
 	endTurn();
 	$('.alert-button').addClass('enemyturn');
 	$('.turns-alerts').remove();
@@ -139,6 +144,7 @@ $('.enemyturn').click( function(){
 
 
 function enemyAttack(){
+	totalTurns += 1;
 	$('.turns-alerts').remove();
 	$('.fight-button').removeClass('turnoffbuttons');
 	$('.item-button').removeClass('turnoffbuttons');
@@ -343,7 +349,7 @@ function death(){
 		$('.death-text').append("</br>The End.");
 	}
 
-	};
+};
 
 function winner(){
 	$('#level-up').hide();
@@ -351,7 +357,27 @@ function winner(){
 	$('#popover').fadeIn(4000).show();
 	$( "#winner" ).fadeIn(3000).show();
 	$('#winner').addClass('popover-bg');
-	};
+
+	// SET WINNERS WINNING INFO
+	 myFirebaseRef.set({
+	 	highscores: {
+  			user: hero.name,
+  			totalTurns: totalTurns,
+  		}
+	 });
+
+	var myHighScores = new Firebase('https://blazing-fire-8790.firebaseio.com/highscores');
+
+	myHighScores.orderByValue().on("value", function(snapshot) {
+			// console.log(snapshot);
+  		snapshot.forEach(function(data) {
+  			console.log("Date.key() is " + data.key() + " AND data.val() is " + data.val());
+    		// console.log(highscores.user() + " completed the game in " + highscores.totalTurns() + " turns.");
+    		console.log(data);
+  		});
+	});
+
+};
 
 function enemyKilled(defender){
 	$('#enemy-ui-one').fadeOut(2000);
@@ -455,15 +481,13 @@ var skillActivated = $('#skillactivated')[0];
 var itemRestore = $('#itemrestore')[0];
 var resurrected = $('#resurrected')[0];
 
-function playEnemyHit() { enemyHit.play(); }
+function playEnemyHit() { enemyHit.play(); enemyHit.volume = .8;}
 
-function playHeroHit() { heroHit.play(); }
+function playHeroHit() { heroHit.play(); heroHit.volume = .8;}
 
-function playWeaponMiss() { weaponMiss.play(); }
+function playWeaponMiss() { weaponMiss.play(); weaponMiss.volume = .8;}
 
-function playAudio() { gameMusic.play();
-					   gameMusic.volume = .8;
-					 }
+function playAudio() { gameMusic.play(); gameMusic.volume = .8;}
 function pauseAudio() { gameMusic.pause(); }
 
 function playEpicMusic() { epicMusic.play(); }
