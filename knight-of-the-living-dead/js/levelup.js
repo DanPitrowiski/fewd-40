@@ -2,14 +2,14 @@ var turnzero = 0;
 var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','accuracyLevel'];
 
 	var attackLevel = {
-	level1: ['Bone Saw', 9, 14],
-	level2: ['Death Seeker', 14, 16],
-	level3: ['Bone Scythe', 10, 30],
-	level4: ['Harbinger', 20, 30],
+	level1: ['Bone Saw', 10, 14],
+	level2: ['Death Seeker', 14, 18],
+	level3: ['Bone Scythe', 14, 30],
+	level4: ['Harbinger', 22, 30],
 	level5: ['Repentance', 26, 36],
-	level6: ['Death Blow', 35, 40],
-	level7: ["Death's Touch", 40, 40],
-	level8: ['Exacto Knife', 40, 50],
+	level6: ['Devilish Dire', 6, 66],
+	level7: ['Deaths Blow', 37, 45],
+	level8: ['Exacto Knife', 50, 50],
 	nextLevel: ["level1", 1],
 	currentLevel: 1,
 	maxLevel: 4,
