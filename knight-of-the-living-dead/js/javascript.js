@@ -18,7 +18,6 @@
   });
 
 $('#entry').on('submit', function(e){
-	debugger;
 	$('#hero-name').blur();
 	var name = $( '#hero-name' ).val();
  	hero.name = name;
@@ -168,11 +167,10 @@ function enemyAttack(){
 function hitting(attacker, defender){
 
 	var hitChanceRandom = Math.floor((Math.random() * 100) + 1);
+	var dodgeChance = Math.floor((Math.random() * 100) + 1);
 	console.log(hitChanceRandom);
-	var hitChance = attacker.accuracy;
 
-	if ( hitChanceRandom <= hitChance) {
-		var dodgeChance = Math.floor((Math.random() * 100) + 1);
+	if ( hitChanceRandom <= attacker.accuracy) {
 		if ( dodgeChance <= defender.dodge){
 			return "dodge";
 		}
@@ -462,7 +460,9 @@ function playHeroHit() { heroHit.play(); }
 
 function playWeaponMiss() { weaponMiss.play(); }
 
-function playAudio() { gameMusic.play(); }
+function playAudio() { gameMusic.play();
+					   gameMusic.volume = .8;
+					 }
 function pauseAudio() { gameMusic.pause(); }
 
 function playEpicMusic() { epicMusic.play(); }

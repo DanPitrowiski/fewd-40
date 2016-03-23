@@ -36,14 +36,14 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	}
 
 	var accuracyLevel = {
-	level1: 70,
-	level2: 75,
-	level3: 81,
-	level4: 87,
-	level5: 93,
-	level6: 99,
-	level7: 100,
-	level8: 105,
+	level1: 74,
+	level2: 82,
+	level3: 90,
+	level4: 95,
+	level5: 99,
+	level6: 99.5,
+	level7: 99.9,
+	level8: 100,
 	nextLevel: ["level1", 1],
 	maxLevel: 5,
 	img: "images/icons/accuracy.png",
@@ -62,14 +62,14 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	}
 
 	var dodgeLevel = {
-	level1: 35,
-	level2: 42,
-	level3: 49,
-	level4: 57,
-	level5: 65,
-	level6: 73,
-	level7: 81,
-	level8: 90,
+	level1: 30,
+	level2: 40,
+	level3: 50,
+	level4: 60,
+	level5: 70,
+	level6: 78,
+	level7: 86,
+	level8: 94,
 	nextLevel: ["level1", 1],
 	maxLevel: 5,
 	img: "images/icons/dodge.png",
@@ -178,16 +178,17 @@ function levelUp() {
 	if (upgrade === "accuracyLevel"){
 		addDifference = hero.accuracy - hero.accuracySaved;
 		upgradeTo = accuracyLevel.nextLevel[0];
-		hero.accuracy = accuracyLevel[upgradeTo];
-		hero.accuracySaved = accuracyLevel[upgradeTo];
+		hero.accuracy = accuracyLevel[upgradeTo] + addDifference;
+		hero.accuracySaved = accuracyLevel[upgradeTo] + addDifference;
 		accuracyLevel.nextLevel[1] += 1;
 		accuracyLevel.nextLevel[0] = "level" + accuracyLevel.nextLevel[1];
 	}
 
 	if (upgrade === "dodgeLevel"){
+		addDifference = hero.dodge - hero.dodgeSaved;
 		upgradeTo = dodgeLevel.nextLevel[0];
-		hero.dodge = dodgeLevel[upgradeTo];
-		hero.dodgeSaved = dodgeLevel[upgradeTo];
+		hero.dodge = dodgeLevel[upgradeTo] + addDifference;
+		hero.dodgeSaved = dodgeLevel[upgradeTo] + addDifference;
 		dodgeLevel.nextLevel[1] += 1;
 		dodgeLevel.nextLevel[0] = "level" + dodgeLevel.nextLevel[1];
 	}
@@ -207,6 +208,11 @@ function levelUp() {
 	// setFightInfo();
 	$( ".levelup-option" ).remove();
 	$( "#level-up" ).fadeOut(2000);
+
+	if (roundCounter === 0){
+		playEnemyEntrance(currentEnemies[0]);
+	}
+
 	setCharacterStats();
 	// if ( turnzero != 0 ) {
 	// 	enemyKilled(currentEnemies[0].name);

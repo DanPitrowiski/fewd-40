@@ -16,6 +16,7 @@ roundCounter++;
 		$('.large-grey-cloud2').css('display','inherit');
 		$('canvas').css('display','inherit');
 		playRain();
+    gameMusic.volume = 0.4;
 	};
 	if (roundCounter === 4){
 		$('#game-container').addClass('twilight-game-bg');
