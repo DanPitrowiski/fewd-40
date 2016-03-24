@@ -34,13 +34,25 @@ roundCounter++;
     gravity = .6;
     wind = .3;
     rain_chance = .75;
+    $('.deathbringer-bg').css('display','inherit');
+    $('.large-grey-cloud3').css('display','inherit');
 	};
 
 	if (roundCounter === 6){
+    $('#thunder').addClass('thunder');
+
+    // Bring Deathbringer infron of Mountains and Thunder
+    $('.deathbringer-bg').css('z-index','-2');
+    $('.deathbringer-bg').css('opacity','.4');
+    // Remove all other comments for Deathbrings comment
 		$('.turns-alerts').remove();
 		alertMessage("Is that it? Is there no one left to challenge me?!", null, false);
-		$('#game-container').addClass('night-game-bg');
-    $('#thunder').addClass('thunder');
+
+    $('#game-container').addClass('night-game-bg');
+    $('.large-grey-cloud4').css('display','inherit');
+    $('.large-grey-cloud5').css('display','inherit');
+    pauseEpicMusic();
+    playDeathBringerMusic();
     wind = 0.4;
     gravity = 0.7;
     rain_chance = 1;

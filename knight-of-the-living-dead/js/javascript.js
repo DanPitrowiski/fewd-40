@@ -437,6 +437,7 @@ $('.nextEnemy,#nextEnemy').click( function(){
 	}
 	if (roundCounter === 6){
 		$('.turns-alerts').remove();
+		$('.deathbringer-bg').css('display','none');
 		alertMessage("Even kings bow before me puny creature!", null, false);
 	}
 
@@ -473,6 +474,7 @@ var heroHit = $('#herohit')[0];
 var weaponMiss = $('#weaponmiss')[0];
 var gameMusic = $('#zombiemusic')[0];
 var epicMusic = $('#epicmusic')[0];
+var deathbringerMusic = $('#deathbringer-music')[0];
 var rainPlay = $('#rainambience')[0];
 var windPlay = $('#wind')[0];
 var thunderandrainPlay = $('#thunderandrain')[0];
@@ -492,6 +494,9 @@ function pauseAudio() { gameMusic.pause(); }
 
 function playEpicMusic() { epicMusic.play(); }
 function pauseEpicMusic() { epicMusic.pause(); }
+
+function playDeathBringerMusic() { deathbringerMusic.play(); }
+function pauseDeathBringerMusic() { deathbringerMusic.pause(); }
 
 function playRain() { rainPlay.play(); }
 function pauseRain() { rainPlay.play(); }

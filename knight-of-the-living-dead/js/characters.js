@@ -24,7 +24,7 @@ var hero = {
 var zombieBob = {
     name:"Farmer Bob Brains",
     uid: "zombieBob",
-    level:8,
+    level:1,
     type:"Zombie Botanist",
     accuracy: 60,
     dodge: 15,
@@ -43,7 +43,7 @@ var zombieBob = {
 var mountainGiant = {
     name:"Mountain Giant",
     uid: "mountainGiant",
-    level:10,
+    level:5,
     type:"Rocking and Rolling",
     accuracy: 55,
     dodge: 5,
@@ -62,7 +62,7 @@ var mountainGiant = {
 var ogre = {
     name:"Mogor",
     uid: "ogre",
-    level:4,
+    level:3,
     type:"Crush, kill, than eat",
     accuracy: 65,
     dodge: 22,
@@ -119,7 +119,7 @@ var castleGuard = {
 var dragon = {
     name:"Deathbringer",
     uid: "dragon",
-    level:20,
+    level:99,
     type:"Peon crusher",
     accuracy: 88,
     dodge: 30,
@@ -132,13 +132,13 @@ var dragon = {
     skills:['Bite Head Off','Fire Breath'],
     ui_id: "#enemy-ui-one",
     img_id: "#dragon",
-    img: function(){$("#enemy-ui-one").append('<img id="'+currentEnemies[0].uid+'" class="ememies" src="images/dragon.png">');},
+    img: function(){$("#enemy-ui-one").append('<img id="'+currentEnemies[0].uid+'" class="ememies flying" src="images/dragon.png">');},
 };
 
 var theking = {
     name:"King Vlad the Inhaler",
     uid: "theking",
-    level:8,
+    level:20,
     type:"Supreme Ruler & Overall Good Guy",
     accuracy: 85,
     dodge: 50,
