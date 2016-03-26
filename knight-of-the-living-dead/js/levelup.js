@@ -76,10 +76,11 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	}
 
 function levelUp() {
-	hero.level += 1;
 	$( "#popover" ).addClass("popover-bg-opaque");
 	$( "#level-up" ).fadeIn(2000);
 	$( "#popover" ).fadeIn(2000);
+
+	hero.level += 1;
 	$( ".insert-lvl").html(hero.level);
 
 	// Give Random Hitpoint Bonus
@@ -96,7 +97,7 @@ function levelUp() {
 
     setCharacterStats();
 
-    // Randomize Next Upgrade
+    // Randomize Next Available 3 Upgrades
 	levelUpOptions = shuffle(levelUpOptions);
 
 	var level;
@@ -147,80 +148,73 @@ function levelUp() {
 
 	$('.levelup-button').click( function(){
 
-	var upgrade = $(this).attr('id');
-	var upgradeTo;
-	var addDifference;
+		var upgrade = $(this).attr('id');
+		var upgradeTo;
+		var addDifference;
 
-	if (upgrade === "attackLevel"){
-		var addDifference1 = hero.weapon[1] - hero.weaponSaved[1];
-		var addDifference2 = hero.weapon[2] - hero.weaponSaved[2];
+		if (upgrade === "attackLevel"){
+			var addDifference1 = hero.weapon[1] - hero.weaponSaved[1];
+			var addDifference2 = hero.weapon[2] - hero.weaponSaved[2];
 
-		upgradeTo = attackLevel.nextLevel[0];
+			upgradeTo = attackLevel.nextLevel[0];
 
-		hero.weapon[0] = attackLevel[upgradeTo][0];
-		hero.weapon[1] = attackLevel[upgradeTo][1] + addDifference1;
-		hero.weapon[2] = attackLevel[upgradeTo][2] + addDifference2;
-		hero.weaponSaved[1] = attackLevel[upgradeTo][1];
-		hero.weaponSaved[2] = attackLevel[upgradeTo][2];
-		attackLevel.nextLevel[1] += 1;
-		attackLevel.nextLevel[0] = "level" + attackLevel.nextLevel[1];
-	}
+			hero.weapon[0] = attackLevel[upgradeTo][0];
+			hero.weapon[1] = attackLevel[upgradeTo][1] + addDifference1;
+			hero.weapon[2] = attackLevel[upgradeTo][2] + addDifference2;
+			hero.weaponSaved[1] = attackLevel[upgradeTo][1];
+			hero.weaponSaved[2] = attackLevel[upgradeTo][2];
+			attackLevel.nextLevel[1] += 1;
+			attackLevel.nextLevel[0] = "level" + attackLevel.nextLevel[1];
+		}
 
-	if (upgrade === "armorLevel"){
-		addDifference = hero.armor - hero.armorSaved;
-		upgradeTo = armorLevel.nextLevel[0];
-		hero.armor = armorLevel[upgradeTo] + addDifference;
-		hero.armorSaved = armorLevel[upgradeTo];
-		armorLevel.nextLevel[1] += 1;
-		armorLevel.nextLevel[0] = "level" + armorLevel.nextLevel[1];
-	}
+		if (upgrade === "armorLevel"){
+			addDifference = hero.armor - hero.armorSaved;
+			upgradeTo = armorLevel.nextLevel[0];
+			hero.armor = armorLevel[upgradeTo] + addDifference;
+			hero.armorSaved = armorLevel[upgradeTo];
+			armorLevel.nextLevel[1] += 1;
+			armorLevel.nextLevel[0] = "level" + armorLevel.nextLevel[1];
+		}
 
-	if (upgrade === "accuracyLevel"){
-		addDifference = hero.accuracy - hero.accuracySaved;
-		upgradeTo = accuracyLevel.nextLevel[0];
-		hero.accuracy = accuracyLevel[upgradeTo] + addDifference;
-		hero.accuracySaved = accuracyLevel[upgradeTo] + addDifference;
-		accuracyLevel.nextLevel[1] += 1;
-		accuracyLevel.nextLevel[0] = "level" + accuracyLevel.nextLevel[1];
-	}
+		if (upgrade === "accuracyLevel"){
+			addDifference = hero.accuracy - hero.accuracySaved;
+			upgradeTo = accuracyLevel.nextLevel[0];
+			hero.accuracy = accuracyLevel[upgradeTo] + addDifference;
+			hero.accuracySaved = accuracyLevel[upgradeTo] + addDifference;
+			accuracyLevel.nextLevel[1] += 1;
+			accuracyLevel.nextLevel[0] = "level" + accuracyLevel.nextLevel[1];
+		}
 
-	if (upgrade === "dodgeLevel"){
-		addDifference = hero.dodge - hero.dodgeSaved;
-		upgradeTo = dodgeLevel.nextLevel[0];
-		hero.dodge = dodgeLevel[upgradeTo] + addDifference;
-		hero.dodgeSaved = dodgeLevel[upgradeTo] + addDifference;
-		dodgeLevel.nextLevel[1] += 1;
-		dodgeLevel.nextLevel[0] = "level" + dodgeLevel.nextLevel[1];
-	}
+		if (upgrade === "dodgeLevel"){
+			addDifference = hero.dodge - hero.dodgeSaved;
+			upgradeTo = dodgeLevel.nextLevel[0];
+			hero.dodge = dodgeLevel[upgradeTo] + addDifference;
+			hero.dodgeSaved = dodgeLevel[upgradeTo] + addDifference;
+			dodgeLevel.nextLevel[1] += 1;
+			dodgeLevel.nextLevel[0] = "level" + dodgeLevel.nextLevel[1];
+		}
 
-	if (upgrade === "skillsLevel"){
-		upgradeTo = skillsLevel.nextLevel[0];
-		$('#'+skillsLevel[upgradeTo]).css('display','inherit');
-		skillsLevel.nextLevel[1] += 1;
-		skillsLevel.nextLevel[0] = "level" + skillsLevel.nextLevel[1];
-	}
+		if (upgrade === "skillsLevel"){
+			upgradeTo = skillsLevel.nextLevel[0];
+			$('#'+skillsLevel[upgradeTo]).css('display','inherit');
+			skillsLevel.nextLevel[1] += 1;
+			skillsLevel.nextLevel[0] = "level" + skillsLevel.nextLevel[1];
+		}
 
-	console.log("Level up - player turn = "+ playerTurn);
+		console.log("Level up - player turn = "+ playerTurn);
 
-	eval(upgrade);
-	$( "#popover" ).fadeOut(200);
-	playSkillActivated();
-	// setFightInfo();
-	$( ".levelup-option" ).remove();
-	$( "#level-up" ).fadeOut(2000);
+		eval(upgrade);
+		$( "#popover" ).fadeOut(200);
+		$( ".levelup-option" ).remove();
+		$( "#level-up" ).fadeOut(2000);
 
-	if (roundCounter === 0){
-		playEnemyEntrance(currentEnemies[0]);
-	}
+		playSkillActivated();
+		setCharacterStats();
 
-	setCharacterStats();
-	// if ( turnzero != 0 ) {
-	// 	enemyKilled(currentEnemies[0].name);
-	// }
-	// turnzero += 1;
-
-});
-
+		if (roundCounter === 0){
+			playEnemyEntrance(currentEnemies[0]);
+		}
+	});
 }
 
 
