@@ -125,6 +125,7 @@ var skillList = ["finishhim","lightonyourfeet","armorup","keeneye","execute","ex
 
 $('.skill-button').click( function(){
 	if (playerTurn == false){ return; }
+
 	var heroskill = $(this).attr('id');
 
 	$('.turns-alerts').remove();
@@ -146,14 +147,14 @@ $('.skill-button').click( function(){
 
 	eval(heroskill).adjHero();
 
-	var message = ( hero.name + " activated "+eval(heroskill).name+" ("+eval(heroskill).effectDescription+")");
-
 	if (eval(heroskill).uid != "morepotions") {
 		$('#'+eval(heroskill).uid).css('display','none');
 	}
 
-	playSkillActivated();
+	var message = ( hero.name + " activated "+eval(heroskill).name+" ("+eval(heroskill).effectDescription+")");
 	alertMessage(message, null, false);
+
+	playSkillActivated();
 	endTurn();
 	setFightInfo();
 
