@@ -2,14 +2,15 @@ var turnzero = 0;
 var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','accuracyLevel'];
 
 	var attackLevel = {
-	level1: ['Bone Saw', 10, 14],
-	level2: ['Death Seeker', 14, 18],
-	level3: ['Bone Scythe', 14, 30],
-	level4: ['Harbinger', 22, 30],
-	level5: ['Repentance', 26, 36],
+	level1: ['Bone Saw', 10, 15],
+	level2: ['Death Seeker', 13, 18],
+	level3: ['Bone Scythe', 15, 23],
+	level4: ['Harbinger', 16, 30],
+	level5: ['Repentance', 25, 30],
 	level6: ['Devilish Dire', 6, 66],
-	level7: ['Deaths Blow', 37, 45],
-	level8: ['Exacto Knife', 50, 50],
+	level7: ['Deaths Blow', 30, 36],
+	level8: ['Exacto Knife', 40, 40],
+	level9: ['Bone Saw lvl 2', 40, 52],
 	nextLevel: ["level1", 1],
 	currentLevel: 1,
 	maxLevel: 4,
@@ -30,6 +31,7 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	level6: 13,
 	level7: 15,
 	level8: 17,
+	level9: 19,
 	nextLevel: ["level1", 1],
 	maxLevel: 5,
 	img: "images/icons/armor.png",
@@ -44,6 +46,7 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	level6: 99.5,
 	level7: 99.9,
 	level8: 100,
+	level9: 105,
 	nextLevel: ["level1", 1],
 	maxLevel: 5,
 	img: "images/icons/accuracy.png",
@@ -56,6 +59,9 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	level4: 'morepotions',
 	level5: 'lightonyourfeet',
 	level6: 'execute',
+	level7: '',
+	level8: '',
+	level9: '',
 	nextLevel: ["level1", 1],
 	maxLevel: 2,
 	img: "images/icons/skills.png",
@@ -70,6 +76,7 @@ var levelUpOptions = ['attackLevel', 'armorLevel','skillsLevel','dodgeLevel','ac
 	level6: 78,
 	level7: 86,
 	level8: 94,
+	level9: 99,
 	nextLevel: ["level1", 1],
 	maxLevel: 5,
 	img: "images/icons/dodge.png",
@@ -180,7 +187,7 @@ function levelUp() {
 			addDifference = hero.accuracy - hero.accuracySaved;
 			upgradeTo = accuracyLevel.nextLevel[0];
 			hero.accuracy = accuracyLevel[upgradeTo] + addDifference;
-			hero.accuracySaved = accuracyLevel[upgradeTo] + addDifference;
+			hero.accuracySaved = accuracyLevel[upgradeTo];
 			accuracyLevel.nextLevel[1] += 1;
 			accuracyLevel.nextLevel[0] = "level" + accuracyLevel.nextLevel[1];
 		}
@@ -189,7 +196,7 @@ function levelUp() {
 			addDifference = hero.dodge - hero.dodgeSaved;
 			upgradeTo = dodgeLevel.nextLevel[0];
 			hero.dodge = dodgeLevel[upgradeTo] + addDifference;
-			hero.dodgeSaved = dodgeLevel[upgradeTo] + addDifference;
+			hero.dodgeSaved = dodgeLevel[upgradeTo];
 			dodgeLevel.nextLevel[1] += 1;
 			dodgeLevel.nextLevel[0] = "level" + dodgeLevel.nextLevel[1];
 		}

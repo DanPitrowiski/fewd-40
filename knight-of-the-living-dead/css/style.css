@@ -453,6 +453,11 @@ h1 {
   bottom: 67px;
 }
 
+#dungeonGuard {
+  position: relative;
+  bottom: 123px;
+}
+
 #dragon {
   position: relative;
   bottom: 158px;

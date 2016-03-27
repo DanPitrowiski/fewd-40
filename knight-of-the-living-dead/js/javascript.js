@@ -1,6 +1,6 @@
  var message;
  var playerTurn = true;
- var enemyList = [zombieBob, ogre, mountainGiant, berserker, castleGuard, theking, dragon];
+ var enemyList = [zombieBob, ogre, berserker, dungeonGuard, mountainGiant, castleGuard, theking, dragon];
  var currentEnemies = [zombieBob];
  var myDiv = document.getElementById("div-history");
  var skipEnemy;
@@ -429,13 +429,13 @@ $('.nextEnemy,#nextEnemy').click( function(){
 	playerTurn=true;
 
 	// Setting How Many Enemies Before King
-	if (roundCounter < 5){
-		var count = (4 - roundCounter);
+	if (roundCounter < 6){
+		var count = (5 - roundCounter);
 		$('.editEnemiesCounter').html(count)
 	} else{
 		$('.enemiescount').fadeOut();
 	}
-	if (roundCounter === 6){
+	if (roundCounter === 7){
 		$('.turns-alerts').remove();
 		$('.deathbringer-bg').css('display','none');
 		alertMessage("Even kings bow before me puny creature!", null, false);
@@ -535,6 +535,9 @@ function playEnemyEntrance(enemy){
 	}
 	if (enemy.img_id === "#castleGuard"){
 	var audio = $('#castleGuard-entrance')[0];
+	}
+	if (enemy.img_id === "#dungeonGuard"){
+	var audio = $('#dungeonGuard-entrance')[0];
 	}
 	audio.play();
 }

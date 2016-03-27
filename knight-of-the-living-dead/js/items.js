@@ -5,6 +5,7 @@ $('.item-button').click( function(){
 	var item = $(this).attr('id');
 
 	if (hero[item] < 1){
+		$('.turns-alerts').remove();
 		var message = ("You've run out of those.");
 		alertMessage(message, null, false);
 		return;
