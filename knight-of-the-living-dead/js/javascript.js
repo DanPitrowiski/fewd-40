@@ -489,7 +489,7 @@ function playHeroHit() { heroHit.play(); heroHit.volume = .8;}
 
 function playWeaponMiss() { weaponMiss.play(); weaponMiss.volume = .8;}
 
-function playAudio() { gameMusic.play(); gameMusic.volume = .8;}
+function playAudio() { gameMusic.play(); gameMusic.volume = .6;}
 function pauseAudio() { gameMusic.pause(); }
 
 function playEpicMusic() { epicMusic.play(); }
