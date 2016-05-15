@@ -223,7 +223,6 @@ function attackAnimation(attacker, defender, hit){
 
 console.log("Attacker: "+attacker.name+"   Defender:"+defender.name+" and hit "+hit)
 
-
 	if (attacker.ui_id === "#hero-ui" ){
 		  $(attacker["ui_id"]).addClass("hero-attacking movetofront");
 		  if ( hit === "dodge" ){
@@ -354,28 +353,32 @@ function death(){
 function winner(){
 	$('#level-up').hide();
 	$('.editHeroName').text(hero.name);
+	$('.turnTotal').text(totalTurns);
 	$('#popover').fadeIn(4000).show();
-	$( "#winner" ).fadeIn(3000).show();
+	$('#winner').fadeIn(3000).show();
 	$('#winner').addClass('popover-bg');
+	$('.game-name').css('padding','100px 0');
 
 	// SET WINNERS WINNING INFO
-	 myFirebaseRef.set({
-	 	highscores: {
-  			user: hero.name,
-  			totalTurns: totalTurns,
-  		}
-	 });
+	 // myFirebaseRef.push({
+ 	// 	highscores: {
+  // 			user: hero.name,
+  // 			totalTurns: totalTurns,
+  // 		}
+	 // });
 
-	var myHighScores = new Firebase('https://blazing-fire-8790.firebaseio.com/highscores');
+	 newScore();
 
-	myHighScores.orderByValue().on("value", function(snapshot) {
-			// console.log(snapshot);
-  		snapshot.forEach(function(data) {
-  			console.log("Date.key() is " + data.key() + " AND data.val() is " + data.val());
-    		// console.log(highscores.user() + " completed the game in " + highscores.totalTurns() + " turns.");
-    		console.log(data);
-  		});
-	});
+	// var myHighScores = new Firebase('https://blazing-fire-8790.firebaseio.com/highscores');
+
+	// myHighScores.orderByValue().on("value", function(snapshot) {
+	// 		// console.log(snapshot);
+ //  		snapshot.forEach(function(data) {
+ //  			console.log("Date.key() is " + data.key() + " AND data.val() is " + data.val());
+ //    		// console.log(highscores.user() + " completed the game in " + highscores.totalTurns() + " turns.");
+ //    		console.log(data);
+ //  		});
+	// });
 
 };
 
