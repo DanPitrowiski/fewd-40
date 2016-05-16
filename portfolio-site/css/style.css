@@ -173,6 +173,12 @@ div.job {
 /*  padding-left: 20px; */
 }
 
+.portfolio-mobile {
+  display: inline;
+  width: 300px;
+  margin-left: 10%;
+}
+
 .portfolio-item  {
   display: block;
   max-width: 1200px;
@@ -391,10 +397,15 @@ FOR SMALLER SCEENS
       text-align: center;
     }
 
-    .portfolio-ss {
+    .portfolio-ss, .portfolio-mobile {
     display: block;
     width: 90%;
     margin: 0 auto;
+    }
+
+    .portfolio-mobile {
+      width: 300px;
+      margin: 0px auto;
     }
 
     .portfolio-item  {
